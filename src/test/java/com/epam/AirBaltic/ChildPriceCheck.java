@@ -17,8 +17,10 @@ public class ChildPriceCheck extends PageTest{
     bookAFlightForm = startPage.goToBookAFlightForm();
     bookAFlightForm.choseCountryFrom();
     bookAFlightForm.choseCountryTo();
+    bookAFlightForm.pressFindFlightsButton();
     bookAFlightForm.setDepartureDate();
     bookAFlightForm.setReturnDate();
+    bookAFlightForm.addChild();
 
     }
 }

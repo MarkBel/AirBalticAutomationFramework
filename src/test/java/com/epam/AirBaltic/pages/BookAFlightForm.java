@@ -20,14 +20,17 @@ public class BookAFlightForm extends Page{
     @FindBy(css = "#flt_destin_text")
     WebElement inputFlyTo;
 
-    @FindBy(css = "#depDateGroup .soft-keyboard-controller")
+    @FindBy(css = "#flt_leaving_on")
     WebElement inputDepartureDate;
 
-    @FindBy(css = "#return-date-div .soft-keyboard-controller")
+    @FindBy(css = "#flt_returning_on")
     WebElement inputReturnDate;
 
     @FindBy(css = "#top-dropdown-menu2+div")
     WebElement buttonAddChild;
+
+    @FindBy(xpath = "//button[@id='flights-form-btn']")
+    WebElement btnBookAndFlights;
 
 
     public BookAFlightForm(WebDriver driver) {
@@ -40,15 +43,26 @@ public class BookAFlightForm extends Page{
     }
 
     public void choseCountryTo(){
+        inputFlyTo.clear();
         inputFlyTo.sendKeys("Berlin (Tegel) (TXL) - Germany");
-        inputFlyTo.sendKeys(Keys.ENTER);
+    }
+
+    public void pressFindFlightsButton(){
+        btnBookAndFlights.click();
     }
 
     public void setDepartureDate(){
+        inputDepartureDate.clear();
         inputDepartureDate.sendKeys("03.03.2017");
     }
 
     public void setReturnDate(){
         inputReturnDate.sendKeys("06.03.2017");
     }
+
+    public void addChild(){
+        buttonAddChild.click();
+    }
+
+    public
 }

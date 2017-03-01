@@ -38,8 +38,8 @@ public class PageTest {
   public void initWebDriver() {
     driver = MutatedSingleton.getDriver(capabilities);
     driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     driver.navigate().to(START_PAGE_URL);
-    driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
     startPage = new StartPage(driver);
   }
 
