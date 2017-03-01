@@ -45,6 +45,6 @@ public class PageTest {
 
   @AfterSuite(alwaysRun = true)
   public void tearDown() {
-    MutatedSingleton.cLoseAllDrivers();
+ //   MutatedSingleton.cLoseAllDrivers();
   }
 }

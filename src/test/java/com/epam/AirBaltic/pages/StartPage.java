@@ -37,8 +37,10 @@ public class StartPage extends Page {
     btnBookAndFlights.click();
 
     return new BookAndFlightPage(driver);
-
   }
 
+  public BookAFlightForm goToBookAFlightForm(){
+    return new BookAFlightForm(driver);
+  }
 
 }
