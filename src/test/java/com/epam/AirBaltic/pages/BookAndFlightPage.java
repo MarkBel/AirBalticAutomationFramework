@@ -13,13 +13,20 @@ import java.util.concurrent.TimeUnit;
  */
 public class BookAndFlightPage extends Page {
 
-    private static final String errorMessage = "The date of the inbound flight cannot be earlier than the date of the outbound flight. Please adjust your selection.";
+    private static final String ERROR_MESSAGE = "The date of the inbound flight cannot be earlier than the date of the outbound flight. Please adjust your selection.";
+    private static final String RETURN_DATE_ATTRIBUTE = "display: none;";
 
     @FindBy(xpath = "//div[@data-container-id=\"returnDate\"]/input[@id=\"flt_returning_on\"]")
     WebElement inptReturnDate;
 
     @FindBy(xpath = "//span[@id='flt_returning_on-error']")
     WebElement inptError;
+
+    @FindBy(xpath = "//span[@id='one_way-styler']")
+    WebElement radioBtnOneWayTrip;
+
+    @FindBy(xpath = "//div[@id='return-date-div']")
+    WebElement elemReturnDate;
 
     public BookAndFlightPage(WebDriver driver) {
         super(driver);
@@ -32,7 +39,16 @@ public class BookAndFlightPage extends Page {
 
         driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
 
-        return errorMessage.equals(inptError.getText());
+        return ERROR_MESSAGE.equals(inptError.getText());
+
+    }
+
+    public boolean checkOneWayTripAction() {
+
+        radioBtnOneWayTrip.click();
+
+        return RETURN_DATE_ATTRIBUTE.equals(elemReturnDate.getAttribute("style"));
+
 
     }
 
