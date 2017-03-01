@@ -5,51 +5,33 @@
   <artifactId>AirBaltic</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-
+  <properties>
+    <java.version>1.8</java.version>
+    <maven.compiler.version>3.6.1</maven.compiler.version>
+    <maven.surefire.version>2.19.1</maven.surefire.version>
+    <maven.resources.version>3.0.2</maven.resources.version>
+    <selenium.version>3.1.0</selenium.version>
+    <testng.version>6.10</testng.version>
+    <log4j.version>1.2.17</log4j.version>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>6.9.10</version>
-    </dependency>
-    <dependency>
-      <groupId>ru.stqa.selenium</groupId>
-      <artifactId>webdriver-factory</artifactId>
-      <version>3.0</version>
+      <version>${testng.version}</version>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>2.53.1</version>
+      <version>${selenium.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>htmlunit-driver</artifactId>
-      <version>2.21</version>
-    </dependency>
-    <dependency>
-      <groupId>com.codeborne</groupId>
-      <artifactId>phantomjsdriver</artifactId>
-      <version>1.3.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-java</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-remote-driver</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${log4j.version}</version>
     </dependency>
   </dependencies>
   <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
     <testResources>
       <testResource>
         <directory>src/test/resources</directory>
@@ -60,14 +42,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>2.7</version>
+        <version>${maven.resources.version}</version>
         <configuration>
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin> 
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19.1</version>
+        <version>${maven.surefire.version}</version>
         <configuration>
           <suiteXmlFiles>
             <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
@@ -79,105 +61,23 @@
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
+        <version>${maven.compiler.version}</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <encoding>UTF-8</encoding>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <compilerArgument>-Werror</compilerArgument>
         </configuration>
       </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>${java.version}</source>
+                <target>${java.version}</target>
+            </configuration>
+        </plugin>
     </plugins>
+    <defaultGoal>install</defaultGoal>
   </build>
-  <!-- profiles -->
-  <profiles>
-    <!-- browsers -->
-    <profile>
-      <id>firefox</id>
-      <properties>
-        <capabilities>/firefox.capabilities</capabilities>
-      </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-    <profile>
-      <id>chrome</id>
-      <properties>
-        <capabilities>/chrome.capabilities</capabilities>
-      </properties>
-    </profile>
-    <profile>
-      <id>ie</id>
-      <properties>
-        <capabilities>/ie.capabilities</capabilities>
-      </properties>
-    </profile>
-    <profile>
-      <id>safari</id>
-      <properties>
-        <capabilities>/safari.capabilities</capabilities>
-      </properties>
-    </profile>
-    <profile>
-      <id>phantomjs</id>
-      <properties>
-        <capabilities>/phantomjs.capabilities</capabilities>
-      </properties>
-    </profile>
-    <profile>
-      <id>opera</id>
-      <properties>
-        <capabilities>/opera.capabilities</capabilities>
-      </properties>
-    </profile>
-    <profile>
-      <id>htmlunit</id>
-      <properties>
-        <capabilities>/htmlunit.capabilities</capabilities>
-      </properties>
-    </profile>
-    <!-- environments -->
-    <profile>
-      <id>localhost</id>
-      <properties>
-        <site.url>http://localhost/</site.url>
-      </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-    <profile>
-      <id>devhost</id>
-      <properties>
-        <site.url>http://devhost/</site.url>
-      </properties>
-    </profile>
-    <profile>
-      <id>testhost</id>
-      <properties>
-        <site.url>http://testhost/</site.url>
-      </properties>
-    </profile>
-    <profile>
-      <id>prodhost</id>
-      <properties>
-        <site.url>http://prodhost.com/</site.url>
-      </properties>
-    </profile>
-    <!-- grid -->
-    <profile>
-      <id>nogrid</id>
-      <properties>
-        <grid.url></grid.url>
-      </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-    <profile>
-      <id>grid</id>
-      <properties>
-        <grid.url>http://localhost:4444/wd/hub/</grid.url>
-      </properties>
-    </profile>
-  </profiles>
 </project>

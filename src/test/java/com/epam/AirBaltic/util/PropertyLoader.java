@@ -1,10 +1,7 @@
 package com.epam.AirBaltic.util;
 
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -13,44 +10,31 @@ import java.util.Properties;
  */
 public class PropertyLoader {
 
-  private static final String DEBUG_PROPERTIES = "/debug.properties";
+  private static final  String PROPERTIES_FILE_PATH = "src\\test\\resources\\application.properties";
+  private static Properties prop = new Properties();
 
-  public static Capabilities loadCapabilities() throws IOException {
-    return loadCapabilities(System.getProperty("application.properties", DEBUG_PROPERTIES));
-  }
-
-  public static Capabilities loadCapabilities(String fromResource) throws IOException {
-    Properties props = new Properties();
-    props.load(PropertyLoader.class.getResourceAsStream(fromResource));
-    String capabilitiesFile = props.getProperty("capabilities");
-
-    Properties capsProps = new Properties();
-    capsProps.load(PropertyLoader.class.getResourceAsStream(capabilitiesFile));
-
-    DesiredCapabilities capabilities = new DesiredCapabilities();
-    for (String name : capsProps.stringPropertyNames()) {
-      String value = capsProps.getProperty(name);
-      if (value.toLowerCase().equals("true") || value.toLowerCase().equals("false")) {
-        capabilities.setCapability(name, Boolean.valueOf(value));
-      } else if (value.startsWith("file:")) {
-        capabilities.setCapability(name, new File(".", value.substring(5)).getCanonicalFile().getAbsolutePath());
-      } else {
-        capabilities.setCapability(name, value);
+  static {
+    FileInputStream input = null;
+    File file;
+    try {
+      file = new File(PROPERTIES_FILE_PATH);
+      System.out.println(file.getAbsoluteFile());
+      input = new FileInputStream(file);
+      prop.load(input);
+    } catch (IOException ex) {
+      System.err.println(ex.getMessage());
+    } finally {
+      if (input != null) {
+        try {
+          input.close();
+        } catch (IOException e) {
+          System.err.println(e.getMessage());
+        }
       }
     }
-
-    return capabilities;
   }
 
-  public static String loadProperty(String name) throws IOException {
-    return loadProperty(name, System.getProperty("application.properties", DEBUG_PROPERTIES));
+  public static String getProperty(String prop_name) {
+    return  prop.getProperty(prop_name);
   }
-
-  public static String loadProperty(String name, String fromResource) throws IOException {
-    Properties props = new Properties();
-    props.load(PropertyLoader.class.getResourceAsStream(fromResource));
-
-    return props.getProperty(name);
-  }
-
 }
