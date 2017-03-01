@@ -16,8 +16,29 @@ public class StartPage extends Page {
   @CacheLookup
   public WebElement header;
 
+  @FindBy(xpath = "//button[@id='flights-form-btn']")
+  WebElement btnBookAndFlights;
+
+  @FindBy(xpath = "//input[@id='flt_destin_text']")
+  WebElement inptDestTo;
+
+
+
 
   public StartPage(WebDriver driver) {
     super(driver);
   }
+
+  public BookAndFlightPage openBookAndFlights() {
+
+    inptDestTo.clear();
+    inptDestTo.sendKeys("Oslo");
+
+    btnBookAndFlights.click();
+
+    return new BookAndFlightPage(driver);
+
+  }
+
+
 }

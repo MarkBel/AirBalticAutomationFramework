@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for TestNG-based test classes
@@ -38,6 +39,7 @@ public class PageTest {
     driver = MutatedSingleton.getDriver(capabilities);
     driver.manage().window().maximize();
     driver.navigate().to(START_PAGE_URL);
+    driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     startPage = new StartPage(driver);
   }
 

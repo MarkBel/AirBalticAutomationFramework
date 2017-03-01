@@ -1,6 +1,8 @@
 package com.epam.AirBaltic.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 /**
@@ -28,6 +30,12 @@ public abstract class Page {
 
   public String getTitle() {
     return driver.getTitle();
+  }
+
+  public void jsExecutorWork(WebElement webElement)
+  {
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("arguments[0].click();", webElement);
   }
 
 }
