@@ -17,11 +17,7 @@ public class StartPage extends Page {
   public WebElement header;
 
 
-  public StartPage(WebDriver webDriver) {
-    super(webDriver);
-    PageFactory.initElements(this.driver, this);
+  public StartPage(WebDriver driver) {
+    super(driver);
   }
-
-
-
 }
