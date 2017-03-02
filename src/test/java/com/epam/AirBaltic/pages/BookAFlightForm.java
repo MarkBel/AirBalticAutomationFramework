@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 public class BookAFlightForm extends Page{
 
     @FindBy(css = "#positioner button")
-    WebElement ButtonFindFlightsFares;
+    WebElement buttonFindFlightsFares;
 
     @FindBy(css = "#flt_origin_text")
     WebElement inputFlyFrom;
@@ -62,6 +62,11 @@ public class BookAFlightForm extends Page{
 
     public void addChild(){
         buttonAddChild.click();
+    }
+
+    public FlightsAndTicketTypesPage goToFlightsAndTicketTypesPage(){
+        buttonFindFlightsFares.click();
+        return new FlightsAndTicketTypesPage(driver);
     }
 
 }

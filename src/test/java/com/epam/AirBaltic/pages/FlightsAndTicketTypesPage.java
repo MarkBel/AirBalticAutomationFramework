@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Dmitryi_Paulioz on 3/2/2017.
  */
-public class FarePage extends Page {
+public class FlightsAndTicketTypesPage extends Page {
 
     private WebElement acceptButton;
     private String lowFareTitle = "Low Fare Calendar | airBaltic";
@@ -26,7 +26,7 @@ public class FarePage extends Page {
         return returnPrice;
     }
 
-    public FarePage(WebDriver driver) {
+    public FlightsAndTicketTypesPage(WebDriver driver) {
         super(driver);
         currentTitle = driver.getTitle();
     }

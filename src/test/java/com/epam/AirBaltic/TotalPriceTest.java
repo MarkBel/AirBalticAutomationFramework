@@ -1,6 +1,6 @@
 package com.epam.AirBaltic;
 
-import com.epam.AirBaltic.pages.FarePage;
+import com.epam.AirBaltic.pages.FlightsAndTicketTypesPage;
 import com.epam.AirBaltic.pages.RigaBerlinFlightPage;
 import org.testng.annotations.Test;
 
@@ -13,7 +13,7 @@ public class TotalPriceTest extends PageTest {
     public void startTest(){
         RigaBerlinFlightPage flightPage = new RigaBerlinFlightPage(driver);
         flightPage.fillFields();
-        FarePage farePage = new FarePage(driver);
+        FlightsAndTicketTypesPage farePage = new FlightsAndTicketTypesPage(driver);
         farePage.acceptFare();
     }
 }
