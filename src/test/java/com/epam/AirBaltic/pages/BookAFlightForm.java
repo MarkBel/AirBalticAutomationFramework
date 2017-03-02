@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,11 @@ import org.openqa.selenium.support.PageFactory;
  * Created by Kseniya_Kunda on 3/1/2017.
  */
 public class BookAFlightForm extends Page{
+
+    private String originAirport = "Riga (RIX) - Latvia";
+    private String destinationAirport = "Berlin (Tegel) (TXL) - Germany";
+    By originCalendarDaysXpath = By.xpath("//div[@id='depDateGroup']//table/tbody/tr/td[@data-handler='selectDay']");
+    By destinationCalendarDaysXpath = By.xpath("//div[@id='return-date-div']//table/tbody/tr/td[@data-handler='selectDay']");
 
     @FindBy(css = "#positioner button")
     WebElement buttonFindFlightsFares;
@@ -39,12 +45,12 @@ public class BookAFlightForm extends Page{
 
     public void choseCountryFrom(){
         inputFlyFrom.clear();
-        inputFlyFrom.sendKeys("Riga (RIX) - Latvia");
+        inputFlyFrom.sendKeys(originAirport);
     }
 
     public void choseCountryTo(){
         inputFlyTo.clear();
-        inputFlyTo.sendKeys("Berlin (Tegel) (TXL) - Germany");
+        inputFlyTo.sendKeys(destinationAirport);
     }
 
     public void pressFindFlightsButton(){
@@ -53,11 +59,12 @@ public class BookAFlightForm extends Page{
 
     public void setDepartureDate(){
         inputDepartureDate.clear();
-        inputDepartureDate.sendKeys("03.03.2017");
+        inputDepartureDate.sendKeys(Keys.ENTER);
+        driver.findElements(originCalendarDaysXpath).get(2).click();
     }
 
     public void setReturnDate(){
-        inputReturnDate.sendKeys("06.03.2017");
+        driver.findElements(destinationCalendarDaysXpath).get(5).click();
     }
 
     public void addChild(){

@@ -1,8 +1,8 @@
 package com.epam.AirBaltic;
 
 import com.epam.AirBaltic.pages.BookAFlightForm;
-import com.epam.AirBaltic.pages.StartPage;
-import org.testng.annotations.BeforeTest;
+import com.epam.AirBaltic.pages.FlightsAndTicketTypesPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 public class ChildPriceCheck extends PageTest{
 
   private BookAFlightForm bookAFlightForm;
+  private FlightsAndTicketTypesPage flightsAndTicketTypesPage;
 
     @Test
     public void ChildPriceTest(){
@@ -21,6 +22,8 @@ public class ChildPriceCheck extends PageTest{
     bookAFlightForm.setDepartureDate();
     bookAFlightForm.setReturnDate();
     bookAFlightForm.addChild();
+    flightsAndTicketTypesPage = bookAFlightForm.goToFlightsAndTicketTypesPage();
+    Assert.assertTrue(flightsAndTicketTypesPage.CheckFareCondition(), "The condition about child fare towards adult fare is,t conformed!");
 
     }
 }
