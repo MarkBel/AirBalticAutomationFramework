@@ -56,7 +56,8 @@ public class CheckTermsAndConditions extends PageTest {
         SummaryPage summaryPage = new SummaryPage(driver);
         Thread.sleep(10000);
         summaryPage.choosePaymentMethod();
-
+        Thread.sleep(10000);
+        summaryPage.checkTermsAndConditions();
 
     }
 
