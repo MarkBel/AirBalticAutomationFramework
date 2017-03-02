@@ -1,7 +1,6 @@
 package com.epam.AirBaltic;
 
-import com.epam.AirBaltic.pages.BookAFlightForm;
-import com.epam.AirBaltic.pages.LoginPage;
+import com.epam.AirBaltic.pages.*;
 import com.epam.AirBaltic.util.PropertyLoader;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -16,6 +15,8 @@ public class CheckTermsAndConditions extends PageTest {
 
     private LoginPage loginPage;
     private BookAFlightForm bookAFlightForm;
+    private PassengersPage passengersPage;
+    private TravelExtrasPage travelExtrasPage;
 
     @BeforeClass
     public void loginTest() {
@@ -36,8 +37,25 @@ public class CheckTermsAndConditions extends PageTest {
         bookAFlightForm.pressFindFlightsButton();
         bookAFlightForm.setDepartureDate();
         bookAFlightForm.setReturnDate();
+        bookAFlightForm.goToFlightsAndTicketTypesPage();
 
+        Thread.sleep(10000);
+        FlightsAndTicketTypesPage farePage = new FlightsAndTicketTypesPage(driver);
+        farePage.goToPassengersPage();
 
+        Thread.sleep(10000);
+        passengersPage = new PassengersPage(driver);
+        passengersPage.goToTravelExtrasPage();
+
+        Thread.sleep(10000);
+        travelExtrasPage = new TravelExtrasPage(driver);
+        travelExtrasPage.seatMeAnywhere();
+        Thread.sleep(10000);
+        travelExtrasPage.goToSummaryPage();
+
+        SummaryPage summaryPage = new SummaryPage(driver);
+        Thread.sleep(10000);
+        summaryPage.choosePaymentMethod();
 
 
     }

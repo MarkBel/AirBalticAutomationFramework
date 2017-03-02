@@ -14,6 +14,9 @@ import java.util.List;
  */
 public class FlightsAndTicketTypesPage extends Page {
 
+    @FindBy(css = "div>.btn-continue-booking")
+    private WebElement continueButton;
+
     private WebElement acceptButton;
     private String lowFareTitle = "Low Fare Calendar | airBaltic";
     private String currentTitle;
@@ -68,6 +71,7 @@ public class FlightsAndTicketTypesPage extends Page {
     }
 
     public Boolean CheckFareCondition() {
+        checkCorrectPage();
         Boolean condition = false;
         List<WebElement> listOfTotalPrices = driver.findElements(fire);
         for (WebElement element : listOfTotalPrices) {
@@ -80,4 +84,10 @@ public class FlightsAndTicketTypesPage extends Page {
             condition = true;
         }return condition;
     }
+
+    public PassengersPage goToPassengersPage() {
+        continueButton.click();
+        return new PassengersPage(driver);
+    }
+
 }
