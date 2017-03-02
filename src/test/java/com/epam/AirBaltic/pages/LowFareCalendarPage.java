@@ -10,39 +10,19 @@ import org.openqa.selenium.support.FindBy;
  */
 public class LowFareCalendarPage extends Page {
 
-    @FindBy(xpath = "//*[@id='your-selection']//span[2]")
-    private WebElement priceField;
-    private String cheepTicketsPageURL = "https://tickets.airbaltic.com/en/book/avail";
-
     @FindBy(xpath = "//button[@class='btn-continue-booking']")
     private WebElement cheepPageButton;
-
-    private WebElement accessButton;
-
 
     public LowFareCalendarPage(WebDriver driver) {
         super(driver);
     }
 
-    private void getTicketsPrice(){
-        System.out.println(priceField.getText());
-    }
-
-    private void clickSkipCheepButton(){
+    private void clickSkipCheepButton() {
         cheepPageButton.click();
     }
 
-    private void clickAcceptButton(){
-        accessButton = driver.findElements(By.xpath("//*[@class='btn-green']")).get(1);
-        accessButton.click();
-    }
-
-    public void confirmBooking(){
-        getTicketsPrice();
-        if(driver.getCurrentUrl().equals(cheepTicketsPageURL)) {
-            clickSkipCheepButton();
-        }
-        clickAcceptButton();
+    public void confirmBooking() {
+        clickSkipCheepButton();
     }
 
 }

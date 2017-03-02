@@ -64,5 +64,4 @@ public class BookAFlightForm extends Page{
         buttonAddChild.click();
     }
 
-    public
 }
