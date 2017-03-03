@@ -1,6 +1,7 @@
 package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.entity.Passenger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,8 +36,8 @@ public class PassengersPage extends Page{
     @FindBy(name = "phone_M")
     private WebElement inputPhoneNo;
 
-    @FindBy(id = "salutation_ADT_0")
-    private Select dropDown;
+    @FindBy(xpath = "//div[contains(text(),'Mr.')]")
+    private WebElement selectTitle;
 
     public PassengersPage(WebDriver driver) {
         super(driver);
@@ -54,7 +55,12 @@ public class PassengersPage extends Page{
     }
 
     public PassengersPage enterPassengersData(Passenger passenger){
-        dropDown.selectByVisibleText("Mr.");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        selectTitle.click();
         inputFirstName.clear();
         inputFirstName.sendKeys(passenger.getFirstName());
 
@@ -70,7 +76,7 @@ public class PassengersPage extends Page{
     }
 
     public TravelExtrasPage goToTravelExstrasPage(){
-        continueButton.click();
+        wait.waitForElement(continueButton).click();
         return new TravelExtrasPage(driver);
     }
 

@@ -13,7 +13,7 @@ public class CheckTermsAndConditions extends PageTest {
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
 
-    private LoginPage loginPage;
+    private LoginForm loginForm;
     private BookAFlightForm bookAFlightForm;
     private PassengersPage passengersPage;
     private TravelExtrasPage travelExtrasPage;
@@ -21,8 +21,8 @@ public class CheckTermsAndConditions extends PageTest {
     @BeforeClass
     public void loginTest() {
 
-        loginPage = new LoginPage(driver);
-        loginPage.login(USER_NAME, USER_PASSWORD);
+        loginForm = new LoginForm(driver);
+        loginForm.login(USER_NAME, USER_PASSWORD);
 
     }
 
