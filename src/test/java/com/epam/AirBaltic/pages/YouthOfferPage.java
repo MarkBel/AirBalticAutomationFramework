@@ -1,9 +1,11 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.AdditionalConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -45,19 +47,13 @@ public class YouthOfferPage extends Page {
     }
 
     public String getSelectedOriginCity() {
-//        String string1 = fMenuOrigins_1.getAttribute("value");
-//        String result = string1.split(" ")[0].toLowerCase();
         return fMenuOrigins_1.getAttribute("value").split(" ")[0];
     }
 
     public void setOriginCity(String city) {
         fMenuOrigins_1.sendKeys(city.substring(0, 1));
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
-        //PageFactory.initElements(this.driver, this);
+        (new WebDriverWait(this.driver, 5)).until(AdditionalConditions.
+                jQueryCompleted());
     }
 
     public void clearOriginCity() {
@@ -75,11 +71,9 @@ public class YouthOfferPage extends Page {
 
     public boolean isOriginsShownCorrectly() {
         boolean result = false;
-//        String str;
-        String selectedCity = getSelectedOriginCity().toLowerCase();
+        String selectedCity = getSelectedOriginCity();
         for (int i = 0; i < listOfferOrigins.size(); i++) {
-//            str = extractCityFromStr(listOfferOrigins.get(i).getText()).toLowerCase();
-            if (extractCityFromStr(listOfferOrigins.get(i).getText()).toLowerCase().equals(selectedCity)) {
+            if (extractCityFromStr(listOfferOrigins.get(i).getText()).equals(selectedCity)) {
                 result = true;
             } else {
                 result = false;
@@ -89,7 +83,7 @@ public class YouthOfferPage extends Page {
         return result;
     }
 
-    public String extractCityFromStr(String str) {
+    private String extractCityFromStr(String str) {
         return  str.replaceAll("[A-Z]+?$", "");
     }
 
