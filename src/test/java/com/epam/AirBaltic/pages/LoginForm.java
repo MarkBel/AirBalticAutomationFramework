@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Katerina_Karpenia on 3/1/2017.
  */
-public class LoginPage extends Page{
+public class LoginForm extends Page{
 
     @FindBy(id = "myairbaltic-href")
     private WebElement loginButton;
@@ -21,19 +21,16 @@ public class LoginPage extends Page{
     @FindBy(id = "login-btn")
     private WebElement buttonSubmit;
 
-    public LoginPage(WebDriver driver) {
+    public LoginForm(WebDriver driver) {
         super(driver);
     }
 
     public void login(String email, String password) {
-
-        loginButton.click();
         inputEmail.clear();
         inputEmail.sendKeys(email);
         inputPassword.clear();
         inputPassword.sendKeys(password);
         buttonSubmit.click();
-
     }
 
 }

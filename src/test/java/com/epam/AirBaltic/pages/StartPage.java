@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -13,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class StartPage extends Page {
 
+    private LoginForm loginForm;
+
     @FindBy(how = How.TAG_NAME, using = "h1")
     @CacheLookup
     public WebElement header;
@@ -22,6 +25,15 @@ public class StartPage extends Page {
 
     @FindBy(xpath = "//input[@id='flt_destin_text']")
     WebElement inptDestTo;
+
+    @FindBy(id = "myairbaltic-href")
+    private WebElement buttonMyAirBaltic;
+
+    @FindBy(css = "#dropdownMenu3")
+    private WebElement buttonMyAccount;
+
+    @FindBy(xpath = "//li[@role='presentation']/a[@href='/edit-a-customer-account']")
+    private WebElement buttonEditMyProfile;
 
     @FindBy(css = "a#ancillary-2-en.item.pull-left")
     public WebElement linkFlySnowyPeaks;  //testcase #6
@@ -33,14 +45,33 @@ public class StartPage extends Page {
     @FindBy(xpath = "//div[@class='mega-list']/ul/li/a[@href='/youth-offer']")
     public WebElement linkYouthOffer;  //testcase #4
 
-
-
     public StartPage(WebDriver driver) {
         super(driver);
     }
 
     public BookAFlightForm goToBookAFlightForm() {
         return new BookAFlightForm(driver);
+    }
+
+    public void loginCheck(String email, String password){
+        try {
+            buttonMyAccount.isDisplayed();
+        }catch (NoSuchElementException exception){
+            loginForm = goToLoginForm();
+            loginForm.login(email, password);
+        }
+    }
+
+    private LoginForm goToLoginForm(){
+        buttonMyAirBaltic.click();
+        return new LoginForm(driver);
+    }
+
+    public EditProfilePage goToEditProfilePage() {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonMyAccount));
+        buttonMyAccount.click();
+        buttonEditMyProfile.click();
+        return new EditProfilePage(driver);
     }
 
     public SnowyPeaksPage clickFlySnowyPeaksLink() {
