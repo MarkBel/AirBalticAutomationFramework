@@ -12,7 +12,7 @@ public class NumberOfInfantsTest extends PageTest {
     @Test
     public void NumberOfInfantsTickets()
     {
-        Assert.assertTrue(new StartPage(driver).openBookAndFlights().checkNumberInfactsTichets(),"Number of infants can't be higher than number of adults!");
+        Assert.assertTrue(new StartPage(driver).goToBookAFlightForm().checkNumberInfactsTichets(),"Number of infants can't be higher than number of adults!");
     }
 
 }

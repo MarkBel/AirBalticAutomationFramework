@@ -15,17 +15,17 @@ public class YouthOfferPageTest extends PageTest {
     public void jumpToYouthOfferPage() {
         //logger.info("Attempt to open Create new repository page");
         youthOfferPage = this.startPage.gotoYouthOfferPageByLink();
-        logger.info("Page YouthOfferPage opened");
+        //logger.info("Page YouthOfferPage opened");
     }
 
     @Test(dataProvider="citiesList")
     public void testOffersListCorrectlyShown(String cityName) {
         //String cityName = "Riga";
-        logger.info("setting origin city in menu as " + cityName);
+        //logger.info("setting origin city in menu as " + cityName);
         youthOfferPage.setOriginCity(cityName);
         cityName = youthOfferPage.getSelectedOriginCity();
-        logger.info("origin city in menu - " + cityName);
-        logger.info("Number of offers from " + cityName + " is " + youthOfferPage.getOffersNumberFromCurrentCity());
+        //logger.info("origin city in menu - " + cityName);
+        //logger.info("Number of offers from " + cityName + " is " + youthOfferPage.getOffersNumberFromCurrentCity());
         Assert.assertTrue(youthOfferPage.isOriginsShownCorrectly());
     }
 

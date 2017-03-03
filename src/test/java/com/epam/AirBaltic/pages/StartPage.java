@@ -39,16 +39,6 @@ public class StartPage extends Page {
         super(driver);
     }
 
-    public BookAndFlightPage openBookAndFlights() {
-
-        inptDestTo.clear();
-        inptDestTo.sendKeys("Oslo");
-
-        btnBookAndFlights.click();
-
-        return new BookAndFlightPage(driver);
-    }
-
     public BookAFlightForm goToBookAFlightForm() {
         return new BookAFlightForm(driver);
     }

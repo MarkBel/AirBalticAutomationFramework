@@ -18,6 +18,10 @@ public class BookAFlightForm extends Page{
     private String destinationAirport = "Berlin (Tegel) (TXL) - Germany";
     By originCalendarDaysXpath = By.xpath("//div[@id='depDateGroup']//table/tbody/tr/td[@data-handler='selectDay']");
     By destinationCalendarDaysXpath = By.xpath("//div[@id='return-date-div']//table/tbody/tr/td[@data-handler='selectDay']");
+    private static final String ERROR_MESSAGE = "The date of the inbound flight cannot be earlier than the date of the outbound flight. Please adjust your selection.";
+    private static final String RETURN_DATE_ATTRIBUTE = "display: none;";
+    private static final String ERROR_INPUT_EXCEPTION = "The number of infants can not be higher than the number of adults. Only an adult can accompany an infant.";
+
 
     @FindBy(css = "#positioner button")
     WebElement buttonFindFlightsFares;
@@ -39,6 +43,28 @@ public class BookAFlightForm extends Page{
 
     @FindBy(xpath = "//button[@id='flights-form-btn']")
     WebElement btnBookAndFlights;
+
+    @FindBy(xpath = "//div[@data-container-id=\"returnDate\"]/input[@id=\"flt_returning_on\"]")
+    WebElement inptReturnDate;
+
+    @FindBy(xpath = "//span[@id='one_way-styler']")
+    WebElement radioBtnOneWayTrip;
+
+    @FindBy(xpath = "//span[@id='flt_returning_on-error']")
+    WebElement inptError;
+
+
+    @FindBy(xpath = "//td[@id='errors']/span")
+    WebElement inputNumberOfInfantsError;
+
+    @FindBy(xpath = "//a[@class=\"dropdown-toggle needsclick\" and text()='0 infants']")
+    WebElement listInfants;
+
+    @FindBy(xpath = "//div[@id='mCSB_3_container']/li[3]/a")
+    WebElement numberOfInfants;
+
+    @FindBy(xpath = "//button[@class='btn btn-default light-elem-btn button-green findflights-btn']")
+    WebElement btnBookandFlighAction;
 
 
     public BookAFlightForm(WebDriver driver) {
@@ -91,6 +117,73 @@ public class BookAFlightForm extends Page{
         setReturnDate();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         goToFlightsAndTicketTypesPage();
+
+    }
+
+    public BookAFlightForm setReturnDate(String date){
+
+        inptReturnDate.sendKeys(date);
+        inptReturnDate.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+
+    public boolean checkReturnDate() {
+
+        choseCountryFrom();
+        choseCountryFrom();
+
+        btnBookAndFlights.click();
+
+        setReturnDate("01.02.2017");
+
+        driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
+
+        return ERROR_MESSAGE.equals(inptError.getText());
+
+    }
+
+    public boolean checkOneWayTripAction() {
+
+        choseCountryFrom();
+        choseCountryFrom();
+
+        btnBookAndFlights.click();
+
+        radioBtnOneWayTrip.click();
+
+        return RETURN_DATE_ATTRIBUTE.equals(inptReturnDate.getAttribute("style"));
+
+
+    }
+
+    public boolean checkNumberInfactsTichets() {
+
+        choseCountryFrom();
+        choseCountryFrom();
+
+        btnBookAndFlights.click();
+
+        setReturnDate("10.03.2017");
+
+
+        driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
+
+        addTwoInfants();
+
+        btnBookandFlighAction.click();
+
+
+        return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);
+
+    }
+
+
+    public void addTwoInfants()
+    {
+        listInfants.click();
+
+        numberOfInfants.click();
 
     }
 

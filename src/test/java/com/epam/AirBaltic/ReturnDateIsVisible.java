@@ -14,7 +14,7 @@ public class ReturnDateIsVisible extends PageTest {
 
 
     {
-        Assert.assertTrue(new StartPage(driver).openBookAndFlights().checkOneWayTripAction(), "Visability of Return date is visible!");
+        Assert.assertTrue(new StartPage(driver).goToBookAFlightForm().checkOneWayTripAction(), "Visability of Return date is visible!");
     }
 
 
