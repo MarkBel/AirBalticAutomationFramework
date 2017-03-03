@@ -14,13 +14,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class PassengersPage extends Page{
 
-    @FindBy(xpath = "//div[@id='your-selection']/div[3]/div/div/div/div[3]/div[2]/span/div/div")
-    private WebElement paymentsMethods;
-
-    @FindBy(xpath = "//div[@id='mCSB_11_container']/ul/li[2]")
-    private WebElement chooseDebitCreditCard;
-
-//    @FindBy(css = ".passenger-specific")
     @FindBy(css = "div>.btn-continue-booking")
     private WebElement continueButton;
 
@@ -43,13 +36,9 @@ public class PassengersPage extends Page{
         super(driver);
     }
 
-    public void choosePaymentMethod() {
-        paymentsMethods.click();
-        chooseDebitCreditCard.click();
-    }
 
     public TravelExtrasPage goToTravelExtrasPage() {
-//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        wait.waitForElement(continueButton).click();
         continueButton.click();
         return new TravelExtrasPage(driver);
     }

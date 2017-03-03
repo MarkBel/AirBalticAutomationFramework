@@ -2,7 +2,7 @@ package com.epam.AirBaltic;
 
 import com.epam.AirBaltic.pages.*;
 import com.epam.AirBaltic.util.PropertyLoader;
-import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -13,44 +13,55 @@ public class CheckTermsAndConditions extends PageTest {
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
 
-    private LoginForm loginForm;
     private BookAFlightForm bookAFlightForm;
+    private FlightsAndTicketTypesPage farePage;
     private PassengersPage passengersPage;
     private TravelExtrasPage travelExtrasPage;
-
-    @BeforeClass
-    public void loginTest() {
-
-        loginForm = new LoginForm(driver);
-        loginForm.login(USER_NAME, USER_PASSWORD);
-
-    }
+    private SummaryPage summaryPage;
 
     @Test
     public void checkTermsAndConditionsTest () throws InterruptedException {
 
-        Thread.sleep(2000);
+        startPage.loginCheck(USER_NAME, USER_PASSWORD);
 
         bookAFlightForm = new BookAFlightForm(driver);
         bookAFlightForm.fillBookAndFlightForm();
 
-        FlightsAndTicketTypesPage farePage = new FlightsAndTicketTypesPage(driver);
+        farePage = new FlightsAndTicketTypesPage(driver);
         farePage.goToPassengersPage();
 
-        Thread.sleep(10000);
         passengersPage = new PassengersPage(driver);
-        passengersPage.goToTravelExtrasPage();
+        passengersPage.goToTravelExstrasPage();
 
         Thread.sleep(10000);
         travelExtrasPage = new TravelExtrasPage(driver);
-        travelExtrasPage.seatMeAnywhere();
-        Thread.sleep(10000);
         travelExtrasPage.goToSummaryPage();
 
-        SummaryPage summaryPage = new SummaryPage(driver);
+        summaryPage = new SummaryPage(driver);
         Thread.sleep(10000);
         summaryPage.choosePaymentMethod();
-        summaryPage.checkTermsAndConditions();
+
+        Assert.assertTrue(summaryPage.checkTermsAndConditions());
+
+    }
+
+    //Variant 2, but not finished
+
+    @Test
+    public void checkTermsTest (){
+
+        startPage.loginCheck(USER_NAME, USER_PASSWORD);
+
+        Assert.assertTrue(new StartPage(driver)
+                .goToBookAFlightForm()
+                .fillBookAndFlightForm()
+                .goToPassengersPage()
+                .goToTravelExtrasPage()
+                .goToSummaryPage()
+                .choosePaymentMethod()
+                .checkTermsAndConditions()
+
+        );
 
     }
 

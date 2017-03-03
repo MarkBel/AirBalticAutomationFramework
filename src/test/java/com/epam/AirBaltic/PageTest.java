@@ -5,6 +5,7 @@ import com.epam.AirBaltic.entity.Passenger;
 import com.epam.AirBaltic.pages.StartPage;
 import com.epam.AirBaltic.util.PropertyLoader;
 import com.epam.AirBaltic.util.SessionHelper;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -26,7 +27,7 @@ public class PageTest {
   protected WebDriver driver;
   protected Passenger passenger;
 
-  //Logger logger = Logger.getLogger("TestLogger");
+  Logger logger = Logger.getLogger("TestLogger");
 
   @BeforeSuite
   public void initTestSuite() throws IOException {

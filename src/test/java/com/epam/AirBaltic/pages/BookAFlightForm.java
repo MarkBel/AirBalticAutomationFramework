@@ -121,7 +121,7 @@ public class BookAFlightForm extends Page{
         return new FlightsAndTicketTypesPage(driver);
     }
 
-    public void fillBookAndFlightForm() {
+    public FlightsAndTicketTypesPage fillBookAndFlightForm() {
         choseCountryFrom();
         choseCountryTo();
         pressFindFlightsButton();
@@ -129,6 +129,7 @@ public class BookAFlightForm extends Page{
         setReturnDate();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         goToFlightsAndTicketTypesPage();
+        return new FlightsAndTicketTypesPage(driver);
 
     }
 

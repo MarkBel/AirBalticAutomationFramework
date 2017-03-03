@@ -30,9 +30,10 @@ public class SummaryPage extends Page {
         super(driver);
     }
 
-    public void choosePaymentMethod() {
+    public SummaryPage choosePaymentMethod() {
         paymentMethodLocator.click();
         selectCreditCard.click();
+        return new SummaryPage(driver);
 
     }
 
