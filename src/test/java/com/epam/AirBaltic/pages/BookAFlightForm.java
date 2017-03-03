@@ -138,16 +138,11 @@ public class BookAFlightForm extends Page{
 
 
     public boolean checkReturnDate() {
-
         choseCountryFrom();
         choseCountryFrom();
-
         btnBookAndFlights.click();
-
         setReturnDate("01.02.2017");
-
         driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
-
         return ERROR_MESSAGE.equals(inptError.getText());
 
     }
