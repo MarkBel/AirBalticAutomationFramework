@@ -3,8 +3,10 @@ package com.epam.AirBaltic.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,6 +22,9 @@ public class TravelExtrasPage extends Page {
 
 //    @FindBy(css = ".btnAncCancel")
 //    private WebElement noThanksButton;
+
+    @FindBys(@FindBy(xpath = "//div[@class='seat-container seat-available seat-priority']"))
+    private List<WebElement> availableSeats;
 
 
     public TravelExtrasPage(WebDriver driver) {
@@ -56,5 +61,9 @@ public class TravelExtrasPage extends Page {
         return new SummaryPage(driver);
     }
 
-
+    public boolean isOneSeatSelected(){
+        availableSeats.get(0).click();
+        availableSeats.get(1).click();
+        return availableSeats.get(0).isSelected();
+    }
 }

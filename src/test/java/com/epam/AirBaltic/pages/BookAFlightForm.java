@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Kseniya_Kunda on 3/1/2017.
  */
@@ -43,30 +45,35 @@ public class BookAFlightForm extends Page{
         super(driver);
     }
 
-    public void choseCountryFrom(){
+    public BookAFlightForm choseCountryFrom(){
         inputFlyFrom.clear();
         inputFlyFrom.sendKeys(originAirport);
+        return this;
     }
 
-    public void choseCountryTo(){
+    public BookAFlightForm choseCountryTo(){
         inputFlyTo.clear();
         inputFlyTo.sendKeys(destinationAirport);
+        return this;
     }
 
     public void pressFindFlightsButton(){
         btnBookAndFlights.click();
     }
 
-    public void setDepartureDate(){
+    public BookAFlightForm setDepartureDate(){
+        buttonFindFlightsFares.click();
         inputDepartureDate.clear();
         inputDepartureDate.sendKeys(Keys.ENTER);
         driver.findElements(originCalendarDaysXpath).get(2).click();
+        return this;
     }
 
-    public void setReturnDate(){
+    public BookAFlightForm setReturnDate(){
         driver.findElements(destinationCalendarDaysXpath).get(5).click();
+        return this;
     }
-
+    
     public void addChild(){
         buttonAddChild.click();
     }
@@ -74,6 +81,17 @@ public class BookAFlightForm extends Page{
     public FlightsAndTicketTypesPage goToFlightsAndTicketTypesPage(){
         buttonFindFlightsFares.click();
         return new FlightsAndTicketTypesPage(driver);
+    }
+
+    public void fillBookAndFlightForm() {
+        choseCountryFrom();
+        choseCountryTo();
+        pressFindFlightsButton();
+        setDepartureDate();
+        setReturnDate();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        goToFlightsAndTicketTypesPage();
+
     }
 
 }
