@@ -43,30 +43,35 @@ public class BookAFlightForm extends Page{
         super(driver);
     }
 
-    public void choseCountryFrom(){
+    public BookAFlightForm choseCountryFrom(){
         inputFlyFrom.clear();
         inputFlyFrom.sendKeys(originAirport);
+        return this;
     }
 
-    public void choseCountryTo(){
+    public BookAFlightForm choseCountryTo(){
         inputFlyTo.clear();
         inputFlyTo.sendKeys(destinationAirport);
+        return this;
     }
 
     public void pressFindFlightsButton(){
         btnBookAndFlights.click();
     }
 
-    public void setDepartureDate(){
+    public BookAFlightForm setDepartureDate(){
+        buttonFindFlightsFares.click();
         inputDepartureDate.clear();
         inputDepartureDate.sendKeys(Keys.ENTER);
         driver.findElements(originCalendarDaysXpath).get(2).click();
+        return this;
     }
 
-    public void setReturnDate(){
+    public BookAFlightForm setReturnDate(){
         driver.findElements(destinationCalendarDaysXpath).get(5).click();
+        return this;
     }
-
+    
     public void addChild(){
         buttonAddChild.click();
     }
