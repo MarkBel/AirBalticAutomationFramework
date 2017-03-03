@@ -17,6 +17,9 @@ public class FlightsAndTicketTypesPage extends Page {
     @FindBy(css = "div>.btn-continue-booking")
     private WebElement continueButton;
 
+    @FindBy(xpath = "//div[@class='table-cell cell-right']//div[@class='bottom-nav']/button")
+    private WebElement buttonGoToPassengersPage;
+
     private WebElement acceptButton;
     private String lowFareTitle = "Low Fare Calendar | airBaltic";
     private String currentTitle;
@@ -26,7 +29,6 @@ public class FlightsAndTicketTypesPage extends Page {
     private static final By detailedFire = By.cssSelector(".fare-item-detailed");
     private static final By fire = By.cssSelector(".expandable>a");
     private static final By tariffFire = By.cssSelector(".line>span+span");
-
 
     public int getDeparturePrice() {
         return departurePrice;
@@ -90,4 +92,13 @@ public class FlightsAndTicketTypesPage extends Page {
         return new PassengersPage(driver);
     }
 
+    public PassengersPage goToPassengersPageWithoutAnyActions(){
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        buttonGoToPassengersPage.click();
+        return new PassengersPage(driver);
+    }
 }

@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.FluentWaitUtil;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,12 +12,13 @@ import org.openqa.selenium.support.PageFactory;
 public abstract class Page {
 
   protected WebDriver driver;
-
+  protected FluentWaitUtil wait;
 
 
   public Page(WebDriver driver) {
     this.driver = driver;
     PageFactory.initElements(this.driver,this);
+    wait = new FluentWaitUtil(driver);
   }
 
 

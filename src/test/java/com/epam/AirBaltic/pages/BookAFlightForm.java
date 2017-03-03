@@ -66,6 +66,9 @@ public class BookAFlightForm extends Page{
     @FindBy(xpath = "//button[@class='btn btn-default light-elem-btn button-green findflights-btn']")
     WebElement btnBookandFlighAction;
 
+    @FindBy(xpath = "//div[@id='positioner']/div/button")
+    private WebElement buttonGoFlightsAndTicketsTypesPage;
+
 
     public BookAFlightForm(WebDriver driver) {
         super(driver);
@@ -88,10 +91,16 @@ public class BookAFlightForm extends Page{
     }
 
     public BookAFlightForm setDepartureDate(){
-        buttonFindFlightsFares.click();
-        inputDepartureDate.clear();
-        inputDepartureDate.sendKeys(Keys.ENTER);
-        driver.findElements(originCalendarDaysXpath).get(2).click();
+        if (inputDepartureDate.isDisplayed()){
+            inputDepartureDate.clear();
+            inputDepartureDate.sendKeys(Keys.ENTER);
+            driver.findElements(originCalendarDaysXpath).get(2).click();
+        }else {
+            btnBookAndFlights.click();
+            inputDepartureDate.clear();
+            inputDepartureDate.sendKeys(Keys.ENTER);
+            driver.findElements(originCalendarDaysXpath).get(2).click();
+        }
         return this;
     }
 
@@ -144,36 +153,21 @@ public class BookAFlightForm extends Page{
     }
 
     public boolean checkOneWayTripAction() {
-
         choseCountryFrom();
         choseCountryFrom();
-
         btnBookAndFlights.click();
-
         radioBtnOneWayTrip.click();
-
         return RETURN_DATE_ATTRIBUTE.equals(inptReturnDate.getAttribute("style"));
-
-
     }
 
     public boolean checkNumberInfactsTichets() {
-
         choseCountryFrom();
         choseCountryFrom();
-
         btnBookAndFlights.click();
-
         setReturnDate("10.03.2017");
-
-
         driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
-
         addTwoInfants();
-
         btnBookandFlighAction.click();
-
-
         return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);
 
     }
@@ -182,9 +176,12 @@ public class BookAFlightForm extends Page{
     public void addTwoInfants()
     {
         listInfants.click();
-
         numberOfInfants.click();
+    }
 
+    public FlightsAndTicketTypesPage continueBooking(){
+        buttonGoFlightsAndTicketsTypesPage.click();
+        return new FlightsAndTicketTypesPage(driver);
     }
 
 }

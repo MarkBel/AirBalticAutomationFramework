@@ -17,8 +17,8 @@ public class CheckNumberOfSeatsForOnePerson extends PageTest {
                 .choseCountryTo()
                 .setDepartureDate()
                 .setReturnDate()
-                .goToFlightsAndTicketTypesPage()
-                .goToPassengersPage()
+                .continueBooking()
+                .goToPassengersPageWithoutAnyActions()
                 .enterPassengersData(passenger)
                 .goToTravelExstrasPage()
                 .isOneSeatSelected());
