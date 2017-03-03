@@ -9,8 +9,9 @@ public class RigaBerlinFlightPage extends Page {
 
     private String originAirport = "Riga (RIX) - Latvia";
     private String destinationAirport = "Berlin (Tegel) (TXL) - Germany";
-    By originCalendarDaysXpath = By.xpath("//div[@id='depDateGroup']//table/tbody/tr/td[@data-handler='selectDay']");
-    By destinationCalendarDaysXpath = By.xpath("//div[@id='return-date-div']//table/tbody/tr/td[@data-handler='selectDay']");
+    private By originCalendarDaysXpath = By.xpath("//div[@id='depDateGroup']//table/tbody/tr/td[@data-handler='selectDay']");
+    private By destinationCalendarDaysXpath = By.xpath("//div[@id='return-date-div']//table/tbody/tr/td[@data-handler='selectDay']");
+    private By successfulLoginLocator = By.id("dropdown-menu3");
 
     @FindBy(xpath = "//*[@id='flights-form-btn']")
     private WebElement findButton;
@@ -29,6 +30,7 @@ public class RigaBerlinFlightPage extends Page {
     }
 
     private void clickFindButton() {
+        driver.findElements(successfulLoginLocator);
         findButton.click();
     }
 
