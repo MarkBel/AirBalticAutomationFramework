@@ -69,6 +69,9 @@ public class BookAFlightForm extends Page{
     @FindBy(xpath = "//div[@id='positioner']/div/button")
     private WebElement buttonGoFlightsAndTicketsTypesPage;
 
+    @FindBy(xpath = "//div[@id=\"return-date-div\"]")
+    WebElement fieldReturnDateVisibality;
+
 
     public BookAFlightForm(WebDriver driver) {
         super(driver);
@@ -152,7 +155,8 @@ public class BookAFlightForm extends Page{
         choseCountryFrom();
         btnBookAndFlights.click();
         radioBtnOneWayTrip.click();
-        return RETURN_DATE_ATTRIBUTE.equals(inptReturnDate.getAttribute("style"));
+        //String text = inptReturnDate.getAttribute("style");
+        return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
 
     public boolean checkNumberInfactsTichets() {
