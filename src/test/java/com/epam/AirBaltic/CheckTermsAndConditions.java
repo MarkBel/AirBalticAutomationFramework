@@ -32,14 +32,8 @@ public class CheckTermsAndConditions extends PageTest {
         Thread.sleep(2000);
 
         bookAFlightForm = new BookAFlightForm(driver);
-        bookAFlightForm.choseCountryFrom();
-        bookAFlightForm.choseCountryTo();
-        bookAFlightForm.pressFindFlightsButton();
-        bookAFlightForm.setDepartureDate();
-        bookAFlightForm.setReturnDate();
-        bookAFlightForm.goToFlightsAndTicketTypesPage();
+        bookAFlightForm.fillBookAndFlightForm();
 
-        Thread.sleep(10000);
         FlightsAndTicketTypesPage farePage = new FlightsAndTicketTypesPage(driver);
         farePage.goToPassengersPage();
 
@@ -56,7 +50,6 @@ public class CheckTermsAndConditions extends PageTest {
         SummaryPage summaryPage = new SummaryPage(driver);
         Thread.sleep(10000);
         summaryPage.choosePaymentMethod();
-        Thread.sleep(10000);
         summaryPage.checkTermsAndConditions();
 
     }

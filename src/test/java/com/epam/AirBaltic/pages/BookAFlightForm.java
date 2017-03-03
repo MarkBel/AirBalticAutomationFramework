@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Kseniya_Kunda on 3/1/2017.
  */
@@ -79,6 +81,17 @@ public class BookAFlightForm extends Page{
     public FlightsAndTicketTypesPage goToFlightsAndTicketTypesPage(){
         buttonFindFlightsFares.click();
         return new FlightsAndTicketTypesPage(driver);
+    }
+
+    public void fillBookAndFlightForm() {
+        choseCountryFrom();
+        choseCountryTo();
+        pressFindFlightsButton();
+        setDepartureDate();
+        setReturnDate();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        goToFlightsAndTicketTypesPage();
+
     }
 
 }
