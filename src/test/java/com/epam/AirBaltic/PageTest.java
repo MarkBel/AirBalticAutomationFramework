@@ -25,16 +25,12 @@ public class PageTest {
     protected static DesiredCapabilities capabilities;
     protected StartPage startPage = null;
     protected WebDriver driver;
-    protected Passenger passenger;
+
 
     Logger logger = Logger.getLogger("TestLogger");
 
     @BeforeSuite
     public void initTestSuite() throws IOException {
-        passenger = new Passenger(PropertyLoader.getProperty("user.first.name"),
-                PropertyLoader.getProperty("user.last.name"),
-                PropertyLoader.getProperty("user.tel"),
-                PropertyLoader.getProperty("user.name"));
         String browserName = PropertyLoader.getProperty("browser.name");
         if ((capabilities = SessionHelper.getBrowserCaps(browserName.toLowerCase())) == null) {
             throw new NoSuchSessionException("Required parameters can't be set");
