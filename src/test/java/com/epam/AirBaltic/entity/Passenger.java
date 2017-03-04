@@ -54,10 +54,10 @@ public class Passenger {
 //    }
 
     public Passenger loadPassengerDataFromProperties() {
-        this.firstName = PropertyLoader.getProperty("");
-        this.lastName = PropertyLoader.getProperty("");
-        this.phoneNo = PropertyLoader.getProperty("");
-        this.email = PropertyLoader.getProperty("");
+        this.firstName = PropertyLoader.getProperty("passenger.first.name");
+        this.lastName = PropertyLoader.getProperty("passenger.last.name");
+        this.phoneNo = PropertyLoader.getProperty("passenger.tel");
+        this.email = PropertyLoader.getProperty("passenger.email");
         return this;
     }
 
