@@ -56,13 +56,13 @@ public class YouthOfferPage extends Page {
                 jQueryCompleted());
     }
 
-    public void clearOriginCity() {
-        fMenuOrigins_1.clear();
-    }
-
     /* TODO */
     public void setOriginCity(Integer position) {
 
+    }
+
+    public void clearOriginCity() {
+        fMenuOrigins_1.clear();
     }
 
     public Integer getOffersNumberFromCurrentCity() {

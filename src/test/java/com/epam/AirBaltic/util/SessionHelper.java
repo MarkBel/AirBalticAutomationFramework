@@ -6,7 +6,7 @@ public class SessionHelper {
     public static DesiredCapabilities getBrowserCaps(String browser) {
         DesiredCapabilities capabilities = null;
 
-        final String CHROMEDRIVER_WIN_PATH=PropertyLoader.getProperty("cromedriver.win.path");
+        final String CHROMEDRIVER_WIN_PATH=PropertyLoader.getProperty("chromedriver.win.path");
         final String GECKODRIVER_WIN_PATH=PropertyLoader.getProperty("geckodriver.win.path");
 
         switch (browser) {

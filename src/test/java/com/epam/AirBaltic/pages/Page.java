@@ -11,33 +11,32 @@ import org.openqa.selenium.support.PageFactory;
  */
 public abstract class Page {
 
-  protected WebDriver driver;
-  protected FluentWaitUtil wait;
+    protected WebDriver driver;
+    protected FluentWaitUtil wait;
 
 
-  public Page(WebDriver driver) {
-    this.driver = driver;
-    PageFactory.initElements(this.driver,this);
-    wait = new FluentWaitUtil(driver);
-  }
+    public Page(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
+        wait = new FluentWaitUtil(driver);
+    }
 
 
-  public WebDriver getDriver() {
-    return driver;
-  }
+    public WebDriver getDriver() {
+        return driver;
+    }
 
-  public void setDriver(WebDriver driver) {
-    this.driver = driver;
-  }
+    public void setDriver(WebDriver driver) {
+        this.driver = driver;
+    }
 
-  public String getTitle() {
-    return driver.getTitle();
-  }
+    public String getTitle() {
+        return driver.getTitle();
+    }
 
-  public void jsExecutorWork(WebElement webElement)
-  {
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    js.executeScript("arguments[0].click();", webElement);
-  }
+    public void jsExecutorWork(WebElement webElement) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", webElement);
+    }
 
 }

@@ -2,10 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="AirBalticFunctionalTest"  verbose="3">
   <test name="StartPageTest">
-    <parameter name = "newbio-info" value = "was born, live, not died"/>
-    <parameter name = "newurl-info" value = "http://www.livejournal.com"/>
-    <parameter name = "newcompany-info" value = "EPAM Systems"/>
-    <parameter name = "newloc-info" value = "Earth, Belarus, Minsk"/>
+    <parameter name = "param1" value = " "/>
     <classes>
       <class name="com.epam.AirBaltic.ReturnDateIsValid"/>
       <class name="com.epam.AirBaltic.ReturnDateIsVisible"/>

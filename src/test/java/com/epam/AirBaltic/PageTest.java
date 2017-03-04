@@ -21,38 +21,38 @@ import java.util.concurrent.TimeUnit;
  */
 public class PageTest {
 
-  protected static final String START_PAGE_URL = PropertyLoader.getProperty("start.url");
-  protected static DesiredCapabilities capabilities;
-  protected StartPage startPage = null;
-  protected WebDriver driver;
-  protected Passenger passenger;
+    protected static final String START_PAGE_URL = PropertyLoader.getProperty("start.url");
+    protected static DesiredCapabilities capabilities;
+    protected StartPage startPage = null;
+    protected WebDriver driver;
+    protected Passenger passenger;
 
-  Logger logger = Logger.getLogger("TestLogger");
+    Logger logger = Logger.getLogger("TestLogger");
 
-  @BeforeSuite
-  public void initTestSuite() throws IOException {
-    passenger = new Passenger(PropertyLoader.getProperty("user.first.name"),
-            PropertyLoader.getProperty("user.last.name"),
-            PropertyLoader.getProperty("user.tel"),
-            PropertyLoader.getProperty("user.name"));
-    String browserName = PropertyLoader.getProperty("browser.name");
-    if ((capabilities = SessionHelper.getBrowserCaps(browserName.toLowerCase())) == null) {
-      throw new NoSuchSessionException("Required parameters can't be set");
+    @BeforeSuite
+    public void initTestSuite() throws IOException {
+        passenger = new Passenger(PropertyLoader.getProperty("user.first.name"),
+                PropertyLoader.getProperty("user.last.name"),
+                PropertyLoader.getProperty("user.tel"),
+                PropertyLoader.getProperty("user.name"));
+        String browserName = PropertyLoader.getProperty("browser.name");
+        if ((capabilities = SessionHelper.getBrowserCaps(browserName.toLowerCase())) == null) {
+            throw new NoSuchSessionException("Required parameters can't be set");
+        }
     }
-  }
 
-  @BeforeClass
-  public void initWebDriver() {
-    driver = MutatedSingleton.getDriver(capabilities);
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-    driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
-    driver.navigate().to(START_PAGE_URL);
-    startPage = new StartPage(driver);
-  }
+    @BeforeClass
+    public void initWebDriver() {
+        driver = MutatedSingleton.getDriver(capabilities);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+        driver.navigate().to(START_PAGE_URL);
+        startPage = new StartPage(driver);
+    }
 
-  @AfterSuite(alwaysRun = true)
-  public void tearDown() {
- //   MutatedSingleton.cLoseAllDrivers();
-  }
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
+        MutatedSingleton.cLoseAllDrivers();
+    }
 }

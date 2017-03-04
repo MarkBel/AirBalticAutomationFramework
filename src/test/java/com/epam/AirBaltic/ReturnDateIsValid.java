@@ -13,9 +13,7 @@ public class ReturnDateIsValid extends PageTest {
 
     @Test
     public void ReturnDateIsLessThanDeparture() {
-
         Assert.assertTrue(new StartPage(driver).goToBookAFlightForm().checkReturnDate(),"Return date has an invalid meaning!");
-
     }
 
 }

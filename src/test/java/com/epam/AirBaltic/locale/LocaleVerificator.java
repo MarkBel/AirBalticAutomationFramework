@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Mark_Rudak on 3/3/2017.
  */
-public class LocaleVerificator  extends Page {
+public class LocaleVerificator extends Page {
 
 
     @FindBy(xpath = "//button[@id='dropdownMenu2']")
@@ -25,15 +25,13 @@ public class LocaleVerificator  extends Page {
         super(driver);
     }
 
-    public  String getLanguage()
-    {
+    public String getLanguage() {
         return fieldLang.getText();
     }
 
-    public void setLanguage()
-    {
+    public void setLanguage() {
         String lang = "English";
-        if(!getLanguage().equals(lang)) {
+        if (!getLanguage().equals(lang)) {
             fieldLang.click();
             fieldEnglishLang.click();
             driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);

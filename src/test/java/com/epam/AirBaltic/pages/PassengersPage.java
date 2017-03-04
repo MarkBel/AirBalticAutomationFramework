@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Katerina_Karpenia on 3/2/2017.
  */
-public class PassengersPage extends Page{
+public class PassengersPage extends Page {
 
     @FindBy(css = "div>.btn-continue-booking")
     private WebElement continueButton;
@@ -43,7 +43,7 @@ public class PassengersPage extends Page{
         return new TravelExtrasPage(driver);
     }
 
-    public PassengersPage enterPassengersData(Passenger passenger){
+    public PassengersPage enterPassengersData(Passenger passenger) {
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -64,12 +64,10 @@ public class PassengersPage extends Page{
         return this;
     }
 
-    public TravelExtrasPage goToTravelExstrasPage(){
+    public TravelExtrasPage goToTravelExstrasPage() {
         wait.waitForElement(continueButton).click();
         return new TravelExtrasPage(driver);
     }
-
-
 
 
 }

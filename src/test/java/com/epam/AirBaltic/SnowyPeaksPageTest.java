@@ -11,9 +11,9 @@ public class SnowyPeaksPageTest extends PageTest {
 
     @BeforeClass
     public void jumpToSnowyPeaksPage() {
-        //logger.info("Attempt to open Create new repository page");
+        logger.info("Attempt to open Create new repository page");
         snowyPeaksPage = this.startPage.clickFlySnowyPeaksLink();
-        //logger.info("Page SnowyPeaksPage opened");
+        logger.info("Page SnowyPeaksPage opened");
     }
 
     @Test

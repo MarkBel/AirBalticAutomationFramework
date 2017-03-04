@@ -10,13 +10,8 @@ import org.testng.annotations.Test;
 public class ReturnDateIsVisible extends PageTest {
 
     @Test
-    public void visabilityOfReturnDate()
-
-
-    {
+    public void visabilityOfReturnDate() {
         Assert.assertTrue(new StartPage(driver).goToBookAFlightForm().checkOneWayTripAction(), "Visability of Return date is visible!");
     }
-
-
 }
 
