@@ -44,7 +44,6 @@ public class SummaryPage extends Page {
 
     public boolean checkTermsAndConditions() {
         submitButton.click();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         return termsAndConditionsError.getText().contains(ERROR_TERMS_AND_CONDITIONS_EXCEPTION);
     }
 

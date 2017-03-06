@@ -127,7 +127,6 @@ public class BookAFlightForm extends Page{
         pressFindFlightsButton();
         setDepartureDate();
         setReturnDate();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         goToFlightsAndTicketTypesPage();
         return new FlightsAndTicketTypesPage(driver);
 
@@ -146,7 +145,6 @@ public class BookAFlightForm extends Page{
         choseCountryFrom();
         btnBookAndFlights.click();
         setReturnDate("01.02.2017");
-        driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
         return ERROR_MESSAGE.equals(inptError.getText());
 
     }
@@ -164,7 +162,6 @@ public class BookAFlightForm extends Page{
         choseCountryFrom();
         btnBookAndFlights.click();
         setReturnDate("15.03.2017");
-        driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
         addTwoInfants();
         btnBookandFlighAction.click();
         return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);

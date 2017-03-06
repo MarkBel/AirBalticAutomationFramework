@@ -55,7 +55,7 @@ public class StartPage extends Page {
 
     public void loginCheck(String email, String password){
         try {
-            buttonMyAccount.isDisplayed();
+            buttonMyAccount.click();
         }catch (NoSuchElementException exception){
             loginForm = goToLoginForm();
             loginForm.login(email, password);

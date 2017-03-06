@@ -34,7 +34,6 @@ public class LocaleVerificator extends Page {
         if (!getLanguage().equals(lang)) {
             fieldLang.click();
             fieldEnglishLang.click();
-            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         }
 
     }

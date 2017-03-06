@@ -26,8 +26,6 @@ public class CheckTermsAndConditions extends PageTest {
                 .goToSummaryPage()
                 .choosePaymentMethod()
                 .checkTermsAndConditions());
-
-
     }
 
 }
