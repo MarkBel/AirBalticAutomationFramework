@@ -156,7 +156,6 @@ public class BookAFlightForm extends Page{
         choseCountryFrom();
         btnBookAndFlights.click();
         radioBtnOneWayTrip.click();
-        //String text = inptReturnDate.getAttribute("style");
         return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
 
@@ -164,7 +163,7 @@ public class BookAFlightForm extends Page{
         choseCountryFrom();
         choseCountryFrom();
         btnBookAndFlights.click();
-        setReturnDate("10.03.2017");
+        setReturnDate("15.03.2017");
         driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
         addTwoInfants();
         btnBookandFlighAction.click();

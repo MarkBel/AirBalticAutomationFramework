@@ -95,12 +95,7 @@ public class FlightsAndTicketTypesPage extends Page {
     }
 
     public PassengersPage goToPassengersPageWithoutAnyActions(){
-        try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        buttonGoToPassengersPage.click();
+        wait.waitForElement(buttonGoToPassengersPage).click();
         return new PassengersPage(driver);
     }
 }

@@ -16,15 +16,11 @@ public class CheckNumberOfSeatsForOnePerson extends PageTest {
 
     @BeforeClass
     public void prepareToTest() {
-//        passenger = new Passenger(PropertyLoader.getProperty("passenger.first.name"),
-//                PropertyLoader.getProperty("passenger.last.name"),
-//                PropertyLoader.getProperty("passenger.tel"),
-//                PropertyLoader.getProperty("passenger.email"));
         passenger = new Passenger().loadPassengerDataFromProperties();
     }
 
     @Test
-    public void testCheckNumberOfSeatsForOnePerson(){
+    public void testCheckNumberOfSeatsForOnePerson() throws InterruptedException {
         Assert.assertFalse(new StartPage(driver)
                 .goToBookAFlightForm()
                 .choseCountryFrom()

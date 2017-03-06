@@ -1,11 +1,13 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.AdditionalConditions;
 import com.epam.AirBaltic.util.FluentWaitUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Iterator;
 import java.util.List;
@@ -27,7 +29,7 @@ public class TravelExtrasPage extends Page {
 
 
 
-    @FindBys(@FindBy(xpath = "//div[@class='seat-container seat-available seat-priority']"))
+    @FindBy(xpath = "//div[@class='seats-map']//table[contains(@class,'map-plane')]//td/div[contains(@class,'seat-available')]")
     private List<WebElement> availableSeats;
 
 
@@ -41,7 +43,9 @@ public class TravelExtrasPage extends Page {
         return new SummaryPage(driver);
     }
 
-    public boolean isOneSeatSelected(){
+    public boolean isOneSeatSelected() throws InterruptedException {
+        (new WebDriverWait(this.driver, 5)).until(AdditionalConditions.
+                jQueryCompleted());
         availableSeats.get(0).click();
         availableSeats.get(1).click();
         return availableSeats.get(0).isSelected();

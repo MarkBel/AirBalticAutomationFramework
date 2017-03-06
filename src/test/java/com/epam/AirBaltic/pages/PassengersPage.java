@@ -1,12 +1,16 @@
 package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.entity.Passenger;
+import com.epam.AirBaltic.util.AdditionalConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -29,8 +33,12 @@ public class PassengersPage extends Page {
     @FindBy(name = "phone_M")
     private WebElement inputPhoneNo;
 
-    @FindBy(xpath = "//div[contains(text(),'Mr.')]")
-    private WebElement selectTitle;
+    @FindBy(xpath = "//span[@class='item-control salutation']")
+    private WebElement dDMenuSelectTitle;
+
+    @FindBy(xpath = "//span[@class='item-control salutation']//li")
+    private List<WebElement > listOfTitles;
+
 
     public PassengersPage(WebDriver driver) {
         super(driver);
@@ -38,22 +46,16 @@ public class PassengersPage extends Page {
 
 
     public TravelExtrasPage goToTravelExtrasPage() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        (new WebDriverWait(this.driver, 5)).until(AdditionalConditions.
+                jQueryCompleted());
         continueButton.click();
         return new TravelExtrasPage(driver);
     }
 
     public PassengersPage enterPassengersData(Passenger passenger) {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        selectTitle.click();
+        (new WebDriverWait(this.driver, 5)).until(ExpectedConditions.elementToBeClickable(continueButton));
+        dDMenuSelectTitle.click();
+        listOfTitles.get(1).click();
         inputFirstName.clear();
         inputFirstName.sendKeys(passenger.getFirstName());
 
