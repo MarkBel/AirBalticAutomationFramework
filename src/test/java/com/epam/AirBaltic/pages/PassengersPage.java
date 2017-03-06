@@ -38,7 +38,12 @@ public class PassengersPage extends Page {
 
 
     public TravelExtrasPage goToTravelExtrasPage() {
-        wait.waitForElement(continueButton).click();
+        //wait.waitForElement(continueButton).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         continueButton.click();
         return new TravelExtrasPage(driver);
     }

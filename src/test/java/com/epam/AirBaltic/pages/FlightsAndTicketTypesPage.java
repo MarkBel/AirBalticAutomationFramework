@@ -66,10 +66,11 @@ public class FlightsAndTicketTypesPage extends Page {
         return Integer.parseInt(euro.replace("€", ""));
     }
 
-    public void acceptFare() {
+    public PassengersPage acceptFare() {
         checkCorrectPage();
         findPrices();
-        clickAcceptButton();
+        goToPassengersPage();
+        return new PassengersPage(driver);
     }
 
     public Boolean CheckFareCondition() {
