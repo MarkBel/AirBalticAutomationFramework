@@ -31,6 +31,11 @@ public class SummaryPage extends Page {
     }
 
     public SummaryPage choosePaymentMethod() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         paymentMethodLocator.click();
         selectCreditCard.click();
         return new SummaryPage(driver);
