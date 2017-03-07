@@ -46,34 +46,8 @@ public class PassengersPage extends Page {
 
 
     public TravelExtrasPage goToTravelExtrasPage() {
-        (new WebDriverWait(this.driver, 5)).until(AdditionalConditions.
-                jQueryCompleted());
         continueButton.click();
         return new TravelExtrasPage(driver);
     }
-
-    public PassengersPage enterPassengersData(Passenger passenger) {
-        (new WebDriverWait(this.driver, 5)).until(ExpectedConditions.elementToBeClickable(continueButton));
-        dDMenuSelectTitle.click();
-        listOfTitles.get(1).click();
-        inputFirstName.clear();
-        inputFirstName.sendKeys(passenger.getFirstName());
-
-        inputLastName.clear();
-        inputLastName.sendKeys(passenger.getLastName());
-
-        inputEmail.clear();
-        inputEmail.sendKeys(passenger.getEmail());
-
-        inputPhoneNo.clear();
-        inputPhoneNo.sendKeys(passenger.getPhoneNo());
-        return this;
-    }
-
-    public TravelExtrasPage goToTravelExstrasPage() {
-        wait.waitForElement(continueButton).click();
-        return new TravelExtrasPage(driver);
-    }
-
 
 }

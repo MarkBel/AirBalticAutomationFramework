@@ -20,13 +20,13 @@ public class EditProfilePage extends Page {
     private StartPage startPage;
 
     @FindBy(css = "#businessCountry+div>.select_box")
-    WebElement inputCountry;
+    private WebElement inputCountry;
 
     @FindBy(id = "submit_pax_account_new_form")
-    WebElement buttonSave;
+    private WebElement buttonSave;
 
     @FindBy(css = "#logo>img")
-    WebElement buttonAirBaltic;
+    private WebElement buttonAirBaltic;
 
     private static final By countries = By.xpath("//ul[@class='drop_down'][@rel='businessCountry']/li");
 
@@ -48,6 +48,11 @@ public class EditProfilePage extends Page {
         buttonSave.click();
     }
 
+    private void uploadPage(){
+        startPage = goToStartPage();
+        startPage.goToEditProfilePage();
+    }
+
     public void updateCountry() {
         setCountry();
         saveUpdates();
@@ -67,9 +72,5 @@ public class EditProfilePage extends Page {
         return new StartPage(driver);
     }
 
-    private void uploadPage(){
-        startPage = goToStartPage();
-        startPage.goToEditProfilePage();
-    }
 
 }
