@@ -5,6 +5,7 @@
     <parameter name = "param1" value = " "/>
     <classes>
       <class name="com.epam.AirBaltic.ReturnDateIsValid"/>
+      <class name="com.epam.AirBaltic.UpdateAccountCheck"/>
       <class name="com.epam.AirBaltic.ReturnDateIsVisible"/>
     </classes>
   </test>
