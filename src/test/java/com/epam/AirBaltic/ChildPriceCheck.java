@@ -16,11 +16,7 @@ public class ChildPriceCheck extends PageTest {
     @Test
     public void ChildPriceTest() {
         bookAFlightForm = startPage.goToBookAFlightForm();
-        bookAFlightForm.choseCountryFrom();
-        bookAFlightForm.choseCountryTo();
-        bookAFlightForm.pressFindFlightsButton();
-        bookAFlightForm.setDepartureDate();
-        bookAFlightForm.setReturnDate();
+        bookAFlightForm.fillBookAndFlightForm();
         bookAFlightForm.addChild();
         flightsAndTicketTypesPage = bookAFlightForm.goToFlightsAndTicketTypesPage();
         Assert.assertTrue(flightsAndTicketTypesPage.CheckFareCondition(), "The condition about child fare towards adult fare is,t conformed!");

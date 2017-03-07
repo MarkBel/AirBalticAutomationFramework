@@ -17,116 +17,86 @@ public class BookAFlightForm extends Page{
 
     private String originAirport = "Riga (RIX) - Latvia";
     private String destinationAirport = "Berlin (Tegel) (TXL) - Germany";
-    private By originCalendarDaysXpath = By.xpath("//div[@id='depDateGroup']//table/tbody/tr/td[@data-handler='selectDay']");
-    private By destinationCalendarDaysXpath = By.xpath("//div[@id='return-date-div']//table/tbody/tr/td[@data-handler='selectDay']");
     private static final String ERROR_MESSAGE = "The date of the inbound flight cannot be earlier than the date of the outbound flight. Please adjust your selection.";
     private static final String RETURN_DATE_ATTRIBUTE = "display: none;";
     private static final String ERROR_INPUT_EXCEPTION = "The number of infants can not be higher than the number of adults. Only an adult can accompany an infant.";
-    private DateGenerator dateGenerator;
     private int departureDateDelta = 2;
     private int returnDateDelta = 5;
 
     @FindBy(css = "#positioner button")
-    WebElement buttonFindFlightsFares;
+    private WebElement buttonFindFlightsFares;
 
     @FindBy(css = "#flt_origin_text")
-    WebElement inputFlyFrom;
+    private WebElement inputFlyFrom;
 
     @FindBy(css = "#flt_destin_text")
-    WebElement inputFlyTo;
+    private WebElement inputFlyTo;
 
     @FindBy(css = "#flt_leaving_on")
-    WebElement inputDepartureDate;
-
-    @FindBy(css = "#flt_returning_on")
-    WebElement inputReturnDate;
+    private WebElement inputDepartureDate;
 
     @FindBy(css = "#top-dropdown-menu2+div")
-    WebElement buttonAddChild;
+    private WebElement buttonAddChild;
 
     @FindBy(xpath = "//button[@id='flights-form-btn']")
-    WebElement btnBookAndFlights;
+    private WebElement btnBookAndFlights;
 
     @FindBy(xpath = "//div[@data-container-id=\"returnDate\"]/input[@id=\"flt_returning_on\"]")
-    WebElement inptReturnDate;
+    private WebElement inputReturnDate;
 
     @FindBy(xpath = "//span[@id='one_way-styler']")
-    WebElement radioBtnOneWayTrip;
+    private WebElement radioBtnOneWayTrip;
 
     @FindBy(xpath = "//span[@id='flt_returning_on-error']")
-    WebElement inptError;
+    private WebElement inputError;
 
     @FindBy(xpath = "//td[@id='errors']/span")
-    WebElement inputNumberOfInfantsError;
+    private WebElement inputNumberOfInfantsError;
 
     @FindBy(xpath = "//a[@class=\"dropdown-toggle needsclick\" and text()='0 infants']")
-    WebElement listInfants;
+    private WebElement listInfants;
 
     @FindBy(xpath = "//div[@id='mCSB_3_container']/li[3]/a")
-    WebElement numberOfInfants;
+    private WebElement numberOfInfants;
 
     @FindBy(xpath = "//button[@class='btn btn-default light-elem-btn button-green findflights-btn']")
-    WebElement btnBookandFlighAction;
+    private WebElement btnBookandFlighAction;
 
     @FindBy(xpath = "//div[@id='positioner']/div/button")
     private WebElement buttonGoFlightsAndTicketsTypesPage;
 
     @FindBy(xpath = "//div[@id=\"return-date-div\"]")
-    WebElement fieldReturnDateVisibality;
+    private WebElement fieldReturnDateVisibality;
 
 
     public BookAFlightForm(WebDriver driver) {
         super(driver);
-        dateGenerator = new DateGenerator();
     }
 
-    public BookAFlightForm choseCountryFrom(){
+    private BookAFlightForm choseCountryFrom(){
         inputFlyFrom.clear();
         inputFlyFrom.sendKeys(originAirport);
         return this;
     }
 
-    public BookAFlightForm choseCountryTo(){
+    private BookAFlightForm choseCountryTo(){
         inputFlyTo.clear();
         inputFlyTo.sendKeys(destinationAirport);
         return this;
     }
 
-    public void pressFindFlightsButton(){
+    private void pressFindFlightsButton(){
         btnBookAndFlights.click();
     }
 
-    /*public BookAFlightForm setDepartureDate(){
-        if (inputDepartureDate.isDisplayed()){
-            inputDepartureDate.clear();
-            inputDepartureDate.sendKeys(Keys.ENTER);
-            driver.findElements(originCalendarDaysXpath).get(2).click();
-        }else {
-            btnBookAndFlights.click();
-            inputDepartureDate.clear();
-            inputDepartureDate.sendKeys(Keys.ENTER);
-            driver.findElements(originCalendarDaysXpath).get(2).click();
-        }
+    private BookAFlightForm setDepartureDate(){
+        setDepartureDate(DateGenerator.getDate(departureDateDelta));
         return this;
     }
 
-    public BookAFlightForm setReturnDate(){
-        driver.findElements(destinationCalendarDaysXpath).get(5).click();
+    private BookAFlightForm setReturnDate(){
+        setReturnDate(DateGenerator.getDate(returnDateDelta));
         return this;
-    }*/
-
-    public BookAFlightForm setDepartureDate(){
-        setDepartureDate(dateGenerator.getDate(departureDateDelta));
-        return this;
-    }
-
-    public BookAFlightForm setReturnDate(){
-        setReturnDate(dateGenerator.getDate(returnDateDelta));
-        return this;
-    }
-
-    public void addChild(){
-        buttonAddChild.click();
     }
 
     public FlightsAndTicketTypesPage goToFlightsAndTicketTypesPage(){
@@ -140,8 +110,11 @@ public class BookAFlightForm extends Page{
         pressFindFlightsButton();
         setDepartureDate();
         setReturnDate();
-        goToFlightsAndTicketTypesPage();
         return new FlightsAndTicketTypesPage(driver);
+    }
+
+    public void addChild(){
+        buttonAddChild.click();
     }
 
     public BookAFlightForm setDepartureDate(String date){
@@ -151,32 +124,31 @@ public class BookAFlightForm extends Page{
     }
 
     public BookAFlightForm setReturnDate(String date){
-        inptReturnDate.sendKeys(date);
-        inptReturnDate.sendKeys(Keys.ENTER);
+        inputReturnDate.sendKeys(date);
+        inputReturnDate.sendKeys(Keys.ENTER);
         return this;
     }
 
-
     public boolean checkReturnDate() {
         choseCountryFrom();
-        choseCountryFrom();
+        choseCountryTo();
         btnBookAndFlights.click();
         setReturnDate("01.02.2017");
-        return ERROR_MESSAGE.equals(inptError.getText());
+        return ERROR_MESSAGE.equals(inputError.getText());
 
     }
 
     public boolean checkOneWayTripAction() {
         choseCountryFrom();
-        choseCountryFrom();
+        choseCountryTo();
         btnBookAndFlights.click();
         radioBtnOneWayTrip.click();
         return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
 
-    public boolean checkNumberInfactsTichets() {
+    public boolean checkNumberInfactsTickets() {
         choseCountryFrom();
-        choseCountryFrom();
+        choseCountryTo();
         btnBookAndFlights.click();
         setReturnDate("15.03.2017");
         addTwoInfants();
@@ -185,16 +157,10 @@ public class BookAFlightForm extends Page{
 
     }
 
-
-    public void addTwoInfants()
+    private void addTwoInfants()
     {
         listInfants.click();
         numberOfInfants.click();
-    }
-
-    public FlightsAndTicketTypesPage continueBooking(){
-        buttonGoFlightsAndTicketsTypesPage.click();
-        return new FlightsAndTicketTypesPage(driver);
     }
 
 }

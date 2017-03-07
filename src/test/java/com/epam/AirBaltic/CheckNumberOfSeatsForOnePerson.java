@@ -23,11 +23,7 @@ public class CheckNumberOfSeatsForOnePerson extends PageTest {
     public void testCheckNumberOfSeatsForOnePerson() throws InterruptedException {
         Assert.assertFalse(new StartPage(driver)
                 .goToBookAFlightForm()
-                .choseCountryFrom()
-                .choseCountryTo()
-                .setDepartureDate()
-                .setReturnDate()
-                .continueBooking()
+                .fillBookAndFlightForm()
                 .goToPassengersPageWithoutAnyActions()
                 .enterPassengersData(passenger)
                 .goToTravelExstrasPage()
