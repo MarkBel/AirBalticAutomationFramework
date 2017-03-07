@@ -52,9 +52,11 @@ public class StartPage extends Page {
     }
 
 
-    public void loginCheck() {
+    public StartPage loginCheck() {
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonMyAccount));
+        return new StartPage(driver);
     }
+
     public BookAFlightForm goToBookAFlightForm() {
         return new BookAFlightForm(driver);
     }
