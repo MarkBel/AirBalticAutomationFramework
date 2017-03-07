@@ -14,12 +14,17 @@ public class TotalPriceTest extends PageTest {
     private FlightsAndTicketTypesPage farePage;
     private PassengersPage passengersPage;
     private TravelExtrasPage extrasPage;
+    private LoginForm loginForm;
 
 
     @Test
     public void startTest(){
-   //     startPage.loginCheck(USERNAME, PASSWORD);
-        flightPage = new BookAFlightForm(driver);
+        loginForm = startPage.goToLoginForm();
+        startPage = loginForm.login(USERNAME, PASSWORD);
+//        flightPage = new BookAFlightForm(driver);
+//        flightPage.fillBookAndFlightForm();
+        startPage.loginCheck();
+        flightPage = startPage.goToBookAFlightForm();
         flightPage.fillBookAndFlightForm();
         farePage = new FlightsAndTicketTypesPage(driver);
         passengersPage = farePage.acceptFare();

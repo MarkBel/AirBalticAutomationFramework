@@ -51,6 +51,10 @@ public class StartPage extends Page {
         super(driver);
     }
 
+
+    public void loginCheck() {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonMyAccount));
+    }
     public BookAFlightForm goToBookAFlightForm() {
         return new BookAFlightForm(driver);
     }
@@ -64,6 +68,7 @@ public class StartPage extends Page {
         driver.navigate().to(url);
         buttonMyAccount.click();
         buttonLogout.click();
+        driver.manage().deleteAllCookies();
     }
 
     public EditProfilePage goToEditProfilePage() {

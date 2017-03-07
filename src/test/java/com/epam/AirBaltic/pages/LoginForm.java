@@ -26,6 +26,11 @@ public class LoginForm extends Page{
     }
 
     public StartPage login(String email, String password) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         inputEmail.clear();
         inputEmail.sendKeys(email);
         inputPassword.clear();
