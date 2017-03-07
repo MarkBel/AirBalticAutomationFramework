@@ -141,7 +141,9 @@ public class BookAFlightForm extends Page{
     public boolean checkOneWayTripAction() {
         choseCountryFrom();
         choseCountryTo();
-        btnBookAndFlights.click();
+        if (btnBookAndFlights.isDisplayed()) {
+            btnBookAndFlights.click();
+        }
         radioBtnOneWayTrip.click();
         return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
