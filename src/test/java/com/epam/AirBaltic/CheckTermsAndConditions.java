@@ -3,6 +3,7 @@ package com.epam.AirBaltic;
 import com.epam.AirBaltic.pages.*;
 import com.epam.AirBaltic.util.PropertyLoader;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -16,9 +17,10 @@ public class CheckTermsAndConditions extends PageTest {
     @Test
     public void checkTermsAndConditionsTest () {
 
-      //  startPage.loginCheck(USER_NAME, USER_PASSWORD);
-
         Assert.assertTrue(new StartPage(driver)
+                .goToLoginForm()
+                .login(USER_NAME, USER_PASSWORD)
+                .loginCheck()
                 .goToBookAFlightForm()
                 .fillBookAndFlightForm()
                 .goToPassengersPage()
@@ -26,6 +28,11 @@ public class CheckTermsAndConditions extends PageTest {
                 .goToSummaryPage()
                 .choosePaymentMethod()
                 .checkTermsAndConditions());
+    }
+
+    @AfterMethod
+    public void logout(){
+        startPage.logout(START_PAGE_URL);
     }
 
 }
