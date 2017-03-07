@@ -31,7 +31,7 @@ public class PageTest {
 
     @BeforeSuite
     public void initTestSuite() throws IOException {
-        String browserName = PropertyLoader.getProperty("browser.name");
+        String browserName = SessionHelper.selectBrowser();
         if ((capabilities = SessionHelper.getBrowserCaps(browserName.toLowerCase())) == null) {
             throw new NoSuchSessionException("Required parameters can't be set");
         }

@@ -25,4 +25,21 @@ public class SessionHelper {
         }
         return capabilities;
     }
+
+    // set JVM option -Dbrowser=chrome in Run/Debug configuration settings tu run chrome instead of firefox
+    public static String selectBrowser() {
+        String browserName;
+        String browserFromProperty = PropertyLoader.getProperty("browser.name");
+        String browserFromCommandLine = System.getProperty("browser");
+            if (browserFromProperty == null && browserFromCommandLine == null) {
+                browserName = "firefox";
+            } else if (browserFromProperty == null) {
+                browserName = browserFromCommandLine;
+            } else if (browserFromCommandLine == null) {
+                browserName = browserFromProperty;
+            } else {
+                browserName = browserFromCommandLine;
+            }
+        return browserName;
+    }
 }
