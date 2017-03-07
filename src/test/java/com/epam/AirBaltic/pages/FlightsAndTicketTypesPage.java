@@ -17,10 +17,6 @@ public class FlightsAndTicketTypesPage extends Page {
     @FindBy(css = "div>.btn-continue-booking")
     private WebElement continueButton;
 
-    @FindBy(xpath = "//div[@class='table-cell cell-right']//div[@class='bottom-nav']/button")
-    private WebElement buttonGoToPassengersPage;
-
-    private WebElement acceptButton;
     private String lowFareTitle = "Low Fare Calendar | airBaltic";
     private String currentTitle;
     private int departurePrice;
@@ -41,11 +37,6 @@ public class FlightsAndTicketTypesPage extends Page {
     public FlightsAndTicketTypesPage(WebDriver driver) {
         super(driver);
         currentTitle = driver.getTitle();
-    }
-
-    private void clickAcceptButton() {
-        acceptButton = driver.findElement(By.xpath("//div[contains(@class, 'login-guest')]//button"));
-        acceptButton.click();
     }
 
     private void checkCorrectPage() {
@@ -91,11 +82,6 @@ public class FlightsAndTicketTypesPage extends Page {
     public PassengersPage goToPassengersPage() {
         wait.waitForElement(continueButton).click();
         continueButton.click();
-        return new PassengersPage(driver);
-    }
-
-    public PassengersPage goToPassengersPageWithoutAnyActions(){
-        wait.waitForElement(buttonGoToPassengersPage).click();
         return new PassengersPage(driver);
     }
 }

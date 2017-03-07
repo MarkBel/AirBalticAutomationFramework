@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 public class CheckNumberOfSeatsForOnePerson extends PageTest {
 
     protected Passenger passenger;
+    private final PropertyLoader properties = new PropertyLoader();
 
     @BeforeClass
     public void prepareToTest() {
@@ -22,11 +23,13 @@ public class CheckNumberOfSeatsForOnePerson extends PageTest {
     @Test
     public void testCheckNumberOfSeatsForOnePerson() throws InterruptedException {
         Assert.assertFalse(new StartPage(driver)
+                .goToLoginForm()
+                .login(properties.getProperty("user.name"), properties.getProperty("user.password"))
+                .loginCheck()
                 .goToBookAFlightForm()
                 .fillBookAndFlightForm()
-                .goToPassengersPageWithoutAnyActions()
-                .enterPassengersData(passenger)
-                .goToTravelExstrasPage()
+                .goToPassengersPage()
+                .goToTravelExtrasPage()
                 .isOneSeatSelected());
     }
 }
