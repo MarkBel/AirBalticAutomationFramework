@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.DateGenerator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -16,12 +17,14 @@ public class BookAFlightForm extends Page{
 
     private String originAirport = "Riga (RIX) - Latvia";
     private String destinationAirport = "Berlin (Tegel) (TXL) - Germany";
-    By originCalendarDaysXpath = By.xpath("//div[@id='depDateGroup']//table/tbody/tr/td[@data-handler='selectDay']");
-    By destinationCalendarDaysXpath = By.xpath("//div[@id='return-date-div']//table/tbody/tr/td[@data-handler='selectDay']");
+    private By originCalendarDaysXpath = By.xpath("//div[@id='depDateGroup']//table/tbody/tr/td[@data-handler='selectDay']");
+    private By destinationCalendarDaysXpath = By.xpath("//div[@id='return-date-div']//table/tbody/tr/td[@data-handler='selectDay']");
     private static final String ERROR_MESSAGE = "The date of the inbound flight cannot be earlier than the date of the outbound flight. Please adjust your selection.";
     private static final String RETURN_DATE_ATTRIBUTE = "display: none;";
     private static final String ERROR_INPUT_EXCEPTION = "The number of infants can not be higher than the number of adults. Only an adult can accompany an infant.";
-
+    private DateGenerator dateGenerator;
+    private int departureDateDelta = 2;
+    private int returnDateDelta = 5;
 
     @FindBy(css = "#positioner button")
     WebElement buttonFindFlightsFares;
@@ -53,7 +56,6 @@ public class BookAFlightForm extends Page{
     @FindBy(xpath = "//span[@id='flt_returning_on-error']")
     WebElement inptError;
 
-
     @FindBy(xpath = "//td[@id='errors']/span")
     WebElement inputNumberOfInfantsError;
 
@@ -75,6 +77,7 @@ public class BookAFlightForm extends Page{
 
     public BookAFlightForm(WebDriver driver) {
         super(driver);
+        dateGenerator = new DateGenerator();
     }
 
     public BookAFlightForm choseCountryFrom(){
@@ -93,7 +96,7 @@ public class BookAFlightForm extends Page{
         btnBookAndFlights.click();
     }
 
-    public BookAFlightForm setDepartureDate(){
+    /*public BookAFlightForm setDepartureDate(){
         if (inputDepartureDate.isDisplayed()){
             inputDepartureDate.clear();
             inputDepartureDate.sendKeys(Keys.ENTER);
@@ -110,8 +113,18 @@ public class BookAFlightForm extends Page{
     public BookAFlightForm setReturnDate(){
         driver.findElements(destinationCalendarDaysXpath).get(5).click();
         return this;
+    }*/
+
+    public BookAFlightForm setDepartureDate(){
+        setDepartureDate(dateGenerator.getDate(departureDateDelta));
+        return this;
     }
-    
+
+    public BookAFlightForm setReturnDate(){
+        setReturnDate(dateGenerator.getDate(returnDateDelta));
+        return this;
+    }
+
     public void addChild(){
         buttonAddChild.click();
     }
@@ -129,11 +142,15 @@ public class BookAFlightForm extends Page{
         setReturnDate();
         goToFlightsAndTicketTypesPage();
         return new FlightsAndTicketTypesPage(driver);
+    }
 
+    public BookAFlightForm setDepartureDate(String date){
+        inputDepartureDate.sendKeys(date);
+        inputDepartureDate.sendKeys(Keys.ENTER);
+        return this;
     }
 
     public BookAFlightForm setReturnDate(String date){
-
         inptReturnDate.sendKeys(date);
         inptReturnDate.sendKeys(Keys.ENTER);
         return this;
