@@ -62,6 +62,7 @@ public class EditProfilePage extends Page {
     public Boolean checkChangedCountry() {
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonSave));
         Boolean updatedCountry = false;
+        System.out.println(inputCountry.getText()+" "+chosenCountry);
         if (inputCountry.getText().equals(chosenCountry)){
             updatedCountry = true;
         }return updatedCountry;

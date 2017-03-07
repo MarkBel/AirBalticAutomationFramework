@@ -38,6 +38,9 @@ public class BookAFlightForm extends Page{
     @FindBy(css = "#top-dropdown-menu2+div")
     private WebElement buttonAddChild;
 
+    @FindBy(css = "#top-dropdown-menu3+div")
+    private WebElement buttonAddInfant;
+
     @FindBy(xpath = "//button[@id='flights-form-btn']")
     private WebElement btnBookAndFlights;
 
@@ -86,7 +89,9 @@ public class BookAFlightForm extends Page{
     }
 
     private void pressFindFlightsButton(){
-        btnBookAndFlights.click();
+        if (btnBookAndFlights.isDisplayed()) {
+            btnBookAndFlights.click();
+        }
     }
 
     private BookAFlightForm setDepartureDate(){
@@ -115,6 +120,11 @@ public class BookAFlightForm extends Page{
 
     public void addChild(){
         buttonAddChild.click();
+    }
+
+    public void addInfant(){
+        buttonAddInfant.click();
+        buttonAddInfant.click();
     }
 
     public BookAFlightForm setDepartureDate(String date){
@@ -151,8 +161,10 @@ public class BookAFlightForm extends Page{
     public boolean checkNumberInfactsTickets() {
         choseCountryFrom();
         choseCountryTo();
-        btnBookAndFlights.click();
-        setReturnDate("15.03.2017");
+        if (btnBookAndFlights.isDisplayed()) {
+            btnBookAndFlights.click();
+        }
+        setReturnDate(DateGenerator.getDate(6));
         addTwoInfants();
         btnBookandFlighAction.click();
         return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);

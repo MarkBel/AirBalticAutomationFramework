@@ -7,6 +7,13 @@
       <class name="com.epam.AirBaltic.ReturnDateIsValid"/>
       <class name="com.epam.AirBaltic.UpdateAccountCheck"/>
       <class name="com.epam.AirBaltic.ReturnDateIsVisible"/>
+      <class name="com.epam.AirBaltic.ChildPriceCheck"/>
+      <class name="com.epam.AirBaltic.CheckTermsAndConditions"/>
+      <class name="com.epam.AirBaltic.CheckNumberOfSeatsForOnePerson"/>
+      <class name="com.epam.AirBaltic.NumberOfInfantsTest"/>
+      <class name="com.epam.AirBaltic.YouthOfferPageTest"/>
+      <class name="com.epam.AirBaltic.SnowyPeaksPageTest"/>
+      <class name="com.epam.AirBaltic.TotalPriceTest"/>
     </classes>
   </test>
 </suite>
