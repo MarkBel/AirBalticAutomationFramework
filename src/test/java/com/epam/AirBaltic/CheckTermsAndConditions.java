@@ -16,7 +16,7 @@ public class CheckTermsAndConditions extends PageTest {
     @Test
     public void checkTermsAndConditionsTest () {
 
-        startPage.loginCheck(USER_NAME, USER_PASSWORD);
+      //  startPage.loginCheck(USER_NAME, USER_PASSWORD);
 
         Assert.assertTrue(new StartPage(driver)
                 .goToBookAFlightForm()

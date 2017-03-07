@@ -25,12 +25,12 @@ public class LoginForm extends Page{
         super(driver);
     }
 
-    public void login(String email, String password) {
+    public StartPage login(String email, String password) {
         inputEmail.clear();
         inputEmail.sendKeys(email);
         inputPassword.clear();
         inputPassword.sendKeys(password);
         buttonSubmit.click();
+        return new StartPage(driver);
     }
-
 }

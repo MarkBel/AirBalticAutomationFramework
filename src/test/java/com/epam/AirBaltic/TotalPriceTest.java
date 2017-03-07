@@ -18,7 +18,7 @@ public class TotalPriceTest extends PageTest {
 
     @Test
     public void startTest(){
-        startPage.loginCheck(USERNAME, PASSWORD);
+   //     startPage.loginCheck(USERNAME, PASSWORD);
         flightPage = new BookAFlightForm(driver);
         flightPage.fillBookAndFlightForm();
         farePage = new FlightsAndTicketTypesPage(driver);

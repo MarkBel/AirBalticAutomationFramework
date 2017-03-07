@@ -42,7 +42,7 @@ public class PageTest {
         driver = MutatedSingleton.getDriver(capabilities);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+   //     driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
         driver.navigate().to(START_PAGE_URL);
         startPage = new StartPage(driver);
     }

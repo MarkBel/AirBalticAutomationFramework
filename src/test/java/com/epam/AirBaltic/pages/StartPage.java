@@ -14,7 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class StartPage extends Page {
 
-    private LoginForm loginForm;
 
     @FindBy(how = How.TAG_NAME, using = "h1")
     @CacheLookup
@@ -31,6 +30,9 @@ public class StartPage extends Page {
 
     @FindBy(css = "#dropdownMenu3")
     private WebElement buttonMyAccount;
+
+    @FindBy(xpath = "//li[@role='presentation']/a[@href='#']")
+    private WebElement buttonLogout;
 
     @FindBy(xpath = "//li[@role='presentation']/a[@href='/edit-a-customer-account']")
     private WebElement buttonEditMyProfile;
@@ -53,18 +55,15 @@ public class StartPage extends Page {
         return new BookAFlightForm(driver);
     }
 
-    public void loginCheck(String email, String password){
-        try {
-            buttonMyAccount.click();
-        }catch (NoSuchElementException exception){
-            loginForm = goToLoginForm();
-            loginForm.login(email, password);
-        }
-    }
-
-    private LoginForm goToLoginForm(){
+    public LoginForm goToLoginForm(){
         buttonMyAirBaltic.click();
         return new LoginForm(driver);
+    }
+
+    public void logout(String url){
+        driver.navigate().to(url);
+        buttonMyAccount.click();
+        buttonLogout.click();
     }
 
     public EditProfilePage goToEditProfilePage() {
