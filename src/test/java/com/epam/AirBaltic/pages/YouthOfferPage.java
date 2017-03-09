@@ -74,17 +74,12 @@ public class YouthOfferPage extends Page {
     }
 
     public boolean isOriginsShownCorrectly() {
-        boolean result = false;
         String selectedCity = getSelectedOriginCity();
-        for (int i = 0; i < listOfferOrigins.size(); i++) {
-            if (extractCityFromStr(listOfferOrigins.get(i).getText()).equals(selectedCity)) {
-                result = true;
-            } else {
-                result = false;
-                break;
+        for (WebElement listOfferOrigin : listOfferOrigins)
+            if (!(extractCityFromStr(listOfferOrigin.getText()).equals(selectedCity))) {
+                return false;
             }
-        }
-        return result;
+        return true;
     }
 
     private String extractCityFromStr(String str) {
