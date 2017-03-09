@@ -1,6 +1,14 @@
 package com.epam.AirBaltic.util;
 
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 
 public class SessionHelper {
     public static DesiredCapabilities getBrowserCaps(String browser) {
@@ -42,4 +50,12 @@ public class SessionHelper {
             }
         return browserName;
     }
+
+    public  void captureScreenShot(WebDriver webDriver, String pageClassName) throws IOException {
+        File screenShotFile=((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenShotFile,new File("screenshots\\"+ pageClassName +
+                                        "-" + DateGenerator.getTimeStamp()+".png"));
+
+    }
+
 }
