@@ -111,13 +111,13 @@ public class BookAFlightForm extends Page{
         return new FlightsAndTicketTypesPage(driver);
     }
 
-    public FlightsAndTicketTypesPage fillBookAndFlightForm() {
+    public BookAFlightForm fillBookAndFlightForm() {
         choseCountryFrom();
         choseCountryTo();
         pressFindFlightsButton();
         setDepartureDate();
         setReturnDate();
-        return new FlightsAndTicketTypesPage(driver);
+        return this;
     }
 
     public void addChild(){
@@ -170,7 +170,13 @@ public class BookAFlightForm extends Page{
         addTwoInfants();
         btnBookandFlighAction.click();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
-        return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);
+        String temp = inputNumberOfInfantsError.getText();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return temp.contains(ERROR_INPUT_EXCEPTION);
 
     }
 
