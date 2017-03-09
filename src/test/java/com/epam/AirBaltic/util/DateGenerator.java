@@ -9,13 +9,16 @@ import java.text.SimpleDateFormat;
  */
 public class DateGenerator {
 
-
-    private static Calendar requiredDate;
-
     public static String getDate(Integer daysAmount) {
-        requiredDate = Calendar.getInstance();
+        Calendar requiredDate = Calendar.getInstance();
         requiredDate.add(Calendar.DATE, daysAmount);
         Format desiredPattern = new SimpleDateFormat("dd.MM.yyyy");
+        return desiredPattern.format(requiredDate.getTime());
+    }
+
+    public static String getTimeStamp() {
+        Calendar requiredDate = Calendar.getInstance();
+        Format desiredPattern = new SimpleDateFormat("HH-mm-ss");
         return desiredPattern.format(requiredDate.getTime());
     }
 }
