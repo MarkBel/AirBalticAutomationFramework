@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -167,6 +169,7 @@ public class BookAFlightForm extends Page{
         setReturnDate(DateGenerator.getDate(6));
         addTwoInfants();
         btnBookandFlighAction.click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
         return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);
 
     }
