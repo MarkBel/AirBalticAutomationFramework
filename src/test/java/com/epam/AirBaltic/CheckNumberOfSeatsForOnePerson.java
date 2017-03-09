@@ -13,30 +13,20 @@ import org.testng.annotations.Test;
  */
 public class CheckNumberOfSeatsForOnePerson extends AbstractPageTest {
 
-    protected Passenger passenger;
-    private final PropertyLoader properties = new PropertyLoader();
+    protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
+    protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
 
-    @BeforeClass
-    public void prepareToTest() {
-        passenger = new Passenger().loadPassengerDataFromProperties();
-    }
 
     @Test
     public void testCheckNumberOfSeatsForOnePerson()  {
         Assert.assertFalse(new StartPage(driver)
                 .goToLoginForm()
-                .login(properties.getProperty("user.name"), properties.getProperty("user.password"))
-                .loginCheck()
+                .login(USER_NAME, USER_PASSWORD)
                 .goToBookAFlightForm()
                 .fillBookAndFlightForm()
                 .goToFlightsAndTicketTypesPage()
                 .goToPassengersPage()
                 .goToTravelExtrasPage()
                 .isOneSeatSelected());
-    }
-
-    @AfterMethod
-    public void logout(){
-        startPage.logout(START_PAGE_URL);
     }
 }
