@@ -36,11 +36,14 @@ public class EditProfilePage extends Page {
     }
 
     private void setCountry() {
+        int chosenCountryNumber;
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(inputCountry));
         List<WebElement> countryList = driver.findElements(countries);
-        int chosenCountryNumber = random.nextInt(7) + 2;
-        inputCountry.click();
-        chosenCountry = countryList.get(chosenCountryNumber).findElement(By.tagName("span")).getText();
+        do {
+            chosenCountryNumber = random.nextInt(7) + 2;
+            inputCountry.click();
+            chosenCountry = countryList.get(chosenCountryNumber).findElement(By.tagName("span")).getText();
+        }while (chosenCountry.equals(inputCountry.getText()));
         countryList.get(chosenCountryNumber).findElement(By.tagName("span")).click();
     }
 
