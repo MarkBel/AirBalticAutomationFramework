@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
@@ -13,6 +14,7 @@ public abstract class Page {
 
     protected WebDriver driver;
     protected FluentWaitUtil wait;
+    Logger logger = Logger.getLogger("TestLogger");
 
     public Page(WebDriver driver) {
         this.driver = driver;
