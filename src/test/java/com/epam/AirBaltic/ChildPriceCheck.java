@@ -14,12 +14,12 @@ public class ChildPriceCheck extends PageTest {
     private FlightsAndTicketTypesPage flightsAndTicketTypesPage;
 
     @Test
-    public void ChildPriceTest() {
+    public void childPriceTest() {
         bookAFlightForm = startPage.goToBookAFlightForm();
         bookAFlightForm.fillBookAndFlightForm();
         bookAFlightForm.addChild();
         flightsAndTicketTypesPage = bookAFlightForm.goToFlightsAndTicketTypesPage();
-        Assert.assertTrue(flightsAndTicketTypesPage.CheckFareCondition(), "The condition about child fare towards adult fare is,t conformed!");
+        Assert.assertTrue(flightsAndTicketTypesPage.checkFareCondition(), "The condition about child fare towards adult fare is't conformed!");
 
     }
 }

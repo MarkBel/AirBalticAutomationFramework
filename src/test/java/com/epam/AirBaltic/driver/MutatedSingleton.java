@@ -15,26 +15,20 @@ public class MutatedSingleton {
     private static Map<String, WebDriver> driverList = new HashMap<>();
 
     public static WebDriver getDriver(DesiredCapabilities cap) {
-        WebDriver driver = null;
+        WebDriver driver;
         String browserName = cap.getBrowserName();
         switch (browserName) {
             case "chrome":
-                if (!isAlreadyRuns(browserName)) {
                     driver = new ChromeDriver(cap);
                     driverList.put("chrome", driver);
-                }
                 break;
             case "firefox":
-                if (!isAlreadyRuns(browserName)) {
                     driver = new FirefoxDriver(cap);
                     driverList.put("firefox", driver);
-                }
                 break;
-            case "opera":
-                if (!isAlreadyRuns(browserName)) {
+            default:
                     driver = new OperaDriver(cap);
                     driverList.put("opera", driver);
-                }
                 break;
         }
         return driverList.get(browserName);

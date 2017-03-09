@@ -64,7 +64,7 @@ public class FlightsAndTicketTypesPage extends Page {
         return new PassengersPage(driver);
     }
 
-    public Boolean CheckFareCondition() {
+    public Boolean checkFareCondition() {
         checkCorrectPage();
         Boolean condition = false;
         List<WebElement> listOfTotalPrices = driver.findElements(fire);

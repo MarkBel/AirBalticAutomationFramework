@@ -40,17 +40,13 @@ public class SnowyPeaksPage extends Page {
     }
 
     public boolean isOffersSortedCorrectly () {
-        boolean result = false;
         List<WebElement> pricesList = this.driver.findElements(PRICE_LOCATOR);
         for (int i = 0; i < pricesList.size()-1; i++) {
-            if (extractPriceFromWebEl(pricesList.get(i)) >= extractPriceFromWebEl(pricesList.get(i+1))) {
-                result = true;
-            } else {
-                result = false;
-                break;
+            if (!(extractPriceFromWebEl(pricesList.get(i)) >= extractPriceFromWebEl(pricesList.get(i+1)))) {
+                return false;
             }
         }
-        return result;
+        return true;
     }
 
     private Integer extractPriceFromWebEl (WebElement webEl) {

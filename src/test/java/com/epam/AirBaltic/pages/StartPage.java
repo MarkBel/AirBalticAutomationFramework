@@ -18,7 +18,6 @@ public class StartPage extends Page {
 
 
     @FindBy(how = How.TAG_NAME, using = "h1")
-    @CacheLookup
     public WebElement header;
 
     @FindBy(xpath = "//button[@id='flights-form-btn']")

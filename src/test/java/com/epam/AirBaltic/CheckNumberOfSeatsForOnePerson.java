@@ -22,7 +22,7 @@ public class CheckNumberOfSeatsForOnePerson extends PageTest {
     }
 
     @Test
-    public void testCheckNumberOfSeatsForOnePerson() throws InterruptedException {
+    public void testCheckNumberOfSeatsForOnePerson()  {
         Assert.assertFalse(new StartPage(driver)
                 .goToLoginForm()
                 .login(properties.getProperty("user.name"), properties.getProperty("user.password"))

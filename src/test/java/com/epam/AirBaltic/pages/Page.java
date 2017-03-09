@@ -39,14 +39,7 @@ public abstract class Page {
     }
 
     public boolean isElementPresent(By by) {
-        try {
-            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-            this.driver.findElement(by);
-            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+        return driver.findElements(by).size() > 0;
     }
 
 }

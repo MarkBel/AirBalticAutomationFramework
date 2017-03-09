@@ -43,7 +43,7 @@ public class TravelExtrasPage extends Page {
         return new SummaryPage(driver);
     }
 
-    public boolean isOneSeatSelected() throws InterruptedException {
+    public boolean isOneSeatSelected() {
         (new WebDriverWait(this.driver, 5)).until(AdditionalConditions.
                 jQueryCompleted());
         availableSeats.get(0).click();
