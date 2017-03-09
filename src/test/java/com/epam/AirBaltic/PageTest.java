@@ -1,7 +1,6 @@
 package com.epam.AirBaltic;
 
 import com.epam.AirBaltic.driver.MutatedSingleton;
-import com.epam.AirBaltic.entity.Passenger;
 import com.epam.AirBaltic.pages.StartPage;
 import com.epam.AirBaltic.util.PropertyLoader;
 import com.epam.AirBaltic.util.SessionHelper;
@@ -38,13 +37,17 @@ public class PageTest {
     }
 
     @BeforeClass
-    public void initWebDriver() {
+    public void initWebDriver() throws InterruptedException {
         driver = MutatedSingleton.getDriver(capabilities);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
    //     driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
         driver.navigate().to(START_PAGE_URL);
+        logger.info("Start page opened");
+//        String SPWnd = driver.getWindowHandle();
         startPage = new StartPage(driver);
+//        startPage.closeUnwantedPopupIfNeeded();
+//        driver.switchTo().parentFrame();
     }
 
     @AfterSuite(alwaysRun = true)
