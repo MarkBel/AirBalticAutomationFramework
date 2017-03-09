@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,9 +48,14 @@ public class StartPage extends Page {
     @FindBy(xpath = "//div[@class='mega-list']/ul/li/a[@href='/youth-offer']")
     public WebElement linkYouthOffer;  //testcase #4
 
+    private static final By LINK_LOGIN_FORM = By.id("myairbaltic-href");
+    private static final By LINK_DD_USERMENU = By.cssSelector("a#dropdownMenu3.dropdown-toggle");
+    private static final By POPUP_NOTHANKS_BUTTON = By.cssSelector("div.insider-opt-in-notification-button.insider-opt-in-disallow-button");
+
     public StartPage(WebDriver driver) {
         super(driver);
     }
+
 
     public StartPage loginCheck() {
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonMyAccount));
@@ -80,7 +86,9 @@ public class StartPage extends Page {
     }
 
     public SnowyPeaksPage clickFlySnowyPeaksLink() {
-        wait.waitForElement(linkFlySnowyPeaks).click();
+        linkFlySnowyPeaks.click();
+        (new WebDriverWait(this.driver, 30)).until(ExpectedConditions.
+                titleContains("Winter"));
         return new SnowyPeaksPage(this.driver);
     }
 
