@@ -4,7 +4,6 @@ import com.epam.AirBaltic.util.FluentWaitUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 /**
@@ -35,7 +34,7 @@ public abstract class Page {
         return driver.getTitle();
     }
 
-    public void jsExecutorWork(WebElement webElement) {
+    public void clickOnElementWithJS (WebElement webElement) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", webElement);
     }

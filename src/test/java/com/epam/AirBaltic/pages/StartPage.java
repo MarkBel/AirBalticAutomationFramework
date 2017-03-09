@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -91,19 +92,21 @@ public class StartPage extends Page {
     public SnowyPeaksPage clickFlySnowyPeaksLink() {
         clickOnElementWithJS(linkFlySnowyPeaks);
 //        linkFlySnowyPeaks.click();
-//        (new WebDriverWait(this.driver, 10)).until(ExpectedConditions.
-//                titleContains("Winter"));
-        System.out.println("Opened page with title " + driver.getTitle());
+        (new WebDriverWait(this.driver, 10)).until(ExpectedConditions.
+                titleContains("Winter"));
+        logger.info("Opened page with title " + this.getTitle());
         return new SnowyPeaksPage(this.driver);
 
     }
 
     public void clickFlightsLink() {
         linkFlights.click();
+        logger.info("Opened page with title " + this.getTitle());
     }
 
     public void clickYouthOfferLink() {
         linkYouthOffer.click();
+        logger.info("Opened page with title " + this.getTitle());
     }
 
     public YouthOfferPage gotoYouthOfferPageByLink() {
@@ -118,16 +121,7 @@ public class StartPage extends Page {
         linkCareer.click();
         (new WebDriverWait(this.driver, 10)).until(ExpectedConditions.
                 titleContains("Career"));
-        System.out.println(driver.getTitle());
-    }
-
-    public void clickOnElementWithJS(WebElement element) {
-        String script = "var object = arguments[0];"
-                + "var theEvent = document.createEvent(\"MouseEvent\");"
-                + "theEvent.initMouseEvent(\"click\", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
-                + "object.dispatchEvent(theEvent);"
-                ;
-        ((JavascriptExecutor)driver).executeScript(script, element);
+        logger.info("Opened page with title " + this.getTitle());
     }
 
 }
