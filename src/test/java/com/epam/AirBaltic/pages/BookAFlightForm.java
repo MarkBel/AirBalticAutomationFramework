@@ -170,7 +170,8 @@ public class BookAFlightForm extends Page{
         addTwoInfants();
         btnBookandFlighAction.click();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
-        return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);
+        String textMessage = inputNumberOfInfantsError.getText().substring(0, inputNumberOfInfantsError.getText().indexOf('(') - 1);
+        return textMessage.equals(ERROR_INPUT_EXCEPTION);
 
     }
 
