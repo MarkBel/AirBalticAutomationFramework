@@ -1,7 +1,6 @@
 package com.epam.AirBaltic.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -9,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
+
 
 /**
  * Sample page
@@ -38,7 +39,7 @@ public class StartPage extends Page {
     @FindBy(xpath = "//li[@role='presentation']/a[@href='/edit-a-customer-account']")
     private WebElement buttonEditMyProfile;
 
-    @FindBy(css = "a#ancillary-2-en.item.pull-left")
+    @FindBy(xpath = "//li[2]/a[@id='ancillary-2-en']/span[@class='product-description']/div/strong")
     public WebElement linkFlySnowyPeaks;  //testcase #6
 
     @FindBy(css = "div.menu-item.drop-flights")
@@ -47,6 +48,9 @@ public class StartPage extends Page {
     //ul/li/a[@href='/youth-offer']
     @FindBy(xpath = "//div[@class='mega-list']/ul/li/a[@href='/youth-offer']")
     public WebElement linkYouthOffer;  //testcase #4
+
+    @FindBy(xpath = "//div[@class='footer-menu col-md-7 col-lg-7']/a[3]")
+    public WebElement linkCareer;
 
     private static final By LINK_LOGIN_FORM = By.id("myairbaltic-href");
     private static final By LINK_DD_USERMENU = By.cssSelector("a#dropdownMenu3.dropdown-toggle");
@@ -86,10 +90,13 @@ public class StartPage extends Page {
     }
 
     public SnowyPeaksPage clickFlySnowyPeaksLink() {
-        linkFlySnowyPeaks.click();
-        (new WebDriverWait(this.driver, 30)).until(ExpectedConditions.
-                titleContains("Winter"));
+        clickOnElementWithJS(linkFlySnowyPeaks);
+//        linkFlySnowyPeaks.click();
+//        (new WebDriverWait(this.driver, 10)).until(ExpectedConditions.
+//                titleContains("Winter"));
+        System.out.println("Opened page with title " + driver.getTitle());
         return new SnowyPeaksPage(this.driver);
+
     }
 
     public void clickFlightsLink() {
@@ -108,5 +115,20 @@ public class StartPage extends Page {
         return new YouthOfferPage(this.driver);
     }
 
+    public void clickCareerLink() {
+        linkCareer.click();
+        (new WebDriverWait(this.driver, 10)).until(ExpectedConditions.
+                titleContains("Career"));
+        System.out.println(driver.getTitle());
+    }
+
+    public void clickOnElementWithJS(WebElement element) {
+        String script = "var object = arguments[0];"
+                + "var theEvent = document.createEvent(\"MouseEvent\");"
+                + "theEvent.initMouseEvent(\"click\", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
+                + "object.dispatchEvent(theEvent);"
+                ;
+        ((JavascriptExecutor)driver).executeScript(script, element);
+    }
 
 }
