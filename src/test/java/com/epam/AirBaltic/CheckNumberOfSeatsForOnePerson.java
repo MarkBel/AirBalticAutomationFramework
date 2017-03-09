@@ -4,6 +4,7 @@ import com.epam.AirBaltic.entity.Passenger;
 import com.epam.AirBaltic.pages.StartPage;
 import com.epam.AirBaltic.util.PropertyLoader;
 import org.junit.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -31,5 +32,10 @@ public class CheckNumberOfSeatsForOnePerson extends PageTest {
                 .goToPassengersPage()
                 .goToTravelExtrasPage()
                 .isOneSeatSelected());
+    }
+
+    @AfterMethod
+    public void logout(){
+        startPage.logout(START_PAGE_URL);
     }
 }

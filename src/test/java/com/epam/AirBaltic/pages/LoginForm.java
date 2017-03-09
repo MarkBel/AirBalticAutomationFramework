@@ -3,6 +3,8 @@ package com.epam.AirBaltic.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Katerina_Karpenia on 3/1/2017.
@@ -26,11 +28,7 @@ public class LoginForm extends Page{
     }
 
     public StartPage login(String email, String password) {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(inputEmail));
         inputEmail.clear();
         inputEmail.sendKeys(email);
         inputPassword.clear();

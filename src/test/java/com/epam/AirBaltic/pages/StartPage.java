@@ -51,7 +51,6 @@ public class StartPage extends Page {
         super(driver);
     }
 
-
     public StartPage loginCheck() {
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonMyAccount));
         return new StartPage(driver);
@@ -81,7 +80,7 @@ public class StartPage extends Page {
     }
 
     public SnowyPeaksPage clickFlySnowyPeaksLink() {
-        linkFlySnowyPeaks.click();
+        wait.waitForElement(linkFlySnowyPeaks).click();
         return new SnowyPeaksPage(this.driver);
     }
 

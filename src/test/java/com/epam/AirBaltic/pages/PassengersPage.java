@@ -46,9 +46,8 @@ public class PassengersPage extends Page {
 
 
     public TravelExtrasPage goToTravelExtrasPage() {
-        (new WebDriverWait(this.driver, 10)).until(AdditionalConditions.
-                jQueryCompleted());
-        continueButton.click();
+
+        wait.waitForElement(continueButton).click();
         return new TravelExtrasPage(driver);
     }
 
