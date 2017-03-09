@@ -41,12 +41,8 @@ public class EditProfilePage extends Page {
         List<WebElement> countryList = driver.findElements(countries);
         inputCountry.click();
         do {
-            chosenCountryNumber = random.nextInt(2) + 2;
-            System.out.println(chosenCountryNumber);
-            System.out.println(inputCountry.getText()+"  first country");
-            System.out.println(inputCountry.getText()+" again first country");
+            chosenCountryNumber = random.nextInt(6) + 2;
             chosenCountry = countryList.get(chosenCountryNumber).findElement(By.tagName("span")).getText();
-            System.out.println(chosenCountry+"   chosen country");
         }while (chosenCountry.equals(inputCountry.getText()));
         countryList.get(chosenCountryNumber).findElement(By.tagName("span")).click();
     }
