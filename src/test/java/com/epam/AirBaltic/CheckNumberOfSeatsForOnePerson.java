@@ -29,6 +29,7 @@ public class CheckNumberOfSeatsForOnePerson extends PageTest {
                 .loginCheck()
                 .goToBookAFlightForm()
                 .fillBookAndFlightForm()
+                .goToFlightsAndTicketTypesPage()
                 .goToPassengersPage()
                 .goToTravelExtrasPage()
                 .isOneSeatSelected());

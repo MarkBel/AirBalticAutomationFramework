@@ -23,6 +23,7 @@ public class CheckTermsAndConditions extends PageTest {
                 .loginCheck()
                 .goToBookAFlightForm()
                 .fillBookAndFlightForm()
+                .goToFlightsAndTicketTypesPage()
                 .goToPassengersPage()
                 .goToTravelExtrasPage()
                 .goToSummaryPage()
