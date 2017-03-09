@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Mark_Rudak on 3/1/2017.
  */
-public class ReturnDateIsValid extends PageTest {
+public class ReturnDateIsValid extends AbstractPageTest {
 
     @Test
     public void ReturnDateIsLessThanDeparture() {

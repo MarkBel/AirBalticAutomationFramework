@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Kseniya_Kunda on 3/1/2017.
  */
-public class ChildPriceCheck extends PageTest {
+public class ChildPriceCheck extends AbstractPageTest {
 
     private BookAFlightForm bookAFlightForm;
     private FlightsAndTicketTypesPage flightsAndTicketTypesPage;

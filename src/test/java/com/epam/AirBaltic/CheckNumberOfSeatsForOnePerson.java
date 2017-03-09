@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Davud_Murtazin on 3/2/2017.
  */
-public class CheckNumberOfSeatsForOnePerson extends PageTest {
+public class CheckNumberOfSeatsForOnePerson extends AbstractPageTest {
 
     protected Passenger passenger;
     private final PropertyLoader properties = new PropertyLoader();

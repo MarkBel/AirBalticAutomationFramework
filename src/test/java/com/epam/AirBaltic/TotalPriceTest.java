@@ -5,7 +5,7 @@ import com.epam.AirBaltic.util.PropertyLoader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TotalPriceTest extends PageTest {
+public class TotalPriceTest extends AbstractPageTest {
 
     private final PropertyLoader properties = new PropertyLoader();
     private final String USERNAME =  properties.getProperty("user.name");

@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class YouthOfferPageTest extends PageTest {
+public class YouthOfferPageTest extends AbstractPageTest {
 
     protected YouthOfferPage youthOfferPage = null;
 
@@ -19,16 +19,16 @@ public class YouthOfferPageTest extends PageTest {
 //           this.startPage.loginFromStartPage();
 //        }
         youthOfferPage = this.startPage.gotoYouthOfferPageByLink();
-        logger.info("Page YouthOfferPage opened");
+        //logger.info("Page YouthOfferPage opened");
     }
 
     @Test(dataProvider="citiesList")
     public void testOffersListCorrectlyShown(String cityName, boolean expectedResult) {
-        logger.info("setting origin city in menu as " + cityName);
+        //logger.info("setting origin city in menu as " + cityName);
         youthOfferPage.setOriginCity(cityName);
         cityName = youthOfferPage.getSelectedOriginCity();
-        logger.info("origin city in menu - " + cityName);
-        logger.info("Number of offers from " + cityName + " is " + youthOfferPage.getOffersNumberFromCurrentCity());
+        //logger.info("origin city in menu - " + cityName);
+        //logger.info("Number of offers from " + cityName + " is " + youthOfferPage.getOffersNumberFromCurrentCity());
         Assert.assertEquals(youthOfferPage.isOriginsShownCorrectly(), expectedResult);
     }
 

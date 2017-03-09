@@ -5,15 +5,15 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SnowyPeaksPageTest extends PageTest {
+public class SnowyPeaksPageTest extends AbstractPageTest {
 
     protected SnowyPeaksPage snowyPeaksPage = null;
 
     @BeforeClass
     public void jumpToSnowyPeaksPage() {
-        logger.info("Attempt to open SnowyPeaksPage");
+        //logger.info("Attempt to open SnowyPeaksPage");
         snowyPeaksPage = this.startPage.clickFlySnowyPeaksLink();
-        logger.info("Page SnowyPeaksPage opened");
+        //logger.info("Page SnowyPeaksPage opened");
     }
 
     @Test

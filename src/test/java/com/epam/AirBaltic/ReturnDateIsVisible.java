@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Mark_Rudak on 3/1/2017.
  */
-public class ReturnDateIsVisible extends PageTest {
+public class ReturnDateIsVisible extends AbstractPageTest {
 
     @Test
     public void visabilityOfReturnDate() {

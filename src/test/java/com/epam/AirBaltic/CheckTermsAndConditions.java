@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Katerina_Karpenia on 3/1/2017.
  */
-public class CheckTermsAndConditions extends PageTest {
+public class CheckTermsAndConditions extends AbstractPageTest {
 
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");

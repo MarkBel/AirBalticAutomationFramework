@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Mark_Rudak on 3/1/2017.
  */
-public class NumberOfInfantsTest extends PageTest {
+public class NumberOfInfantsTest extends AbstractPageTest {
 
     @Test
     public void NumberOfInfantsTickets()

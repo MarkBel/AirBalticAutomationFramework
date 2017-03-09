@@ -1,6 +1,6 @@
 package com.epam.AirBaltic;
 
-import com.epam.AirBaltic.PageTest;
+import com.epam.AirBaltic.AbstractPageTest;
 import com.epam.AirBaltic.pages.EditProfilePage;
 import com.epam.AirBaltic.pages.LoginForm;
 import com.epam.AirBaltic.util.PropertyLoader;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Kseniya_Kunda on 3/3/2017.
  */
-public class UpdateAccountCheck extends PageTest {
+public class UpdateAccountCheck extends AbstractPageTest {
 
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
