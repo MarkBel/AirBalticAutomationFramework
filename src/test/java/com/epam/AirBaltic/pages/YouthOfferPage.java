@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -51,6 +53,8 @@ public class YouthOfferPage extends Page {
     }
 
     public void setOriginCity(String city) {
+        (new WebDriverWait(this.driver, 5)).until(ExpectedConditions.
+                        elementToBeClickable(fMenuOrigins_1)).click();
         fMenuOrigins_1.sendKeys(city.substring(0, 1));
         (new WebDriverWait(this.driver, 5)).until(AdditionalConditions.
                 jQueryCompleted());
