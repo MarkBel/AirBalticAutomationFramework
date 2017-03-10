@@ -17,29 +17,29 @@ public class FlightsAndTicketTypesPage extends Page {
     @FindBy(css = "div>.btn-continue-booking")
     private WebElement continueButton;
 
-    private String lowFareTitle = "Low Fare Calendar | airBaltic";
+    private final String lowFareTitle = "Low Fare Calendar | airBaltic";
     private String currentTitle;
-    private int departurePrice;
-    private int returnPrice;
+    private double departurePrice;
+    private double returnPrice;
 
     private static final By detailedFire = By.cssSelector(".fare-item-detailed");
     private static final By fire = By.cssSelector(".expandable>a");
     private static final By tariffFire = By.cssSelector(".line>span+span");
 
-    public int getDeparturePrice() {
+    public double getDeparturePrice() {
         return departurePrice;
     }
 
-    public int getReturnPrice() {
+    public double getReturnPrice() {
         return returnPrice;
     }
 
     public FlightsAndTicketTypesPage(WebDriver driver) {
         super(driver);
-        currentTitle = driver.getTitle();
     }
 
     private void checkCorrectPage() {
+        currentTitle = driver.getTitle();
         if (currentTitle.equals(lowFareTitle)) {
             LowFareCalendarPage lowFarePage = new LowFareCalendarPage(driver);
             lowFarePage.confirmBooking();
@@ -51,10 +51,13 @@ public class FlightsAndTicketTypesPage extends Page {
         returnPrice = parsePriceField(1);
     }
 
-    private int parsePriceField(int i) {
+    private double parsePriceField(int i) {
         List<WebElement> list = driver.findElements(By.xpath("//*[contains(@class,'active') and contains(@class,'flight-price')]"));
-        String euro = list.get(i).findElement(By.className("av-price")).getText();
-        return Integer.parseInt(euro.replace("€", ""));
+        String euroPriceWithoutCents = list.get(i).findElement(By.className("av-price")).getText().replace("€", "");
+        StringBuffer euroPriceWithCents = new StringBuffer(euroPriceWithoutCents);
+        euroPriceWithCents.insert(euroPriceWithoutCents.length() - 2, ".");
+        System.out.println(Double.parseDouble(euroPriceWithCents.toString()));
+        return Double.parseDouble(euroPriceWithCents.toString());
     }
 
     public PassengersPage acceptFare() {

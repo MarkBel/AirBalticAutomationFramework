@@ -1,16 +1,12 @@
 package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.util.DateGenerator;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Kseniya_Kunda on 3/1/2017.
@@ -106,8 +102,26 @@ public class BookAFlightForm extends Page{
         return this;
     }
 
-    public FlightsAndTicketTypesPage goToFlightsAndTicketTypesPage(){
+    public BookAFlightForm setDepartureDate(String date){
+        System.out.println(inputDepartureDate.getLocation());
+        wait.waitForElement(inputDepartureDate).clear();
+        inputDepartureDate.sendKeys(date);
+        return this;
+    }
+
+    public BookAFlightForm setReturnDate(String date){
+        System.out.println(inputReturnDate.getLocation());
+        wait.waitForElement(inputReturnDate).clear();
+        inputReturnDate.sendKeys(date);
+        return this;
+    }
+
+    private void clickFindFlightsFaresButton(){
         buttonFindFlightsFares.click();
+    }
+
+    public FlightsAndTicketTypesPage goToFlightsAndTicketTypesPage(){
+        clickFindFlightsFaresButton();
         return new FlightsAndTicketTypesPage(driver);
     }
 
@@ -129,23 +143,12 @@ public class BookAFlightForm extends Page{
         buttonAddInfant.click();
     }
 
-    public BookAFlightForm setDepartureDate(String date){
-        inputDepartureDate.sendKeys(date);
-        inputDepartureDate.sendKeys(Keys.ENTER);
-        return this;
-    }
-
-    public BookAFlightForm setReturnDate(String date){
-        inputReturnDate.sendKeys(date);
-        inputReturnDate.sendKeys(Keys.ENTER);
-        return this;
-    }
-
     public boolean checkReturnDate() {
         choseCountryFrom();
         choseCountryTo();
         btnBookAndFlights.click();
         setReturnDate("01.02.2017");
+        clickFindFlightsFaresButton();
         return ERROR_MESSAGE.equals(inputError.getText());
 
     }

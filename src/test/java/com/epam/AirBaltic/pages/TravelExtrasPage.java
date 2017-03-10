@@ -18,16 +18,14 @@ import java.util.Set;
  */
 public class TravelExtrasPage extends Page {
 
-    private By totalPriceContainer =  By.xpath("//div[@class='fare-bottom']//span[2]");
-    private int totalPrice;
+    private static final String EURO_SPLITTERS = "[€ ]";
+    private By totalPriceContainer = By.xpath("//div[@class='fare-bottom']//span[2]");
 
     @FindBy(xpath = "//*[contains(text(), 'Seat me anywhere')]")
     private WebElement seatMeAnyWhereButton;
 
     @FindBy(css = "div>#btn-continue-booking")
     private WebElement continueButton;
-
-
 
     @FindBy(xpath = "//div[@class='seats-map']//table[contains(@class,'map-plane')]//td/div[contains(@class,'seat-available')]")
     private List<WebElement> availableSeats;
@@ -51,17 +49,14 @@ public class TravelExtrasPage extends Page {
         return availableSeats.get(0).isSelected();
     }
 
-
-    private void parseTotalPrice(){
-        String totalPriceString = driver.findElement(totalPriceContainer).getText();
-        String splitters = "[€ .]";
-        totalPriceString = totalPriceString.replaceAll(splitters, "");
-        totalPrice = Integer.parseInt(totalPriceString);
+    private double parseTotalPrice() {
+        String totalPriceString = driver.findElement(totalPriceContainer).getText().replaceAll(EURO_SPLITTERS, "");
+        return Double.parseDouble(totalPriceString);
     }
 
-    public boolean checkSummaryPrice(int departmenntPrice, int returnPrice){
+    public boolean checkSummaryPrice(double departmentPrice, double returnPrice) {
         parseTotalPrice();
-        boolean result = (totalPrice == departmenntPrice + returnPrice);
+        boolean result = (parseTotalPrice() == departmentPrice + returnPrice);
         return result;
     }
 

@@ -21,12 +21,10 @@ public class TotalPriceTest extends AbstractPageTest {
     public void startTest(){
         loginForm = startPage.goToLoginForm();
         startPage = loginForm.login(USERNAME, PASSWORD);
-//        flightPage = new BookAFlightForm(driver);
-//        flightPage.fillBookAndFlightForm();
         startPage.loginCheck();
         flightPage = startPage.goToBookAFlightForm();
         flightPage.fillBookAndFlightForm();
-        farePage = new FlightsAndTicketTypesPage(driver);
+        farePage = flightPage.goToFlightsAndTicketTypesPage();
         passengersPage = farePage.acceptFare();
         extrasPage = passengersPage.goToTravelExtrasPage();
         Assert.assertTrue(extrasPage.checkSummaryPrice(farePage.getDeparturePrice(), farePage.getReturnPrice()));
