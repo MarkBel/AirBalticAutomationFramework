@@ -1,10 +1,8 @@
-package com.epam.AirBaltic;
+package com.epam.AirBaltic.tests;
 
 import com.epam.AirBaltic.pages.StartPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Mark_Rudak on 3/1/2017.
@@ -12,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class ReturnDateIsValid extends AbstractPageTest {
 
     @Test
-    public void ReturnDateIsLessThanDeparture() {
+    public void returnDateIsLessThanDeparture() {
         Assert.assertTrue(new StartPage(driver).goToBookAFlightForm().checkReturnDate(),"Return date has an invalid meaning!");
     }
 

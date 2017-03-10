@@ -1,8 +1,6 @@
-package com.epam.AirBaltic;
+package com.epam.AirBaltic.tests;
 
-import com.epam.AirBaltic.pages.LoginForm;
 import com.epam.AirBaltic.pages.YouthOfferPage;
-import com.epam.AirBaltic.util.PropertyLoader;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
