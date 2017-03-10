@@ -18,7 +18,7 @@ public class SnowyPeaksPageTest extends AbstractPageTest {
     @Test
     public void testSortOffersByPriceTest() {
         snowyPeaksPage.sortOffersByPrice();
-        snowyPeaksPage.scrollToPriceTable();
+//        snowyPeaksPage.scrollToPriceTable();
         snowyPeaksPage.getScreenShot();
         Assert.assertTrue(snowyPeaksPage.isOffersSortedCorrectly());
     }
