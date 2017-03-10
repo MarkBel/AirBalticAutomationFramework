@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,8 +17,11 @@ public class YouthOfferPage extends Page {
 
     private static final By SELECTED_DDMENU_ITEM = By.xpath("//span[@class='twitter-typeahead']/descendant::strong[@class='tt-highlight']");
 
-    @FindBy(xpath = "//input[@name='flt_origin_text']")
+    @FindBy(xpath = "//div[@class='input-group input-suggest-main dest-field-specific'][1]")
     private WebElement fMenuOrigins;
+
+    @FindBy(xpath = "//input[@name='flt_origin_text']")
+    private WebElement fMenuOrigins_1;
 
     @FindBy(xpath = "//div[@class='input-group input-suggest-main dest-field-specific'][1]/descendant::div[@class='tt-suggestion tt-selectable']")
     private List<WebElement> listDDMenuOrigins;
@@ -45,14 +49,15 @@ public class YouthOfferPage extends Page {
     }
 
     public String getSelectedOriginCity() {
-        return fMenuOrigins.getAttribute("value").split(" ")[0];
+        return fMenuOrigins_1.getAttribute("value").split(" ")[0];
     }
 
     public void setOriginCity(String city) {
-        (new WebDriverWait(this.driver, WAIT_5_SEC)).until(ExpectedConditions.
-                        elementToBeClickable(fMenuOrigins)).click();
-        fMenuOrigins.sendKeys(city.substring(0, 1));
-        (new WebDriverWait(this.driver, WAIT_5_SEC)).until(AdditionalConditions.
+//      (new WebDriverWait(this.driver, 5)).until(ExpectedConditions.
+//                        elementToBeClickable(fMenuOrigins_1)).click();
+        wait.waitForElementIsClickable(fMenuOrigins_1).click();
+        fMenuOrigins_1.sendKeys(city.substring(0, 1));
+        (new WebDriverWait(this.driver, 5)).until(AdditionalConditions.
                 jQueryCompleted());
     }
 
@@ -62,7 +67,7 @@ public class YouthOfferPage extends Page {
     }
 
     public void clearOriginCity() {
-        fMenuOrigins.clear();
+        fMenuOrigins_1.clear();
     }
 
     public Integer getOffersNumberFromCurrentCity() {
