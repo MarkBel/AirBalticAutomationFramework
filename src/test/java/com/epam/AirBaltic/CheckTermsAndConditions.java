@@ -16,7 +16,7 @@ public class CheckTermsAndConditions extends AbstractPageTest {
     @Test
     public void checkTermsAndConditionsTest () {
 
-        Assert.assertTrue(new StartPage(driver)
+        Assert.assertTrue(startPage
                 .goToLoginForm()
                 .login(USER_NAME, USER_PASSWORD)
                 .loginCheck()

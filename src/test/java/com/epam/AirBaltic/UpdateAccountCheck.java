@@ -15,18 +15,24 @@ public class UpdateAccountCheck extends AbstractPageTest {
 
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
-    private EditProfilePage editProfilePage;
-    private LoginForm loginForm;
+    private static final String ORIGIN_COUNTRY = PropertyLoader.getProperty("editProfilePage.originCountry");
+    private static final String CHANGED_COUNTRY_NAME = PropertyLoader.getProperty("editProfilePage.changedCountry");
+    private static final int CHANGED_COUNTRY_NUMBER = 6;
 
     @Test
     public void updateAccountTest(){
-        loginForm = startPage.goToLoginForm();
-        startPage = loginForm.login(USER_NAME, USER_PASSWORD);
-        startPage.loginCheck();
-        editProfilePage = startPage.goToEditProfilePage();
-        editProfilePage.updateCountry();
 
-        Assert.assertTrue(editProfilePage.checkChangedCountry(), "Country is not updated!");
+        Assert.assertTrue(startPage
+                .goToLoginForm()
+                .login(USER_NAME, USER_PASSWORD)
+                .goToEditProfilePage()
+                .updateCountry(CHANGED_COUNTRY_NUMBER)
+                .checkChangedCountry(CHANGED_COUNTRY_NAME), "Country is not updated!");
+    }
+
+    @AfterMethod
+    public void returnOriginalCountry() {
+
     }
 
 }

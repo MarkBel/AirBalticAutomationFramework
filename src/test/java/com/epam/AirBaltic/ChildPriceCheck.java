@@ -10,16 +10,16 @@ import org.testng.annotations.Test;
  */
 public class ChildPriceCheck extends AbstractPageTest {
 
-    private BookAFlightForm bookAFlightForm;
-    private FlightsAndTicketTypesPage flightsAndTicketTypesPage;
+    private static final String WARNING_MASSAGE = "The condition about child fare towards adult fare is't conformed!";
 
     @Test
     public void childPriceTest() {
-        bookAFlightForm = startPage.goToBookAFlightForm();
-        bookAFlightForm.fillBookAndFlightForm();
-        bookAFlightForm.addChild();
-        flightsAndTicketTypesPage = bookAFlightForm.goToFlightsAndTicketTypesPage();
-        Assert.assertTrue(flightsAndTicketTypesPage.checkFareCondition(), "The condition about child fare towards adult fare is't conformed!");
 
+        Assert.assertTrue(startPage
+                .goToBookAFlightForm()
+                .fillBookAndFlightForm()
+                .addChild()
+                .goToFlightsAndTicketTypesPage()
+                .checkFareCondition() , WARNING_MASSAGE);
     }
 }
