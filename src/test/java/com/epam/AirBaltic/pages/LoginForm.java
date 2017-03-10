@@ -23,7 +23,7 @@ public class LoginForm extends Page{
     @FindBy(id = "login-btn")
     private WebElement buttonSubmit;
 
-    //test comment by Vladimir Kotovich
+    //Just for fun!
 
     public LoginForm(WebDriver driver) {
         super(driver);

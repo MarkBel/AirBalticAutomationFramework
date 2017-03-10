@@ -38,6 +38,7 @@ public class EditProfilePage extends Page {
 
     private void saveUpdates() {
         buttonSave.click();
+        //wait.waitForElementIsClickable(buttonSave).click();
     }
 
     public EditProfilePage updateSurname(String newSurname) {
@@ -47,7 +48,7 @@ public class EditProfilePage extends Page {
     }
 
     public Boolean checkErrorMessage(String errorMessage) {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(errorMessageCss));
+        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(errorMessageCss));
         return errorMessageCss.getText().equals(errorMessage);
     }
 
