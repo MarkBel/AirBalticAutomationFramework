@@ -47,7 +47,7 @@ public class EditProfilePage extends Page {
     }
 
     public Boolean checkErrorMessage(String errorMessage) {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonSave));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(errorMessageCss));
         return errorMessageCss.getText().equals(errorMessage);
     }
 
