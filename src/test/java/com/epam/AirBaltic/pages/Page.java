@@ -49,6 +49,11 @@ public abstract class Page {
         js.executeScript("arguments[0].click();", webElement);
     }
 
+    public void scrollToElementWithJS (WebElement webElement) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", webElement);
+    }
+
     public boolean isElementPresent(By by) {
         return driver.findElements(by).size() > 0;
     }
@@ -61,11 +66,5 @@ public abstract class Page {
         }
     }
 
-    public void scrollPageWithPGUPDOWNKeys(Keys key, int repCount) {
-        Actions keyPress = new Actions(this.driver);
-        for (int i = 0; i < repCount; i++) {
-            keyPress.sendKeys(key);
-        }
-    }
 
 }

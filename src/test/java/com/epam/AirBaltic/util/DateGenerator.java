@@ -18,7 +18,7 @@ public class DateGenerator {
 
     public static String getTimeStamp() {
         Calendar requiredDate = Calendar.getInstance();
-        Format desiredPattern = new SimpleDateFormat("HH-mm-ss");
+        Format desiredPattern = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
         return desiredPattern.format(requiredDate.getTime());
     }
 }

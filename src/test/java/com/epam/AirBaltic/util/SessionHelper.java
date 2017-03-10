@@ -54,7 +54,7 @@ public class SessionHelper {
     public  static void captureScreenShot(WebDriver webDriver, String pageClassName) throws IOException {
         File screenShotFile=((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenShotFile,new File("screenshots\\"+ pageClassName +
-                                        "-" + DateGenerator.getTimeStamp()+".png"));
+                                        "--" + DateGenerator.getTimeStamp()+".png"));
 
     }
 
