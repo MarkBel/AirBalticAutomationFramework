@@ -20,6 +20,7 @@ public class BookAFlightForm extends Page{
     private static final String ERROR_INPUT_EXCEPTION = "The number of infants can not be higher than the number of adults. Only an adult can accompany an infant.";
     private int departureDateDelta = 2;
     private int returnDateDelta = 5;
+    private int returnUnvalidDateDelta = -5;
 
     @FindBy(css = "#positioner button")
     private WebElement buttonFindFlightsFares;
@@ -102,6 +103,11 @@ public class BookAFlightForm extends Page{
         return this;
     }
 
+    private BookAFlightForm setUnvalidReturnDate(){
+        setReturnDate(DateGenerator.getDate(returnUnvalidDateDelta));
+        return this;
+    }
+
     public BookAFlightForm setDepartureDate(String date){
         System.out.println(inputDepartureDate.getLocation());
         wait.waitForElement(inputDepartureDate).clear();
@@ -147,8 +153,10 @@ public class BookAFlightForm extends Page{
     public boolean checkReturnDate() {
         choseCountryFrom();
         choseCountryTo();
-        btnBookAndFlights.click();
-        setReturnDate("01.02.2017");
+        if (btnBookAndFlights.isDisplayed()) {
+            btnBookAndFlights.click();
+        }
+        setUnvalidReturnDate();
         clickFindFlightsFaresButton();
         return ERROR_MESSAGE.equals(inputError.getText());
 
