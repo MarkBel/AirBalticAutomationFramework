@@ -1,4 +1,4 @@
-package com.epam.AirBaltic;
+package com.epam.AirBaltic.tests;
 
 import com.epam.AirBaltic.pages.StartPage;
 import org.testng.Assert;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class NumberOfInfantsTest extends AbstractPageTest {
 
     @Test
-    public void NumberOfInfantsTickets()
+    public void numberOfInfantsTickets()
     {
         Assert.assertTrue(new StartPage(driver).goToBookAFlightForm().checkNumberInfactsTickets(),"Number of infants can't be higher than number of adults!");
     }

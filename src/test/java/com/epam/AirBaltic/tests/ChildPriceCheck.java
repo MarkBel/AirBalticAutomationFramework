@@ -1,7 +1,5 @@
-package com.epam.AirBaltic;
+package com.epam.AirBaltic.tests;
 
-import com.epam.AirBaltic.pages.BookAFlightForm;
-import com.epam.AirBaltic.pages.FlightsAndTicketTypesPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
