@@ -4,16 +4,16 @@
   <test name="StartPageTest">
     <parameter name = "param1" value = " "/>
     <classes>
-      <class name="com.epam.AirBaltic.tests.CheckNumberOfSeatsForOnePerson"/>
-      <class name="com.epam.AirBaltic.tests.SnowyPeaksPageTest"/>
-      <class name="com.epam.AirBaltic.tests.ReturnDateIsValid"/>
-      <class name="com.epam.AirBaltic.tests.UpdateAccountCheck"/>
-      <class name="com.epam.AirBaltic.tests.ReturnDateIsVisible"/>
-      <class name="com.epam.AirBaltic.tests.ChildPriceCheck"/>
-      <class name="com.epam.AirBaltic.tests.CheckTermsAndConditions"/>
-       <class name="com.epam.AirBaltic.tests.NumberOfInfantsTest"/>
-      <class name="com.epam.AirBaltic.tests.YouthOfferPageTest"/>
-      <class name="com.epam.AirBaltic.tests.TotalPriceTest"/>
+      <class name="com.epam.AirBaltic.tests.YouthOfferPageVerification"/>
+      <class name="com.epam.AirBaltic.tests.SnowyPeaksPageVerification"/>
+      <class name="com.epam.AirBaltic.tests.TotalPriceVerification"/>
+      <class name="com.epam.AirBaltic.tests.ReturnDateIsValidVerification"/>
+      <class name="com.epam.AirBaltic.tests.UpdateAccountVerification"/>
+      <class name="com.epam.AirBaltic.tests.ReturnDateIsVisibleVerification"/>
+      <class name="com.epam.AirBaltic.tests.ChildPriceVerification"/>
+      <class name="com.epam.AirBaltic.tests.TermsAndConditionsVerification"/>
+      <class name="com.epam.AirBaltic.tests.NumberOfSeatsForOnePersonVerification"/>
+      <class name="com.epam.AirBaltic.tests.NumberOfInfantsVerification"/>
     </classes>
   </test>
 </suite>

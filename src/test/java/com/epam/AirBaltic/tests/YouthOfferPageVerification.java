@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class YouthOfferPageTest extends AbstractPageTest {
+public class YouthOfferPageVerification extends PreparationSteps {
 
     protected YouthOfferPage youthOfferPage = null;
 
@@ -17,7 +17,7 @@ public class YouthOfferPageTest extends AbstractPageTest {
     }
 
     @Test(dataProvider="citiesList")
-    public void testOffersListCorrectlyShown(String cityName, boolean expectedResult) {
+    public void offersListCorrectlyShownTest(String cityName, boolean expectedResult) {
         youthOfferPage.setOriginCity(cityName);
         Assert.assertEquals(youthOfferPage.isOriginsShownCorrectly(), expectedResult);
     }

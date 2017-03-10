@@ -6,9 +6,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Kseniya_Kunda on 3/1/2017.
  */
-public class ChildPriceCheck extends AbstractPageTest {
-
-    private static final String WARNING_MASSAGE = "The condition about child fare towards adult fare is't conformed!";
+public class ChildPriceVerification extends PreparationSteps {
 
     @Test
     public void childPriceTest() {
@@ -18,6 +16,6 @@ public class ChildPriceCheck extends AbstractPageTest {
                 .fillBookAndFlightForm()
                 .addChild()
                 .goToFlightsAndTicketTypesPage()
-                .checkFareCondition() , WARNING_MASSAGE);
+                .checkFareCondition(), "The condition about child fare towards adult fare is't conformed!");
     }
 }

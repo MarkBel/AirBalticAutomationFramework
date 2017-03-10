@@ -1,29 +1,32 @@
 package com.epam.AirBaltic.tests;
 
-import com.epam.AirBaltic.pages.StartPage;
 import com.epam.AirBaltic.util.PropertyLoader;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * Created by Davud_Murtazin on 3/2/2017.
+ * Created by Katerina_Karpenia on 3/1/2017.
  */
-public class CheckNumberOfSeatsForOnePerson extends AbstractPageTest {
+public class TermsAndConditionsVerification extends PreparationSteps {
 
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
-
-
+    
     @Test
-    public void testCheckNumberOfSeatsForOnePerson()  {
-        Assert.assertFalse(new StartPage(driver)
+    public void termsAndConditionsTest () {
+
+        Assert.assertTrue(startPage
                 .goToLoginForm()
                 .login(USER_NAME, USER_PASSWORD)
+                .loginCheck()
                 .goToBookAFlightForm()
                 .fillBookAndFlightForm()
                 .goToFlightsAndTicketTypesPage()
                 .goToPassengersPage()
                 .goToTravelExtrasPage()
-                .isOneSeatSelected());
+                .goToSummaryPage()
+                .choosePaymentMethod()
+                .checkTermsAndConditions());
     }
+
 }

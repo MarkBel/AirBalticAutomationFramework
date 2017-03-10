@@ -5,7 +5,7 @@ import com.epam.AirBaltic.util.PropertyLoader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TotalPriceTest extends AbstractPageTest {
+public class TotalPriceVerification extends PreparationSteps {
 
     private final PropertyLoader properties = new PropertyLoader();
     private final String USERNAME =  properties.getProperty("user.name");
@@ -18,7 +18,7 @@ public class TotalPriceTest extends AbstractPageTest {
 
 
     @Test
-    public void startTest(){
+    public void totalPriceTest(){
         loginForm = startPage.goToLoginForm();
         startPage = loginForm.login(USERNAME, PASSWORD);
         startPage.loginCheck();

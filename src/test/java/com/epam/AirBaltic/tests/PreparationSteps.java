@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
 
-public class AbstractPageTest {
+public class PreparationSteps {
 
     protected static final String START_PAGE_URL = PropertyLoader.getProperty("start.url");
     protected static DesiredCapabilities capabilities;

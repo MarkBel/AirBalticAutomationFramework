@@ -1,4 +1,4 @@
-package com.epam.AirBaltic.locale;
+package com.epam.AirBaltic.util;
 
 import com.epam.AirBaltic.pages.Page;
 import org.openqa.selenium.WebDriver;
