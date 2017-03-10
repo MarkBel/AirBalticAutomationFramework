@@ -11,17 +11,19 @@ public class MutatedSingleton {
     private static WebDriver webDriver;
 
     public static WebDriver getDriver(DesiredCapabilities cap) {
-        String browserName = cap.getBrowserName();
-        switch (browserName) {
-            case "chrome":
-                webDriver = new ChromeDriver(cap);
-                break;
-            case "firefox":
-                webDriver = new FirefoxDriver(cap);
-                break;
-            default:
-                webDriver = new FirefoxDriver(cap);
-                break;
+        if (webDriver == null) {
+            String browserName = cap.getBrowserName();
+            switch (browserName) {
+                case "chrome":
+                    webDriver = new ChromeDriver(cap);
+                    break;
+                case "firefox":
+                    webDriver = new FirefoxDriver(cap);
+                    break;
+                default:
+                    webDriver = new FirefoxDriver(cap);
+                    break;
+            }
         }
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
