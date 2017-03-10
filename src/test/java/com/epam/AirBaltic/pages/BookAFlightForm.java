@@ -57,7 +57,7 @@ public class BookAFlightForm extends Page {
     @FindBy(xpath = "//div[@id='positioner']/div/button")
     private WebElement buttonGoFlightsAndTicketsTypesPage;
 
-    @FindBy(xpath = "//div[@id=\"return-date-div\"]")
+    @FindBy(xpath = "//div[@id='return-date-div']")
     private WebElement fieldReturnDateVisibality;
 
 
@@ -93,20 +93,13 @@ public class BookAFlightForm extends Page {
         return this;
     }
 
-    private BookAFlightForm setUnvalidReturnDate(int returnUnvalidDateDelta) {
-        setReturnDate(DateGenerator.getDate(returnUnvalidDateDelta));
-        return this;
-    }
-
     public BookAFlightForm setDepartureDate(String date) {
-        //System.out.println(inputDepartureDate.getLocation());
         wait.waitForElement(inputDepartureDate).clear();
         inputDepartureDate.sendKeys(date);
         return this;
     }
 
     public BookAFlightForm setReturnDate(String date) {
-        //System.out.println(inputReturnDate.getLocation());
         wait.waitForElement(inputReturnDate).clear();
         inputReturnDate.sendKeys(date);
         return this;
@@ -123,12 +116,12 @@ public class BookAFlightForm extends Page {
         return new FlightsAndTicketTypesPage(driver);
     }
 
-    public BookAFlightForm fillBookAndFlightForm(String originAirport, String destinationAirport, int dep_date_delta, int return_date_delta) {
+    public BookAFlightForm fillBookAndFlightForm(String originAirport, String destinationAirport, int depDateDelta, int returDateDelta) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();
-        setDepartureDate(dep_date_delta);
-        setReturnDate(return_date_delta);
+        setDepartureDate(depDateDelta);
+        setReturnDate(returDateDelta);
         return this;
     }
 
@@ -137,18 +130,13 @@ public class BookAFlightForm extends Page {
         return this;
     }
 
-    public void addInfant() {
-        buttonAddInfant.click();
-        buttonAddInfant.click();
-    }
-
     public boolean checkReturnDate(String originAirport, String destinationAirport, int returnUnvalidDateDelta, String ERROR_MESSAGE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         if (btnBookAndFlights.isDisplayed()) {
             btnBookAndFlights.click();
         }
-        setUnvalidReturnDate(returnUnvalidDateDelta);
+        setReturnDate(returnUnvalidDateDelta);
         clickFindFlightsFaresButton();
         return ERROR_MESSAGE.equals(inputError.getText());
 
@@ -164,13 +152,13 @@ public class BookAFlightForm extends Page {
         return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
 
-    public boolean checkNumberInfactsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION) {
+    public boolean checkNumberInfactsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION,int returnDateDelta) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         if (btnBookAndFlights.isDisplayed()) {
             btnBookAndFlights.click();
         }
-        setReturnDate(DateGenerator.getDate(6));
+        setReturnDate(returnDateDelta);
         addTwoInfants();
         btnBookandFlighAction.click();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));

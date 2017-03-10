@@ -9,12 +9,12 @@ public class SnowyPeaksPageTest extends PreparationSteps {
 
     protected SnowyPeaksPage snowyPeaksPage = null;
 
-    @BeforeClass
+ //   @BeforeClass
     public void jumpToSnowyPeaksPage() {
         snowyPeaksPage = this.startPage.clickFlySnowyPeaksLink();
     }
 
-    @Test
+ //   @Test
     public void sortOffersByPriceTest() {
         snowyPeaksPage.sortOffersByPrice();
 //        snowyPeaksPage.scrollToPriceTable();

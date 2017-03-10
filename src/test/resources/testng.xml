@@ -7,13 +7,10 @@
       <!--<class name="com.epam.AirBaltic.tests.YouthOfferPageVerification"/>-->
       <class name="com.epam.AirBaltic.tests.SnowyPeaksPageTest"/>
       <class name="com.epam.AirBaltic.tests.TotalPriceVerification"/>
-      <class name="com.epam.AirBaltic.tests.ReturnDateIsValidVerification"/>
-      <class name="com.epam.AirBaltic.tests.UpdateAccountVerification"/>
-      <class name="com.epam.AirBaltic.tests.ReturnDateIsVisibleVerification"/>
-      <class name="com.epam.AirBaltic.tests.ChildPriceVerification"/>
-      <class name="com.epam.AirBaltic.tests.TermsAndConditionsVerification"/>
-      <class name="com.epam.AirBaltic.tests.NumberOfSeatsForOnePersonVerification"/>
-      <class name="com.epam.AirBaltic.tests.NumberOfInfantsVerification"/>
+      <class name="com.epam.AirBaltic.tests.BookAFlightFormTest"/>
+      <class name="com.epam.AirBaltic.tests.UpdateAccountTest"/>
+      <class name="com.epam.AirBaltic.tests.PriceTest"/>
+      <class name="com.epam.AirBaltic.tests.ProcessOfTicketReservationTest"/>
     </classes>
   </test>
 </suite>

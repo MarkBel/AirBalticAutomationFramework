@@ -3,7 +3,6 @@ package com.epam.AirBaltic.pages;
 import com.epam.AirBaltic.util.FluentWaitUtil;
 import com.epam.AirBaltic.util.SessionHelper;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -16,10 +15,6 @@ public abstract class Page {
 
     public final static Integer WAIT_3_SEC = 3;
     public final static Integer WAIT_5_SEC = 5;
-    public final static Integer WAIT_10_SEC = 10;
-    public final static Integer WAIT_15_SEC = 15;
-    public final static Integer WAIT_20_SEC = 20;
-
 
     protected WebDriver driver;
     protected FluentWaitUtil wait;

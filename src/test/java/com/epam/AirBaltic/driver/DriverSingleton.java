@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.concurrent.TimeUnit;
 
-public class MutatedSingleton {
+public class DriverSingleton {
 
     private static WebDriver webDriver;
 

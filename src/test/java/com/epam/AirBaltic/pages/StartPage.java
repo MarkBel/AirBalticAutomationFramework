@@ -61,7 +61,7 @@ public class StartPage extends Page {
     }
 
 
-    public StartPage loginCheck() {
+    public StartPage getLoginStatement() {
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonMyAccount));
         return new StartPage(driver);
     }
