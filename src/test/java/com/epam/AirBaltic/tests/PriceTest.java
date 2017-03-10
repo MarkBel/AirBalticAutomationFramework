@@ -12,28 +12,25 @@ public class PriceTest extends PreparationSteps {
 
     private BookAFlightForm flightPage;
     private FlightsAndTicketTypesPage farePage;
-    private PassengersPage passengersPage;
-    private TravelExtrasPage extrasPage;
-    private LoginForm loginForm;
 
     @Test
-    public void totalPriceConsistOfDeparturePriceAndReturnPriceTest(){
-        loginForm = startPage.goToLoginForm();
-        startPage = loginForm.login(USER_NAME, USER_PASSWORD);
-        startPage.getLoginStatement();
-        flightPage = startPage.goToBookAFlightForm();
-        flightPage.fillBookAndFlightForm(originAirport,destinationAirport,departureDateDelta,returnDateDelta);
-        farePage = flightPage.goToFlightsAndTicketTypesPage();
-        passengersPage = farePage.acceptFare();
-        extrasPage = passengersPage.goToTravelExtrasPage();
-        Assert.assertTrue(extrasPage.checkSummaryPrice(farePage.getDeparturePrice(), farePage.getReturnPrice()));
+    public void totalPriceConsistOfDeparturePriceAndReturnPriceTest() {
+        Assert.assertTrue(startPage.goToLoginForm()
+                .login(USER_NAME, USER_PASSWORD)
+                .getLoginStatement()
+                .goToBookAFlightForm()
+                .fillBookAndFlightForm(originAirport, destinationAirport, departureDateDelta, returnDateDelta)
+                .goToFlightsAndTicketTypesPage()
+                .acceptFare()
+                .goToTravelExtrasPage()
+                .checkSummaryPrice(), "Total price doesn't coincides with sum of departure and return prices.");
     }
 
     @Test
-    public void childTicketIs25PercentLessThanAdult() {
+    public void childTicketIs25PercentLessThanAdult( ) {
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
-                .fillBookAndFlightForm(originAirport,destinationAirport,departureDateDelta,returnDateDelta)
+                .fillBookAndFlightForm(originAirport, destinationAirport, departureDateDelta, returnDateDelta)
                 .addChild()
                 .goToFlightsAndTicketTypesPage()
                 .checkFareCondition(), "The condition about child fare towards adult fare is't conformed!");

@@ -15,18 +15,18 @@ public class FlightsAndTicketTypesPage extends Page {
 
     private final String lowFareTitle = "Low Fare Calendar | airBaltic";
     private String currentTitle;
-    private double departurePrice;
-    private double returnPrice;
+    private static double departurePrice;
+    private static double returnPrice;
 
     private static final By detailedFire = By.cssSelector(".fare-item-detailed");
     private static final By fire = By.cssSelector(".expandable>a");
     private static final By tariffFire = By.cssSelector(".line>span+span");
 
-    public double getDeparturePrice() {
+    public static double getDeparturePrice() {
         return departurePrice;
     }
 
-    public double getReturnPrice() {
+    public static double getReturnPrice() {
         return returnPrice;
     }
 
