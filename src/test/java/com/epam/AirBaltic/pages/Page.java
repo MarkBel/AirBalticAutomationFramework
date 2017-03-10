@@ -1,9 +1,11 @@
 package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.util.FluentWaitUtil;
+import com.epam.AirBaltic.util.SessionHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
@@ -41,6 +43,14 @@ public abstract class Page {
 
     public boolean isElementPresent(By by) {
         return driver.findElements(by).size() > 0;
+    }
+
+    public void getScreenShot() {
+        try {
+            SessionHelper.captureScreenShot(this.driver, this.getClass().getSimpleName());
+        } catch (IOException e) {
+            logger.info(e.getMessage());
+        }
     }
 
 }
