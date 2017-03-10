@@ -53,8 +53,9 @@ public class YouthOfferPage extends Page {
     }
 
     public void setOriginCity(String city) {
-        (new WebDriverWait(this.driver, 5)).until(ExpectedConditions.
-                        elementToBeClickable(fMenuOrigins_1)).click();
+//      (new WebDriverWait(this.driver, 5)).until(ExpectedConditions.
+//                        elementToBeClickable(fMenuOrigins_1)).click();
+        wait.waitForElementIsClickable(fMenuOrigins_1).click();
         fMenuOrigins_1.sendKeys(city.substring(0, 1));
         (new WebDriverWait(this.driver, 5)).until(AdditionalConditions.
                 jQueryCompleted());
