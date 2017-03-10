@@ -1,13 +1,13 @@
 package com.epam.AirBaltic.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.epam.AirBaltic.util.AdditionalConditions;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Dmitryi_Paulioz on 3/2/2017.
@@ -83,7 +83,7 @@ public class FlightsAndTicketTypesPage extends Page {
     }
 
     public PassengersPage goToPassengersPage() {
-        wait.waitForElement(continueButton).click();
+        wait.waitForElementIsClickable(continueButton);
         continueButton.click();
         return new PassengersPage(driver);
     }

@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,18 +26,19 @@ public class SummaryPage extends Page {
     @FindBy(css = ".summary-error")
     private WebElement termsAndConditionsError;
 
+    @FindBy(css = ".icon-remove")
+    private WebElement additionalButton;
+
 
     public SummaryPage(WebDriver driver) {
         super(driver);
     }
 
     public SummaryPage choosePaymentMethod() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        additionalButton.click();
+        wait.waitForElementIsClickable(paymentMethodLocator);
         paymentMethodLocator.click();
+        wait.waitForElementIsClickable(selectCreditCard);
         selectCreditCard.click();
         return new SummaryPage(driver);
 
@@ -44,6 +46,7 @@ public class SummaryPage extends Page {
 
     public boolean checkTermsAndConditions() {
         submitButton.click();
+        wait.waitForElement(termsAndConditionsError);
         return termsAndConditionsError.getText().contains(ERROR_TERMS_AND_CONDITIONS_EXCEPTION);
     }
 

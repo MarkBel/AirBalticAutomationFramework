@@ -3,6 +3,7 @@ package com.epam.AirBaltic.pages;
 import com.epam.AirBaltic.entity.Passenger;
 import com.epam.AirBaltic.util.AdditionalConditions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,8 +47,9 @@ public class PassengersPage extends Page {
 
 
     public TravelExtrasPage goToTravelExtrasPage() {
-
-        wait.waitForElement(continueButton).click();
+        inputFirstName.click();
+        wait.waitForElementIsClickable(continueButton);
+        continueButton.click();
         return new TravelExtrasPage(driver);
     }
 

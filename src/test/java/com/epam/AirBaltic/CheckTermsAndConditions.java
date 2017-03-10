@@ -3,7 +3,6 @@ package com.epam.AirBaltic;
 import com.epam.AirBaltic.pages.*;
 import com.epam.AirBaltic.util.PropertyLoader;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 /**
