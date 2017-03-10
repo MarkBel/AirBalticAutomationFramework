@@ -12,9 +12,9 @@ public class UpdateAccountCheck extends AbstractPageTest {
 
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
-    private static final String ORIGIN_COUNTRY = PropertyLoader.getProperty("editProfilePage.originCountry");
-    private static final String CHANGED_COUNTRY_NAME = PropertyLoader.getProperty("editProfilePage.changedCountry");
-    private static final int CHANGED_COUNTRY_NUMBER = 6;
+    private static final String NEW_SURNAME = PropertyLoader.getProperty("editProfilePage.newSurname");
+    private static final String WARNING_MESSAGE = "Surname is updated!";
+    private static final String ERROR_MESSAGE = "Only Latin characters are allowed";
 
     @Test
     public void updateAccountTest(){
@@ -23,8 +23,8 @@ public class UpdateAccountCheck extends AbstractPageTest {
                 .goToLoginForm()
                 .login(USER_NAME, USER_PASSWORD)
                 .goToEditProfilePage()
-                .updateCountry(CHANGED_COUNTRY_NUMBER)
-                .checkChangedCountry(CHANGED_COUNTRY_NAME), "Country is not updated!");
+                .updateSurname(NEW_SURNAME)
+                .checkErrorMessage(ERROR_MESSAGE), WARNING_MESSAGE);
     }
 
     @AfterMethod
