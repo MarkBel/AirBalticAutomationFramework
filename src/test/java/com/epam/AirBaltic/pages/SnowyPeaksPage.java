@@ -54,7 +54,7 @@ public class SnowyPeaksPage extends Page {
     public boolean isOffersSortedCorrectly () {
         List<WebElement> pricesList = this.driver.findElements(PRICE_LOCATOR);
         for (int i = 0; i < pricesList.size()-1; i++) {
-            if (!(extractPriceFromWebEl(pricesList.get(i)) >= extractPriceFromWebEl(pricesList.get(i+1)))) {
+            if (!(extractPriceFromStr(pricesList.get(i).getText()) >= extractPriceFromStr(pricesList.get(i+1).getText()))) {
                 return false;
             }
         }
@@ -63,6 +63,10 @@ public class SnowyPeaksPage extends Page {
 
     private Integer extractPriceFromWebEl (WebElement webEl) {
         return Integer.parseInt(webEl.getText().replaceAll("[^0-9]",""));
+    }
+
+    private Integer extractPriceFromStr (String str) {
+        return Integer.parseInt(str.replaceAll("[^0-9]",""));
     }
 
 
