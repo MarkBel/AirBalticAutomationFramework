@@ -3,6 +3,7 @@ package com.epam.AirBaltic.pages;
 import com.epam.AirBaltic.util.FluentWaitUtil;
 import com.epam.AirBaltic.util.SessionHelper;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -12,6 +13,13 @@ import java.util.logging.Logger;
  * Abstract class representation of a Page in the UI. Page object pattern
  */
 public abstract class Page {
+
+    public final static  Integer WAIT_3_SEC = 3;
+    public final static  Integer WAIT_5_SEC = 5;
+    public final static  Integer WAIT_10_SEC = 10;
+    public final static  Integer WAIT_15_SEC = 15;
+    public final static  Integer WAIT_20_SEC = 20;
+
 
     protected WebDriver driver;
     protected FluentWaitUtil wait;
@@ -50,6 +58,13 @@ public abstract class Page {
             SessionHelper.captureScreenShot(this.driver, this.getClass().getSimpleName());
         } catch (IOException e) {
             logger.info(e.getMessage());
+        }
+    }
+
+    public void scrollPageWithPGUPDOWNKeys(Keys key, int repCount) {
+        Actions keyPress = new Actions(this.driver);
+        for (int i = 0; i < repCount; i++) {
+            keyPress.sendKeys(key);
         }
     }
 
