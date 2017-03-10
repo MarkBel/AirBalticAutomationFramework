@@ -20,6 +20,15 @@ public class PreparationSteps {
     protected StartPage startPage = null;
     protected WebDriver driver;
 
+    protected String originAirport = "Riga (RIX) - Latvia";
+    protected String destinationAirport = "Berlin (Tegel) (TXL) - Germany";
+    protected static final String ERROR_MESSAGE = "The date of the inbound flight cannot be earlier than the date of the outbound flight. Please adjust your selection.";
+    protected static final String RETURN_DATE_ATTRIBUTE = "display: none;";
+    protected static final String ERROR_INPUT_EXCEPTION = "The number of infants can not be higher than the number of adults. Only an adult can accompany an infant.";
+    protected int departureDateDelta = 2;
+    protected int returnDateDelta = 5;
+    protected int returnUnvalidDateDelta = -5;
+
     @BeforeSuite
     public void initTestSuite() throws IOException {
         String browserName = SessionHelper.selectBrowser();

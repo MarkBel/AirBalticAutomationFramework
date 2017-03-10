@@ -15,7 +15,7 @@ public class SnowyPeaksPageTest extends PreparationSteps {
     }
 
     @Test
-    public void testSortOffersByPriceTest() {
+    public void sortOffersByPriceTest() {
         snowyPeaksPage.sortOffersByPrice();
 //        snowyPeaksPage.scrollToPriceTable();
         snowyPeaksPage.getScreenShot();

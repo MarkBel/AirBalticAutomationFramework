@@ -1,13 +1,9 @@
 package com.epam.AirBaltic.pages;
 
-import com.epam.AirBaltic.util.AdditionalConditions;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Dmitryi_Paulioz on 3/2/2017.
@@ -77,9 +73,10 @@ public class FlightsAndTicketTypesPage extends Page {
         List<WebElement> listOfDetailedPrices = driver.findElements(detailedFire);
         double adultFare = Double.parseDouble(listOfDetailedPrices.get(0).findElement(tariffFire).getText().replace(" €", ""));
         double childFare = Double.parseDouble(listOfDetailedPrices.get(1).findElement(tariffFire).getText().replace(" €", ""));
-        if (childFare >= adultFare*0.75 - 1 && childFare <= adultFare*0.75 + 1){
+        if (childFare >= adultFare * 0.75 - 1 && childFare <= adultFare * 0.75 + 1) {
             condition = true;
-        }return condition;
+        }
+        return condition;
     }
 
     public PassengersPage goToPassengersPage() {

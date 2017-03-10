@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
  */
 public class TermsAndConditionsVerification extends PreparationSteps {
 
+
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
     
@@ -20,7 +21,7 @@ public class TermsAndConditionsVerification extends PreparationSteps {
                 .login(USER_NAME, USER_PASSWORD)
                 .loginCheck()
                 .goToBookAFlightForm()
-                .fillBookAndFlightForm()
+                .fillBookAndFlightForm(originAirport,destinationAirport,departureDateDelta,returnDateDelta)
                 .goToFlightsAndTicketTypesPage()
                 .goToPassengersPage()
                 .goToTravelExtrasPage()

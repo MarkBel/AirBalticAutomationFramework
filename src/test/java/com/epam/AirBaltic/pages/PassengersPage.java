@@ -1,18 +1,10 @@
 package com.epam.AirBaltic.pages;
 
-import com.epam.AirBaltic.entity.Passenger;
-import com.epam.AirBaltic.util.AdditionalConditions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Katerina_Karpenia on 3/2/2017.
@@ -38,7 +30,7 @@ public class PassengersPage extends Page {
     private WebElement dDMenuSelectTitle;
 
     @FindBy(xpath = "//span[@class='item-control salutation']//li")
-    private List<WebElement > listOfTitles;
+    private List<WebElement> listOfTitles;
 
 
     public PassengersPage(WebDriver driver) {

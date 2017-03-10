@@ -14,13 +14,14 @@ public class NumberOfSeatsForOnePersonVerification extends PreparationSteps {
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
 
 
+
     @Test
     public void numberOfSeatsForOnePersonTest()  {
         Assert.assertFalse(startPage
                 .goToLoginForm()
                 .login(USER_NAME, USER_PASSWORD)
                 .goToBookAFlightForm()
-                .fillBookAndFlightForm()
+                .fillBookAndFlightForm(originAirport,destinationAirport,departureDateDelta,returnDateDelta)
                 .goToFlightsAndTicketTypesPage()
                 .goToPassengersPage()
                 .goToTravelExtrasPage()

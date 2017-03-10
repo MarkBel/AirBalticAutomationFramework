@@ -13,7 +13,7 @@ public class ChildPriceVerification extends PreparationSteps {
 
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
-                .fillBookAndFlightForm()
+                .fillBookAndFlightForm(originAirport,destinationAirport,departureDateDelta,returnDateDelta)
                 .addChild()
                 .goToFlightsAndTicketTypesPage()
                 .checkFareCondition(), "The condition about child fare towards adult fare is't conformed!");

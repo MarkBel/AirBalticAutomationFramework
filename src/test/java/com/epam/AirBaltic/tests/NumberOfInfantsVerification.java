@@ -9,12 +9,14 @@ import org.testng.annotations.Test;
  */
 public class NumberOfInfantsVerification extends PreparationSteps {
 
+
+
     @Test
     public void numberOfInfantsTicketsTest()
     {
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
-                .checkNumberInfactsTickets(),"Number of infants can't be higher than number of adults!");
+                .checkNumberInfactsTickets(originAirport,destinationAirport,ERROR_INPUT_EXCEPTION),"Number of infants can't be higher than number of adults!");
     }
 
 }

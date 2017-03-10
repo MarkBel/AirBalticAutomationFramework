@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Katerina_Karpenia on 3/1/2017.
  */
-public class LoginForm extends Page{
+public class LoginForm extends Page {
 
     @FindBy(id = "myairbaltic-href")
     private WebElement loginButton;
@@ -22,8 +22,6 @@ public class LoginForm extends Page{
 
     @FindBy(id = "login-btn")
     private WebElement buttonSubmit;
-
-    //Just for fun!
 
     public LoginForm(WebDriver driver) {
         super(driver);

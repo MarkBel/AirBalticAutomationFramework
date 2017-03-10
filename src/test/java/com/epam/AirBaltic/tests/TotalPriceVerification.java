@@ -17,13 +17,14 @@ public class TotalPriceVerification extends PreparationSteps {
     private LoginForm loginForm;
 
 
+
     @Test
     public void totalPriceTest(){
         loginForm = startPage.goToLoginForm();
         startPage = loginForm.login(USERNAME, PASSWORD);
         startPage.loginCheck();
         flightPage = startPage.goToBookAFlightForm();
-        flightPage.fillBookAndFlightForm();
+        flightPage.fillBookAndFlightForm(originAirport,destinationAirport,departureDateDelta,returnDateDelta);
         farePage = flightPage.goToFlightsAndTicketTypesPage();
         passengersPage = farePage.acceptFare();
         extrasPage = passengersPage.goToTravelExtrasPage();

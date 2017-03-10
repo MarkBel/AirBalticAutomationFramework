@@ -14,11 +14,11 @@ import java.util.logging.Logger;
  */
 public abstract class Page {
 
-    public final static  Integer WAIT_3_SEC = 3;
-    public final static  Integer WAIT_5_SEC = 5;
-    public final static  Integer WAIT_10_SEC = 10;
-    public final static  Integer WAIT_15_SEC = 15;
-    public final static  Integer WAIT_20_SEC = 20;
+    public final static Integer WAIT_3_SEC = 3;
+    public final static Integer WAIT_5_SEC = 5;
+    public final static Integer WAIT_10_SEC = 10;
+    public final static Integer WAIT_15_SEC = 15;
+    public final static Integer WAIT_20_SEC = 20;
 
 
     protected WebDriver driver;
@@ -44,12 +44,12 @@ public abstract class Page {
         return driver.getTitle();
     }
 
-    public void clickOnElementWithJS (WebElement webElement) {
+    public void clickOnElementWithJS(WebElement webElement) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", webElement);
     }
 
-    public void scrollToElementWithJS (WebElement webElement) {
+    public void scrollToElementWithJS(WebElement webElement) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", webElement);
     }
@@ -65,6 +65,4 @@ public abstract class Page {
             logger.info(e.getMessage());
         }
     }
-
-
 }
