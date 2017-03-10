@@ -141,8 +141,9 @@ public class BookAFlightForm extends Page{
         return this;
     }
 
-    public void addChild(){
+    public BookAFlightForm addChild(){
         buttonAddChild.click();
+        return this;
     }
 
     public void addInfant(){
