@@ -117,6 +117,7 @@ public class BookAFlightForm extends Page{
     }
 
     private void clickFindFlightsFaresButton(){
+        wait.waitForElement(buttonFindFlightsFares);
         buttonFindFlightsFares.click();
     }
 

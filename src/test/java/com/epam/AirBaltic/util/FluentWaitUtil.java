@@ -19,9 +19,9 @@ public class FluentWaitUtil {
 
     public FluentWaitUtil(WebDriver driver) {
         this.driverWait = driver;
-        wait = new WebDriverWait(this.driverWait, 10).ignoring(StaleElementReferenceException.class, WebDriverException.class)
+        wait = new WebDriverWait(this.driverWait, 15).ignoring(StaleElementReferenceException.class, WebDriverException.class)
                 .withMessage("Element was not found by locator!");
-        waitFluent = new org.openqa.selenium.support.ui.FluentWait<>(driver).withTimeout(10, TimeUnit.MINUTES).pollingEvery(2, TimeUnit.MINUTES).ignoring(ElementNotFoundException.class);
+        waitFluent = new org.openqa.selenium.support.ui.FluentWait<>(driver).withTimeout(15, TimeUnit.MINUTES).pollingEvery(2, TimeUnit.MINUTES).ignoring(ElementNotFoundException.class);
     }
 
     public WebElement waitForElementIsClickable(WebElement element){
