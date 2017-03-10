@@ -1,6 +1,7 @@
 package com.epam.AirBaltic;
 
 import com.epam.AirBaltic.pages.SnowyPeaksPage;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,6 +18,8 @@ public class SnowyPeaksPageTest extends AbstractPageTest {
     @Test
     public void testSortOffersByPriceTest() {
         snowyPeaksPage.sortOffersByPrice();
+        snowyPeaksPage.scrollToPriceTable();
+        snowyPeaksPage.getScreenShot();
         Assert.assertTrue(snowyPeaksPage.isOffersSortedCorrectly());
     }
 }

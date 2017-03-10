@@ -1,9 +1,12 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.AdditionalConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -15,6 +18,9 @@ public class SnowyPeaksPage extends Page {
 
     @FindBy(xpath = "//div[contains(@class, 'sort-selection-price')]")
     private WebElement linkSortOffersByPrice;  //testcase #6
+
+    @FindBy(xpath = "//input[@name='flt_origin_text']")
+    private WebElement fMenuOrigins;
 
 
     public SnowyPeaksPage(WebDriver webDriver) {
@@ -29,6 +35,10 @@ public class SnowyPeaksPage extends Page {
         linkSortOffersByPrice.click();
     }
 
+    public void scrollToPriceTable () {
+        this.scrollToElementWithJS(fMenuOrigins);
+    }
+
     private boolean isOffersSortedByPriceDsc() {
         return linkSortOffersByPrice.getAttribute("class").contains("sort-dsc");
     }
@@ -37,6 +47,8 @@ public class SnowyPeaksPage extends Page {
         if (!isOffersSortedByPriceDsc()){
             clickSortOffersByPriceLink();
         }
+        (new WebDriverWait(this.driver, WAIT_3_SEC)).until(AdditionalConditions.
+                jQueryCompleted());
     }
 
     public boolean isOffersSortedCorrectly () {
