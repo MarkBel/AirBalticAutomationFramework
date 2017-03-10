@@ -22,14 +22,11 @@ public class UpdateAccountCheck extends AbstractPageTest {
     public void updateAccountTest(){
         loginForm = startPage.goToLoginForm();
         startPage = loginForm.login(USER_NAME, USER_PASSWORD);
+        startPage.loginCheck();
         editProfilePage = startPage.goToEditProfilePage();
         editProfilePage.updateCountry();
 
         Assert.assertTrue(editProfilePage.checkChangedCountry(), "Country is not updated!");
     }
 
-    @AfterMethod
-    public void logout(){
-        startPage.logout(START_PAGE_URL);
-    }
 }

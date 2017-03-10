@@ -31,9 +31,4 @@ public class CheckTermsAndConditions extends AbstractPageTest {
                 .checkTermsAndConditions());
     }
 
-    @AfterMethod
-    public void logout(){
-        startPage.logout(START_PAGE_URL);
-    }
-
 }
