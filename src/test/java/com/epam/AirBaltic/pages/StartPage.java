@@ -62,7 +62,7 @@ public class StartPage extends Page {
 
 
     public StartPage getLoginStatement() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonMyAccount));
+        new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(buttonMyAccount));
         return new StartPage(driver);
     }
 
@@ -83,7 +83,7 @@ public class StartPage extends Page {
     }
 
     public EditProfilePage goToEditProfilePage() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonMyAccount));
+        new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(buttonMyAccount));
         buttonMyAccount.click();
         buttonEditMyProfile.click();
         return new EditProfilePage(driver);
@@ -92,7 +92,7 @@ public class StartPage extends Page {
     public SnowyPeaksPage clickFlySnowyPeaksLink() {
         clickOnElementWithJS(linkFlySnowyPeaks);
 //        linkFlySnowyPeaks.click();
-        (new WebDriverWait(this.driver, 10)).until(ExpectedConditions.
+        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
                 titleContains("Winter"));
         logger.info("Opened page with title " + this.getTitle());
         return new SnowyPeaksPage(this.driver);
@@ -111,7 +111,7 @@ public class StartPage extends Page {
 
     public YouthOfferPage gotoYouthOfferPageByLink() {
         this.clickFlightsLink();
-        (new WebDriverWait(this.driver, 5)).until(ExpectedConditions.
+        (new WebDriverWait(this.driver, WAIT_3_SEC)).until(ExpectedConditions.
                 visibilityOf(linkYouthOffer));
         this.clickYouthOfferLink();
         return new YouthOfferPage(this.driver);
@@ -119,7 +119,7 @@ public class StartPage extends Page {
 
     public void clickCareerLink() {
         linkCareer.click();
-        (new WebDriverWait(this.driver, 10)).until(ExpectedConditions.
+        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
                 titleContains("Career"));
         logger.info("Opened page with title " + this.getTitle());
     }

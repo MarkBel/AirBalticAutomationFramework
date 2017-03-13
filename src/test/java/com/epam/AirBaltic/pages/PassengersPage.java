@@ -17,22 +17,6 @@ public class PassengersPage extends Page {
     @FindBy(name = "firstname_ADT_0")
     private WebElement inputFirstName;
 
-    @FindBy(name = "lastname_ADT_0")
-    private WebElement inputLastName;
-
-    @FindBy(name = "email_0")
-    private WebElement inputEmail;
-
-    @FindBy(name = "phone_M")
-    private WebElement inputPhoneNo;
-
-    @FindBy(xpath = "//span[@class='item-control salutation']")
-    private WebElement dDMenuSelectTitle;
-
-    @FindBy(xpath = "//span[@class='item-control salutation']//li")
-    private List<WebElement> listOfTitles;
-
-
     public PassengersPage(WebDriver driver) {
         super(driver);
     }

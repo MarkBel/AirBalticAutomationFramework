@@ -116,12 +116,12 @@ public class BookAFlightForm extends Page {
         return new FlightsAndTicketTypesPage(driver);
     }
 
-    public BookAFlightForm fillBookAndFlightForm(String originAirport, String destinationAirport, int depDateDelta, int returDateDelta) {
+    public BookAFlightForm fillBookAndFlightForm(String originAirport, String destinationAirport, int depDateDelta, int returnDateDelta) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();
         setDepartureDate(depDateDelta);
-        setReturnDate(returDateDelta);
+        setReturnDate(returnDateDelta);
         return this;
     }
 
@@ -130,13 +130,13 @@ public class BookAFlightForm extends Page {
         return this;
     }
 
-    public boolean checkReturnDate(String originAirport, String destinationAirport, int returnUnvalidDateDelta, String ERROR_MESSAGE) {
+    public boolean checkReturnDate(String originAirport, String destinationAirport, int returnInvalidDateDelta, String ERROR_MESSAGE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         if (btnBookAndFlights.isDisplayed()) {
             btnBookAndFlights.click();
         }
-        setReturnDate(returnUnvalidDateDelta);
+        setReturnDate(returnInvalidDateDelta);
         clickFindFlightsFaresButton();
         return ERROR_MESSAGE.equals(inputError.getText());
 
@@ -161,7 +161,7 @@ public class BookAFlightForm extends Page {
         setReturnDate(returnDateDelta);
         addTwoInfants();
         btnBookandFlighAction.click();
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
+        new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
         String textMessage = inputNumberOfInfantsError.getText().substring(0, inputNumberOfInfantsError.getText().indexOf('(') - 1);
         return textMessage.equals(ERROR_INPUT_EXCEPTION);
     }

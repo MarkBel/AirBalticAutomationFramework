@@ -13,8 +13,10 @@ import java.util.logging.Logger;
  */
 public abstract class Page {
 
-    public final static Integer WAIT_3_SEC = 3;
-    public final static Integer WAIT_5_SEC = 5;
+    protected final static Integer WAIT_3_SEC = 3;
+    protected final static Integer WAIT_5_SEC = 5;
+    protected final static Integer WAIT_10_SEC = 10;
+    protected final static Integer WAIT_15_SEC = 15;
 
     protected WebDriver driver;
     protected FluentWaitUtil wait;
