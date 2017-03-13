@@ -28,7 +28,7 @@ public class LoginForm extends Page {
     }
 
     public StartPage login(String email, String password) {
-        new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputEmail));
+        wait.waitForVisibilityOfElement(inputEmail);
         inputEmail.clear();
         inputEmail.sendKeys(email);
         inputPassword.clear();

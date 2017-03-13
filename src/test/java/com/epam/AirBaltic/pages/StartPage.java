@@ -83,7 +83,7 @@ public class StartPage extends Page {
     }
 
     public EditProfilePage goToEditProfilePage() {
-        new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(buttonMyAccount));
+        wait.waitForVisibilityOfElement(buttonMyAccount);
         buttonMyAccount.click();
         buttonEditMyProfile.click();
         return new EditProfilePage(driver);

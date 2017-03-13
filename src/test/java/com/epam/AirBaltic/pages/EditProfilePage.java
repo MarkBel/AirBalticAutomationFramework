@@ -28,14 +28,13 @@ public class EditProfilePage extends Page {
     }
 
     private void setSurname(String newSurname) {
-        new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputSurname));
+        wait.waitForVisibilityOfElement(inputSurname);
         inputSurname.clear();
         inputSurname.sendKeys(newSurname);
     }
 
     private void saveUpdates() {
         buttonSave.click();
-        //wait.waitForElementIsClickable(buttonSave).click();
     }
 
     public EditProfilePage updateSurname(String newSurname) {
@@ -45,7 +44,7 @@ public class EditProfilePage extends Page {
     }
 
     public Boolean checkErrorMessage(String errorMessage) {
-        new WebDriverWait(driver, WAIT_15_SEC).until(ExpectedConditions.visibilityOf(errorMessageCss));
+        wait.waitForVisibilityOfElement(errorMessageCss);
         return errorMessageCss.getText().equals(errorMessage);
     }
 
