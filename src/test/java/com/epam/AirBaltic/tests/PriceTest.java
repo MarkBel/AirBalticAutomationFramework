@@ -10,8 +10,9 @@ import org.testng.annotations.Test;
  */
 public class PriceTest extends PreparationSteps {
 
-    private BookAFlightForm flightPage;
-    private FlightsAndTicketTypesPage farePage;
+   private static final double saleForChildTicket = 0.75;
+   private static final int deltaForChildTicket = 1;
+
 
     @Test
     public void totalPriceConsistOfDeparturePriceAndReturnPriceTest() {
@@ -27,12 +28,12 @@ public class PriceTest extends PreparationSteps {
     }
 
     @Test
-    public void childTicketIs25PercentLessThanAdult( ) {
+    public void childTicketIs25PercentLessThanAdult() {
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
                 .fillBookAndFlightForm(originAirport, destinationAirport, departureDateDelta, returnDateDelta)
                 .addChild()
                 .goToFlightsAndTicketTypesPage()
-                .checkFareCondition(), "The condition about child fare towards adult fare is't conformed!");
+                .checkFareCondition(saleForChildTicket, deltaForChildTicket), "The condition about child fare towards adult fare is't conformed!");
     }
 }

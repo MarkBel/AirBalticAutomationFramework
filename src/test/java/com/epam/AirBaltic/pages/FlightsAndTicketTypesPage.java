@@ -63,9 +63,8 @@ public class FlightsAndTicketTypesPage extends Page {
         return new PassengersPage(driver);
     }
 
-    public Boolean checkFareCondition() {
+    public Boolean checkFareCondition(double saleForChildTicket, int deltaForChildTicket) {
         checkCorrectPage();
-        Boolean condition = false;
         List<WebElement> listOfTotalPrices = driver.findElements(fire);
         for (WebElement element : listOfTotalPrices) {
             element.sendKeys(Keys.ENTER);
@@ -73,10 +72,7 @@ public class FlightsAndTicketTypesPage extends Page {
         List<WebElement> listOfDetailedPrices = driver.findElements(detailedFire);
         double adultFare = Double.parseDouble(listOfDetailedPrices.get(0).findElement(tariffFire).getText().replace(" €", ""));
         double childFare = Double.parseDouble(listOfDetailedPrices.get(1).findElement(tariffFire).getText().replace(" €", ""));
-        if (childFare >= adultFare * 0.75 - 1 && childFare <= adultFare * 0.75 + 1) {
-            condition = true;
-        }
-        return condition;
+        return (childFare >= adultFare * saleForChildTicket - deltaForChildTicket && childFare <= adultFare * saleForChildTicket + deltaForChildTicket);
     }
 
     public PassengersPage goToPassengersPage() {
