@@ -76,7 +76,7 @@ public class FlightsAndTicketTypesPage extends Page {
     }
 
     public PassengersPage goToPassengersPage() {
-        wait.waitForElementIsClickable(continueButton);
+        wait.waitForVisibilityOfElement(continueButton);
         continueButton.click();
         return new PassengersPage(driver);
     }

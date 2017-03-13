@@ -44,8 +44,8 @@ public class TravelExtrasPage extends Page {
     public boolean isOneSeatSelected() {
         (new WebDriverWait(this.driver, WAIT_5_SEC)).until(AdditionalConditions.
                 jQueryCompleted());
-        availableSeats.get(0).click();
-        availableSeats.get(1).click();
+        wait.waitForElementIsClickable(availableSeats.get(0)).click();
+        wait.waitForElementIsClickable(availableSeats.get(1)).click();
         return availableSeats.get(0).isSelected();
     }
 
