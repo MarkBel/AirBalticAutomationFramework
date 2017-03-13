@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 /**
@@ -18,6 +19,9 @@ public abstract class Page {
     protected final static Integer WAIT_10_SEC = 10;
     protected final static Integer WAIT_15_SEC = 15;
 
+    private static final By buttonClose = By.xpath("//div[@class='insider-opt-in-notification-button insider-opt-in-disallow-button']");
+
+
     protected WebDriver driver;
     protected FluentWaitUtil wait;
     Logger logger = Logger.getLogger("TestLogger");
@@ -26,6 +30,7 @@ public abstract class Page {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         wait = new FluentWaitUtil(driver);
+        closePopUpWindow();
     }
 
 
@@ -61,5 +66,33 @@ public abstract class Page {
         } catch (IOException e) {
             logger.info(e.getMessage());
         }
+    }
+
+    public void closePopUpWindow()
+    {
+        if(!isElementPresent(buttonClose,driver))
+        {
+
+        }
+        else
+        {
+            WebElement element = driver.findElement(buttonClose);
+            element.click();
+        }
+    }
+
+    public static boolean isElementPresent(By by,WebDriver driver)
+    {
+        boolean present;
+        try
+        {
+            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            driver.findElement(by);
+            present = true;
+        }catch (NoSuchElementException e)
+        {
+            present = false;
+        }
+        return present;
     }
 }
