@@ -35,4 +35,9 @@ public class FluentWaitUtil {
         waitFluent.until(ExpectedConditions.elementToBeClickable(element));
         return element;
     }
+
+    public WebElement waitForVisibilityOfElement(WebElement element){
+        waitFluent.until(ExpectedConditions.visibilityOf(element));
+        return element;
+    }
 }
