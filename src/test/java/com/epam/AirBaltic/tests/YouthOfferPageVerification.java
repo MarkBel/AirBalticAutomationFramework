@@ -2,16 +2,13 @@ package com.epam.AirBaltic.tests;
 
 import com.epam.AirBaltic.pages.YouthOfferPage;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class YouthOfferPageVerification extends PreparationSteps {
 
     protected YouthOfferPage youthOfferPage = null;
 
-    @BeforeClass
+    @BeforeMethod
     public void jumpToYouthOfferPage() {
         youthOfferPage = this.startPage.gotoYouthOfferPageByLink();
     }
