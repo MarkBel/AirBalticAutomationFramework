@@ -1,6 +1,8 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.AdditionalConditions;
 import com.epam.AirBaltic.util.DateGenerator;
+import com.epam.AirBaltic.webContainers.DatePickerContainer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,6 +62,8 @@ public class BookAFlightForm extends Page {
     @FindBy(xpath = "//div[@id='return-date-div']")
     private WebElement fieldReturnDateVisibality;
 
+    @FindBy(xpath = "//div[@class='inline-datepicker-container'][@data-container-id='returnDate']")
+    private DatePickerContainer inputDateField;
 
     public BookAFlightForm(WebDriver driver) {
         super(driver);
@@ -99,9 +103,14 @@ public class BookAFlightForm extends Page {
         return this;
     }
 
+
+
     public BookAFlightForm setReturnDate(String date) {
-        wait.waitForElement(inputReturnDate).clear();
-        inputReturnDate.sendKeys(date);
+        wait.waitForElement(inputDateField).clear();
+        inputDateField.sendKeys(date);
+        if (inputDateField.isDatePickerDisplayed()) {
+            inputDateField.clickSKController();
+        }
         return this;
     }
 
@@ -136,6 +145,7 @@ public class BookAFlightForm extends Page {
         if (btnBookAndFlights.isDisplayed()) {
             btnBookAndFlights.click();
         }
+        (new WebDriverWait(this.driver, WAIT_3_SEC)).until(AdditionalConditions.jQueryCompleted());
         setReturnDate(returnInvalidDateDelta);
         clickFindFlightsFaresButton();
         return ERROR_MESSAGE.equals(inputError.getText());
@@ -148,16 +158,18 @@ public class BookAFlightForm extends Page {
         if (btnBookAndFlights.isDisplayed()) {
             btnBookAndFlights.click();
         }
+        (new WebDriverWait(this.driver, WAIT_3_SEC)).until(AdditionalConditions.jQueryCompleted());
         radioBtnOneWayTrip.click();
         return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
 
-    public boolean checkNumberInfactsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION,int returnDateDelta) {
+    public boolean checkNumberInfantsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION, int returnDateDelta) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         if (btnBookAndFlights.isDisplayed()) {
             btnBookAndFlights.click();
         }
+        (new WebDriverWait(this.driver, WAIT_3_SEC)).until(AdditionalConditions.jQueryCompleted());
         setReturnDate(returnDateDelta);
         addTwoInfants();
         btnBookandFlighAction.click();
@@ -168,6 +180,7 @@ public class BookAFlightForm extends Page {
 
     private void addTwoInfants() {
         listInfants.click();
+        (new WebDriverWait(this.driver, WAIT_3_SEC)).until(ExpectedConditions.elementToBeClickable(numberOfInfants));
         numberOfInfants.click();
     }
 

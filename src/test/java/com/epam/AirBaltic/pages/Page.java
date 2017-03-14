@@ -30,7 +30,7 @@ public abstract class Page {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         wait = new FluentWaitUtil(driver);
-        closePopUpWindow();
+        //closePopUpWindow();
     }
 
 
@@ -57,7 +57,7 @@ public abstract class Page {
     }
 
     public boolean isElementPresent(By by) {
-        return driver.findElements(by).size() > 0;
+        return !driver.findElements(by).isEmpty();
     }
 
     public void getScreenShot() {

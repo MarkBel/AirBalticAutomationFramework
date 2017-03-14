@@ -1,6 +1,5 @@
 package com.epam.AirBaltic.tests;
 
-import com.epam.AirBaltic.pages.StartPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -32,7 +31,7 @@ public class BookAFlightFormTest extends PreparationSteps {
     {
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
-                .checkNumberInfactsTickets(originAirport,destinationAirport,ERROR_INPUT_EXCEPTION,returnDateDelta),"Number of infants can't be higher than number of adults!");
+                .checkNumberInfantsTickets(originAirport,destinationAirport,ERROR_INPUT_EXCEPTION,returnDateDelta),"Number of infants can't be higher than number of adults!");
     }
 
 }

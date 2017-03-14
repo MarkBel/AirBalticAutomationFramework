@@ -40,6 +40,7 @@ public class PreparationSteps {
         driver = DriverSingleton.getDriver(capabilities);
         driver.navigate().to(START_PAGE_URL);
         startPage = new StartPage(driver);
+        startPage.closeUnwantedPupup();
     }
 
     @AfterMethod

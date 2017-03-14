@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.AdditionalConditions;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,8 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
+
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -55,6 +58,7 @@ public class StartPage extends Page {
     private static final By LINK_LOGIN_FORM = By.id("myairbaltic-href");
     private static final By LINK_DD_USERMENU = By.cssSelector("a#dropdownMenu3.dropdown-toggle");
     private static final By POPUP_NOTHANKS_BUTTON = By.cssSelector("div.insider-opt-in-notification-button.insider-opt-in-disallow-button");
+    private static final By POPUP_CLOSE_BUTTON = By.cssSelector("div.subscribe-close");
 
     public StartPage(WebDriver driver) {
         super(driver);
@@ -123,5 +127,16 @@ public class StartPage extends Page {
                 titleContains("Career"));
         logger.info("Opened page with title " + this.getTitle());
     }
+
+    public void closeUnwantedPupup () {
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        if (isElementPresent(POPUP_NOTHANKS_BUTTON)) {
+            getDriver().findElement(POPUP_NOTHANKS_BUTTON).click();
+        }
+        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.elementToBeClickable(linkFlights));
+        driver.manage().timeouts().implicitlyWait(WAIT_10_SEC, TimeUnit.SECONDS);
+
+    }
+
 
 }
