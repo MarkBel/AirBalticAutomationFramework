@@ -37,6 +37,10 @@ public class PreparationSteps {
 
     @BeforeMethod
     public void initWebDriver() throws InterruptedException {
+        System.out.println(capabilities.toString());
+        System.out.println("Path to ChromeDriver - " + PropertyLoader.getProperty("chromedriver.win.path"));
+        System.out.println("Path to GeckoDriver - " + PropertyLoader.getProperty("geckodriver.win.path"));
+        System.out.println("URL of StartPage is - " + PropertyLoader.getProperty("start.url"));
         driver = DriverSingleton.getDriver(capabilities);
         driver.navigate().to(START_PAGE_URL);
         startPage = new StartPage(driver);
