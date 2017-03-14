@@ -4,12 +4,12 @@
   <test name="StartPageTest">
     <parameter name = "param1" value = " "/>
     <classes>
-      <!--<class name="com.epam.AirBaltic.tests.YouthOfferPageVerification"/>-->
+      <class name="com.epam.AirBaltic.tests.YouthOfferPageVerification"/>
       <class name="com.epam.AirBaltic.tests.SnowyPeaksPageTest"/>
-      <class name="com.epam.AirBaltic.tests.BookAFlightFormTest"/>
-      <class name="com.epam.AirBaltic.tests.UpdateAccountTest"/>
-      <class name="com.epam.AirBaltic.tests.PriceTest"/>
-      <class name="com.epam.AirBaltic.tests.ProcessOfTicketReservationTest"/>
+      <!--<class name="com.epam.AirBaltic.tests.BookAFlightFormTest"/>-->
+      <!--<class name="com.epam.AirBaltic.tests.UpdateAccountTest"/>-->
+      <!--<class name="com.epam.AirBaltic.tests.PriceTest"/>-->
+      <!--<class name="com.epam.AirBaltic.tests.ProcessOfTicketReservationTest"/>-->
     </classes>
   </test>
 </suite>
