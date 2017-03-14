@@ -4,10 +4,14 @@ package com.epam.AirBaltic.util;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+
 import org.apache.commons.io.FileUtils;
 
 public class SessionHelper {
@@ -27,6 +31,12 @@ public class SessionHelper {
                 capabilities = DesiredCapabilities.firefox();
                 capabilities.setCapability("marionette", true);
                 capabilities.setBrowserName("firefox");
+                FirefoxOptions options = new FirefoxOptions();
+//                options.addPreference("log", "{\"level\": \"error\"}");
+                options.setLogLevel(Level.SEVERE);
+//                options.AddAdditionalCapability(CapabilityType.LOGGING_PREFS, "INFO");
+                capabilities.setCapability("moz:firefoxOptions", options);
+                System.out.println(capabilities.toString());
                 break;
             default:
                 System.out.println("Browser is not supported");
@@ -34,7 +44,7 @@ public class SessionHelper {
         return capabilities;
     }
 
-    // set JVM option -Dbrowser=chrome in Run/Debug configuration settings tu run chrome instead of firefox
+    // set JVM option -Dbrowser=chrome in Run/Debug configuration settings to run chrome instead of firefox
     public static String selectBrowser() {
         String browserName;
         String browserFromProperty = PropertyLoader.getProperty("browser.name");
