@@ -63,7 +63,7 @@ public class FlightsAndTicketTypesPage extends Page {
         return new PassengersPage(driver);
     }
 
-    public Boolean checkFareCondition(double saleForChildTicket, int deltaForChildTicket) {
+    public Boolean isFareConditionObserved(double saleForChildTicket, int deltaForChildTicket) {
         checkCorrectPage();
         List<WebElement> listOfTotalPrices = driver.findElements(fire);
         for (WebElement element : listOfTotalPrices) {

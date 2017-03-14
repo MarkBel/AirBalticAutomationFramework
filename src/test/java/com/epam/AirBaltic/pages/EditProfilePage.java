@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +36,7 @@ public class EditProfilePage extends Page {
 
     private void saveUpdates() {
         wait.waitForElementIsClickable(buttonSave);
-        buttonSave.click();
+        buttonSave.sendKeys(Keys.ENTER);
     }
 
     public EditProfilePage updateSurname(String newSurname) {

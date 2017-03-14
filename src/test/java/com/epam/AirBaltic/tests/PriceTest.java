@@ -34,6 +34,6 @@ public class PriceTest extends PreparationSteps {
                 .fillBookAndFlightForm(originAirport, destinationAirport, departureDateDelta, returnDateDelta)
                 .addChild()
                 .goToFlightsAndTicketTypesPage()
-                .checkFareCondition(saleForChildTicket, deltaForChildTicket), "The condition about child fare towards adult fare is't conformed!");
+                .isFareConditionObserved(saleForChildTicket, deltaForChildTicket), "The condition about child fare towards adult fare is't conformed!");
     }
 }
