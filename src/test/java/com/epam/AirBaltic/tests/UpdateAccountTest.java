@@ -1,8 +1,6 @@
 package com.epam.AirBaltic.tests;
 
-import com.epam.AirBaltic.util.PropertyLoader;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -20,6 +18,6 @@ public class UpdateAccountTest extends PreparationSteps {
                 .login(USER_NAME, USER_PASSWORD)
                 .goToEditProfilePage()
                 .updateSurname(NEW_SURNAME)
-                .checkErrorMessage(ERROR_MESSAGE), "Surname is updated!");
+                .getErrorMessage(ERROR_MESSAGE), "Surname is updated!");
     }
 }

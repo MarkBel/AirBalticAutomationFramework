@@ -34,6 +34,7 @@ public class EditProfilePage extends Page {
     }
 
     private void saveUpdates() {
+        wait.waitForElementIsClickable(buttonSave);
         buttonSave.click();
     }
 
@@ -43,7 +44,7 @@ public class EditProfilePage extends Page {
         return this;
     }
 
-    public Boolean checkErrorMessage(String errorMessage) {
+    public Boolean getErrorMessage(String errorMessage) {
         wait.waitForVisibilityOfElement(errorMessageCss);
         return errorMessageCss.getText().equals(errorMessage);
     }
