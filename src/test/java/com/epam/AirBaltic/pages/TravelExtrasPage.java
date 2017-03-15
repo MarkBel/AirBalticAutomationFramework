@@ -3,6 +3,7 @@ package com.epam.AirBaltic.pages;
 import com.epam.AirBaltic.util.AdditionalConditions;
 import com.epam.AirBaltic.util.FluentWaitUtil;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,7 +39,7 @@ public class TravelExtrasPage extends Page {
     public SummaryPage goToSummaryPage() {
         seatMeAnyWhereButton.click();
         wait.waitForElementIsClickable(continueButton);
-        continueButton.click();
+        continueButton.sendKeys(Keys.ENTER);
         return new SummaryPage(driver);
     }
 
