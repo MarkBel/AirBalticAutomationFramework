@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class PriceTest extends PreparationSteps {
 
    private static final double saleForChildTicket = 0.75;
-   private static final int deltaForChildTicket = 1;
+   private static final int deltaForChildTicket = 2;
 
 
     @Test
