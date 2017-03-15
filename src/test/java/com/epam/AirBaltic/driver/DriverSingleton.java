@@ -19,13 +19,14 @@ public class DriverSingleton {
                     break;
                 case "firefox":
                     webDriver = new FirefoxDriver(cap);
+                    webDriver.manage().window().maximize();
                     break;
                 default:
                     webDriver = new FirefoxDriver(cap);
+                    webDriver.manage().window().maximize();
                     break;
             }
         }
-//        webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         System.out.println("Webdriver started");
         return webDriver;
