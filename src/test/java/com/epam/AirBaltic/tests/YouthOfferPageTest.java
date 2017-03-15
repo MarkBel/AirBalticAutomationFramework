@@ -4,7 +4,7 @@ import com.epam.AirBaltic.pages.YouthOfferPage;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class YouthOfferPageVerification extends PreparationSteps {
+public class YouthOfferPageTest extends PreparationSteps {
 
     protected YouthOfferPage youthOfferPage = null;
 
