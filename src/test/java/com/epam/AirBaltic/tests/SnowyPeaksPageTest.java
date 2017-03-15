@@ -19,7 +19,7 @@ public class SnowyPeaksPageTest extends PreparationSteps {
     public void sortOffersByPriceTest() {
         snowyPeaksPage.sortOffersByPrice();
 //        snowyPeaksPage.scrollToPriceTable();
-        snowyPeaksPage.getScreenShot();
+//        snowyPeaksPage.getScreenShot();
         Assert.assertTrue(snowyPeaksPage.isOffersSortedCorrectly());
     }
 }
