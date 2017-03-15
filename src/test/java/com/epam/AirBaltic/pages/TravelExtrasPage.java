@@ -37,6 +37,7 @@ public class TravelExtrasPage extends Page {
 
     public SummaryPage goToSummaryPage() {
         seatMeAnyWhereButton.click();
+        wait.waitForElementIsClickable(continueButton);
         continueButton.click();
         return new SummaryPage(driver);
     }
