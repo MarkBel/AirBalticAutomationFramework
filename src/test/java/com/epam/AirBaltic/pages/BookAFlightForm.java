@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.AdditionalConditions;
 import com.epam.AirBaltic.util.DateGenerator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -113,6 +114,7 @@ public class BookAFlightForm extends Page {
     private BookAFlightForm clickFindFlightsFaresButton() {
         wait.waitForElement(buttonFindFlightsFares);
         buttonFindFlightsFares.click();
+        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(AdditionalConditions.jQueryCompleted());
         return this;
     }
 
@@ -138,13 +140,13 @@ public class BookAFlightForm extends Page {
     public boolean checkReturnDate(String originAirport, String destinationAirport, int returnInvalidDateDelta, String ERROR_MESSAGE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
-        if (btnBookAndFlights.isDisplayed()) {
-            btnBookAndFlights.click();
-        }
+        pressFindFlightsButton();
         setReturnDate(returnInvalidDateDelta);
         clickFindFlightsFaresButton();
-        return ERROR_MESSAGE.equals(inputError.getText());
-
+        if (inputError.isDisplayed()) {
+            return ERROR_MESSAGE.equals(inputError.getText());
+        }
+        return false;
     }
 
     public boolean checkOneWayTripAction(String originAirport, String destinationAirport, String RETURN_DATE_ATTRIBUTE) {
