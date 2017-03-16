@@ -73,7 +73,8 @@ public class StartPage extends Page {
     }
 
     public LoginForm goToLoginForm(){
-        buttonMyAirBaltic.click();
+        wait.waitForElementIsClickable(buttonMyAirBaltic);
+        buttonMyAirBaltic.sendKeys(Keys.ENTER);
         return new LoginForm(driver);
     }
 
