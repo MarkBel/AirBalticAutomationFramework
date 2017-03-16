@@ -168,9 +168,9 @@ public class BookAFlightForm extends Page {
         btnBookandFlighAction.click();
         new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
         String outputText = inputNumberOfInfantsError.getText();
-        logger.info(outputText);
+        logger.info("In fact error message is: " + outputText);
         String textMessage = outputText.substring(0, outputText.indexOf('(') - 1);
-        logger.info(textMessage);
+        logger.info("Processed message is: "+ textMessage);
         return textMessage.equals(ERROR_INPUT_EXCEPTION);
     }
 
