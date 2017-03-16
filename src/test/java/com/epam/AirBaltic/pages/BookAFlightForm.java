@@ -138,11 +138,10 @@ public class BookAFlightForm extends Page {
     public boolean checkReturnDate(String originAirport, String destinationAirport, int returnInvalidDateDelta, String ERROR_MESSAGE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
-        if (btnBookAndFlights.isDisplayed()) {
-            btnBookAndFlights.click();
-        }
+        pressFindFlightsButton();
         setReturnDate(returnInvalidDateDelta);
         clickFindFlightsFaresButton();
+        new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputError));
         return ERROR_MESSAGE.equals(inputError.getText());
 
     }
@@ -150,9 +149,7 @@ public class BookAFlightForm extends Page {
     public boolean checkOneWayTripAction(String originAirport, String destinationAirport, String RETURN_DATE_ATTRIBUTE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
-        if (btnBookAndFlights.isDisplayed()) {
-            btnBookAndFlights.click();
-        }
+        pressFindFlightsButton();
         radioBtnOneWayTrip.click();
         return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
@@ -160,18 +157,12 @@ public class BookAFlightForm extends Page {
     public boolean checkNumberInfactsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION,int returnDateDelta) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
-        if (btnBookAndFlights.isDisplayed()) {
-            btnBookAndFlights.click();
-        }
+        pressFindFlightsButton();
         setReturnDate(returnDateDelta);
         addTwoInfants();
         btnBookandFlighAction.click();
         new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
-        String outputText = inputNumberOfInfantsError.getText();
-        logger.info("In fact error message is: " + outputText);
-        String textMessage = outputText.substring(0, outputText.indexOf('(') - 1);
-        logger.info("Processed message is: "+ textMessage);
-        return textMessage.equals(ERROR_INPUT_EXCEPTION);
+        return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);
     }
 
     private void addTwoInfants() {
