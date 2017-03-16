@@ -1,6 +1,7 @@
 package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.util.DateGenerator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,6 +61,9 @@ public class BookAFlightForm extends Page {
     @FindBy(xpath = "//div[@id='return-date-div']")
     private WebElement fieldReturnDateVisibality;
 
+    @FindBy(css = "#return-date-div label")
+    private WebElement returnDateLabel;
+
 
     public BookAFlightForm(WebDriver driver) {
         super(driver);
@@ -90,6 +94,7 @@ public class BookAFlightForm extends Page {
 
     private BookAFlightForm setReturnDate(int returnDateDelta) {
         setReturnDate(DateGenerator.getDate(returnDateDelta));
+        returnDateLabel.click();
         return this;
     }
 

@@ -43,7 +43,7 @@ public class PreparationSteps {
         System.out.println("Passed to start URL ");
         startPage = new StartPage(driver);
         System.out.println(startPage.getTitle());
-        startPage.getScreenShot();
+    //    startPage.getScreenShot();
     }
 
     @AfterMethod
