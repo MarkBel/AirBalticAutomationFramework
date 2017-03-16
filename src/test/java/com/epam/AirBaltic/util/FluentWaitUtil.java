@@ -36,6 +36,7 @@ public class FluentWaitUtil {
         return element;
     }
 
+
     public WebElement waitForVisibilityOfElement(WebElement element){
         waitFluent.until(ExpectedConditions.visibilityOf(element));
         return element;
