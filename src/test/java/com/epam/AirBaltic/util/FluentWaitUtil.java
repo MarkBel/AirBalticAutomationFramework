@@ -23,7 +23,7 @@ public class FluentWaitUtil {
         this.driverWait = driver;
         wait = new WebDriverWait(this.driverWait, WAIT_15_SEC).ignoring(StaleElementReferenceException.class, WebDriverException.class)
                 .withMessage("Element was not found by locator!");
-        waitFluent = new org.openqa.selenium.support.ui.FluentWait<>(driver).withTimeout(15, TimeUnit.MINUTES).pollingEvery(2, TimeUnit.MINUTES).ignoring(ElementNotFoundException.class);
+        waitFluent = new org.openqa.selenium.support.ui.FluentWait<>(driver).withTimeout(15, TimeUnit.SECONDS).pollingEvery(2, TimeUnit.SECONDS).ignoring(ElementNotFoundException.class);
     }
 
     public WebElement waitForElementIsClickable(WebElement element){
