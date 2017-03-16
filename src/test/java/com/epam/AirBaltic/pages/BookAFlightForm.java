@@ -152,9 +152,7 @@ public class BookAFlightForm extends Page {
     public boolean checkOneWayTripAction(String originAirport, String destinationAirport, String RETURN_DATE_ATTRIBUTE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
-        if (btnBookAndFlights.isDisplayed()) {
-            btnBookAndFlights.click();
-        }
+        pressFindFlightsButton();
         radioBtnOneWayTrip.click();
         return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
@@ -162,9 +160,7 @@ public class BookAFlightForm extends Page {
     public boolean checkNumberInfactsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION,int returnDateDelta) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
-        if (btnBookAndFlights.isDisplayed()) {
-            btnBookAndFlights.click();
-        }
+        pressFindFlightsButton();
         setReturnDate(returnDateDelta);
         addTwoInfants();
         btnBookandFlighAction.click();
