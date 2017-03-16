@@ -86,6 +86,7 @@ public class BookAFlightForm extends Page {
         if (btnBookAndFlights.isDisplayed()) {
             btnBookAndFlights.click();
         }
+        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(AdditionalConditions.jQueryCompleted());
     }
 
     private BookAFlightForm setDepartureDate(int departureDateDelta) {
@@ -157,19 +158,23 @@ public class BookAFlightForm extends Page {
         return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
     }
 
-    public boolean checkNumberInfactsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION,int returnDateDelta) {
+    public boolean checkNumberInfantsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION, int returnDateDelta) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();
         setReturnDate(returnDateDelta);
         addTwoInfants();
-        btnBookandFlighAction.click();
+        clickFindFlightsFaresButton();
         new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
-        String outputText = inputNumberOfInfantsError.getText();
-        logger.info("In fact error message is: " + outputText);
-        String textMessage = outputText.substring(0, outputText.indexOf('(') - 1);
-        logger.info("Processed message is: "+ textMessage);
-        return textMessage.equals(ERROR_INPUT_EXCEPTION);
+        if (inputNumberOfInfantsError.isDisplayed()) {
+            String outputText = inputNumberOfInfantsError.getText();
+            logger.info("In fact error message is: " + outputText);
+            String textMessage = outputText.substring(0, outputText.indexOf('(') - 1);
+            logger.info("Processed message is: " + textMessage);
+            return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);
+        }
+        logger.info("Error message is not displayed");
+        return false;
     }
 
     private void addTwoInfants() {
