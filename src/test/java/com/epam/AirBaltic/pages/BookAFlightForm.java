@@ -35,17 +35,17 @@ public class BookAFlightForm extends Page {
     @FindBy(xpath = "//button[@id='flights-form-btn']")
     private WebElement btnBookAndFlights;
 
-    @FindBy(xpath = "//div[@data-container-id=\"returnDate\"]/input[@id=\"flt_returning_on\"]")
+    @FindBy(xpath = "//div[@data-container-id='returnDate']/input[@id='flt_returning_on']")
     private WebElement inputReturnDate;
 
     @FindBy(xpath = "//span[@id='one_way-styler']")
     private WebElement radioBtnOneWayTrip;
 
     @FindBy(xpath = "//span[@id='flt_returning_on-error']")
-    private WebElement inputError;
+    private WebElement returnDateErrorText;
 
-    @FindBy(xpath = "//td[@id='errors']/span")
-    private WebElement inputNumberOfInfantsError;
+    @FindBy(xpath = "//td[@id='errors']/span[@class='help-block']")
+    private WebElement infantsNumberErrorText;
 
     @FindBy(xpath = "//a[@class=\"dropdown-toggle needsclick\" and text()='0 infants']")
     private WebElement listInfants;
@@ -64,6 +64,11 @@ public class BookAFlightForm extends Page {
 
     @FindBy(css = "#return-date-div label")
     private WebElement returnDateLabel;
+
+    @FindBy(css = "#depDateGroup label")
+    private WebElement departureDateLabel;
+
+    private static int TOMORROW_DAY = 1;
 
 
     public BookAFlightForm(WebDriver driver) {
@@ -90,27 +95,30 @@ public class BookAFlightForm extends Page {
     }
 
     private BookAFlightForm setDepartureDate(int departureDateDelta) {
-        setDepartureDate(DateGenerator.getDate(departureDateDelta));
+        wait.waitForElement(inputDepartureDate).clear();
+        inputDepartureDate.sendKeys(DateGenerator.getDate(departureDateDelta));
+        departureDateLabel.click();
         return this;
     }
 
+//    public BookAFlightForm setDepartureDate(String date) {
+//        wait.waitForElement(inputDepartureDate).clear();
+//        inputDepartureDate.sendKeys(date);
+//        return this;
+//    }
+
     private BookAFlightForm setReturnDate(int returnDateDelta) {
-        setReturnDate(DateGenerator.getDate(returnDateDelta));
+        wait.waitForElement(inputReturnDate).clear();
+        inputReturnDate.sendKeys(DateGenerator.getDate(returnDateDelta));
         returnDateLabel.click();
         return this;
     }
 
-    public BookAFlightForm setDepartureDate(String date) {
-        wait.waitForElement(inputDepartureDate).clear();
-        inputDepartureDate.sendKeys(date);
-        return this;
-    }
-
-    public BookAFlightForm setReturnDate(String date) {
-        wait.waitForElement(inputReturnDate).clear();
-        inputReturnDate.sendKeys(date);
-        return this;
-    }
+//    public BookAFlightForm setReturnDate(String date) {
+//        wait.waitForElement(inputReturnDate).clear();
+//        inputReturnDate.sendKeys(date);
+//        return this;
+//    }
 
     private BookAFlightForm clickFindFlightsFaresButton() {
         wait.waitForElement(buttonFindFlightsFares);
@@ -142,12 +150,10 @@ public class BookAFlightForm extends Page {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();
+        setDepartureDate(TOMORROW_DAY);
         setReturnDate(returnInvalidDateDelta);
         clickFindFlightsFaresButton();
-        if (inputError.isDisplayed()) {
-            return ERROR_MESSAGE.equals(inputError.getText());
-        }
-        return false;
+        return getErrorMessage().equals(ERROR_MESSAGE);
     }
 
     public boolean checkOneWayTripAction(String originAirport, String destinationAirport, String RETURN_DATE_ATTRIBUTE) {
@@ -162,19 +168,25 @@ public class BookAFlightForm extends Page {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();
+        setDepartureDate(TOMORROW_DAY);
         setReturnDate(returnDateDelta);
         addTwoInfants();
         clickFindFlightsFaresButton();
-        new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
-        if (inputNumberOfInfantsError.isDisplayed()) {
-            String outputText = inputNumberOfInfantsError.getText();
-            logger.info("In fact error message is: " + outputText);
-            String textMessage = outputText.substring(0, outputText.indexOf('(') - 1);
-            logger.info("Processed message is: " + textMessage);
-            return inputNumberOfInfantsError.getText().contains(ERROR_INPUT_EXCEPTION);
+        String outputText = getErrorMessage();
+        logger.info("In fact error message is: " + outputText);
+        return getErrorMessage().contains(ERROR_INPUT_EXCEPTION);
+    }
+
+    private String getErrorMessage() {
+        String errorMsg;
+        if (infantsNumberErrorText.isDisplayed()) {
+            errorMsg = infantsNumberErrorText.getText();
+        } else if (returnDateErrorText.isDisplayed()) {
+            errorMsg = returnDateErrorText.getText();
+        } else {
+            errorMsg = "";
         }
-        logger.info("Error message is not displayed");
-        return false;
+        return errorMsg;
     }
 
     private void addTwoInfants() {
