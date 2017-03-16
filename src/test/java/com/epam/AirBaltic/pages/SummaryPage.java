@@ -45,6 +45,7 @@ public class SummaryPage extends Page {
     }
 
     public boolean termsAndConditionsNotAccepted() {
+        wait.waitForElementIsClickable(submitButton);
         submitButton.click();
         wait.waitForVisibilityOfElement(termsAndConditionsError);
         return termsAndConditionsError.getText().contains(ERROR_TERMS_AND_CONDITIONS_EXCEPTION);
