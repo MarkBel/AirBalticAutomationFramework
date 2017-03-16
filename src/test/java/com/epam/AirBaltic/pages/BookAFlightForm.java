@@ -2,7 +2,8 @@ package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.util.AdditionalConditions;
 import com.epam.AirBaltic.util.DateGenerator;
-import com.epam.AirBaltic.webContainers.DatePickerContainer;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +36,7 @@ public class BookAFlightForm extends Page {
     @FindBy(xpath = "//button[@id='flights-form-btn']")
     private WebElement btnBookAndFlights;
 
-    @FindBy(xpath = "//div[@data-container-id=\"returnDate\"]/input[@id=\"flt_returning_on\"]")
+    @FindBy(css = "#flt_returning_on")
     private WebElement inputReturnDate;
 
     @FindBy(xpath = "//span[@id='one_way-styler']")
@@ -62,8 +63,10 @@ public class BookAFlightForm extends Page {
     @FindBy(xpath = "//div[@id='return-date-div']")
     private WebElement fieldReturnDateVisibality;
 
-    @FindBy(xpath = "//div[@class='inline-datepicker-container'][@data-container-id='returnDate']")
-    private DatePickerContainer inputDateField;
+    private static final By SOFT_KEYBOARD_RETURN = By.xpath("//div[@id='return-date-div']//a[@class='needsclick soft-keyboard-controller']");
+    private static final String DD_DATE_PICKER_RETURN_SELECTOR = "//div[@class='needsclick input-group date-picker-to-main dp-inline-version hasDatepicker']";
+    private static final By DD_DATE_PICKER_RETURN = By.xpath(DD_DATE_PICKER_RETURN_SELECTOR);
+
 
     public BookAFlightForm(WebDriver driver) {
         super(driver);
@@ -94,6 +97,9 @@ public class BookAFlightForm extends Page {
 
     private BookAFlightForm setReturnDate(int returnDateDelta) {
         setReturnDate(DateGenerator.getDate(returnDateDelta));
+        if (driver.findElement(DD_DATE_PICKER_RETURN).isDisplayed()) {
+            clickOnElementWithJS(driver.findElement(SOFT_KEYBOARD_RETURN));
+        }
         return this;
     }
 
@@ -103,14 +109,9 @@ public class BookAFlightForm extends Page {
         return this;
     }
 
-
-
-    public BookAFlightForm setReturnDate(String date) {
-        wait.waitForElement(inputDateField).clear();
-        inputDateField.sendKeys(date);
-        if (inputDateField.isDatePickerDisplayed()) {
-            inputDateField.clickSKController();
-        }
+    private BookAFlightForm setReturnDate(String date) {
+        wait.waitForElement(inputReturnDate).clear();
+        inputReturnDate.sendKeys(date);
         return this;
     }
 
@@ -145,7 +146,6 @@ public class BookAFlightForm extends Page {
         if (btnBookAndFlights.isDisplayed()) {
             btnBookAndFlights.click();
         }
-        (new WebDriverWait(this.driver, WAIT_3_SEC)).until(AdditionalConditions.jQueryCompleted());
         setReturnDate(returnInvalidDateDelta);
         clickFindFlightsFaresButton();
         return ERROR_MESSAGE.equals(inputError.getText());
@@ -171,6 +171,10 @@ public class BookAFlightForm extends Page {
         }
         (new WebDriverWait(this.driver, WAIT_3_SEC)).until(AdditionalConditions.jQueryCompleted());
         setReturnDate(returnDateDelta);
+        WebElement dataPicker = driver.findElement(DD_DATE_PICKER_RETURN);
+        if (dataPicker.isDisplayed()) {
+            hideDatePickerWithJS(dataPicker);
+        }
         addTwoInfants();
         btnBookandFlighAction.click();
         new WebDriverWait(driver, WAIT_10_SEC).until(ExpectedConditions.visibilityOf(inputNumberOfInfantsError));
@@ -183,5 +187,32 @@ public class BookAFlightForm extends Page {
         (new WebDriverWait(this.driver, WAIT_3_SEC)).until(ExpectedConditions.elementToBeClickable(numberOfInfants));
         numberOfInfants.click();
     }
+
+    public void setDatepickerDate (WebDriver driver, String cssSelector, String date) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(String.format("$('%s').datepicker('setDate', '%s')", cssSelector, date));
+    }
+//    needsclick.input-group.date-picker-to-main.dp-inline-version.hasDatepicker
+//    public void hideDatePickerWithJS(WebDriver driver, String cssSelector) {
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript(String.format("$('%s').datepicker('hide')", cssSelector));
+//
+//    }
+    public void hideDatePickerWithJS(WebElement webElement) {
+        String cssSelector;
+        cssSelector = String.format("div#%s.needsclick.input-group.date-picker-to-main.dp-inline-version.hasDatepicker",
+                                                webElement.getAttribute("id") );
+//        JavascriptExecutor js = JavascriptExecutor.class.cast(driver);
+//        js.executeScript(String.format("$('%s').datepicker('hide');", cssSelector));
+
+        JavascriptExecutor.class.cast(driver).executeScript(String.format("$('%s').datepicker('setDate', '%s');", cssSelector, "04/16/2017"));
+//        Object date1 = JavascriptExecutor.class.cast(driver).executeScript(String.format("$('%s').datepicker('getDate');", cssSelector));
+    }
+
+
+//    public void hideDatePickerWithJS(WebElement webElement) {
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].datepicker('hide');", webElement);
+//    }
 
 }
