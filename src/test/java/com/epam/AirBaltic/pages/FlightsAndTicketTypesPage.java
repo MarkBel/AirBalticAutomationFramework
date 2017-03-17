@@ -18,9 +18,9 @@ public class FlightsAndTicketTypesPage extends Page {
     private static double departurePrice;
     private static double returnPrice;
 
-    private static final By detailedFire = By.cssSelector(".fare-item-detailed");
-    private static final By fire = By.cssSelector(".expandable>a");
-    private static final By tariffFire = By.cssSelector(".line>span+span");
+    private static final By DETAILED_FIRE = By.cssSelector(".fare-item-detailed");
+    private static final By FIRE = By.cssSelector(".expandable>a");
+    private static final By TARIFF_FIRE = By.cssSelector(".line>span+span");
 
     public static double getDeparturePrice() {
         return departurePrice;
@@ -65,13 +65,13 @@ public class FlightsAndTicketTypesPage extends Page {
 
     public Boolean isFareConditionObserved(double saleForChildTicket, int deltaForChildTicket) {
         checkCorrectPage();
-        List<WebElement> listOfTotalPrices = driver.findElements(fire);
+        List<WebElement> listOfTotalPrices = driver.findElements(FIRE);
         for (WebElement element : listOfTotalPrices) {
             element.sendKeys(Keys.ENTER);
         }
-        List<WebElement> listOfDetailedPrices = driver.findElements(detailedFire);
-        double adultFare = Double.parseDouble(listOfDetailedPrices.get(0).findElement(tariffFire).getText().replace(" €", ""));
-        double childFare = Double.parseDouble(listOfDetailedPrices.get(1).findElement(tariffFire).getText().replace(" €", ""));
+        List<WebElement> listOfDetailedPrices = driver.findElements(DETAILED_FIRE);
+        double adultFare = Double.parseDouble(listOfDetailedPrices.get(0).findElement(TARIFF_FIRE).getText().replace(" €", ""));
+        double childFare = Double.parseDouble(listOfDetailedPrices.get(1).findElement(TARIFF_FIRE).getText().replace(" €", ""));
         return (childFare >= adultFare * saleForChildTicket - deltaForChildTicket && childFare <= adultFare * saleForChildTicket + deltaForChildTicket);
     }
 
