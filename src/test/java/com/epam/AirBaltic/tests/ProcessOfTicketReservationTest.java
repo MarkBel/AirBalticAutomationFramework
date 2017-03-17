@@ -19,7 +19,7 @@ public class ProcessOfTicketReservationTest extends PreparationSteps {
                 .goToFlightsAndTicketTypesPage()
                 .goToPassengersPage()
                 .goToTravelExtrasPage()
-                .isOneSeatSelected(), "Two seats are chosen!");
+                .isTwoSeatsForOnePersonCanBeSelected(), "Two seats are chosen!");
     }
 
     @Test

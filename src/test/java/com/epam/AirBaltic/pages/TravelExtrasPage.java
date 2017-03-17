@@ -28,7 +28,8 @@ public class TravelExtrasPage extends Page {
     @FindBy(css = "div>#btn-continue-booking")
     private WebElement continueButton;
 
-    @FindBy(xpath = "//div[@class='seats-map']//table[contains(@class,'map-plane')]//td/div[contains(@class,'seat-available')]")
+    @FindBy(xpath = "//div[@class='seats-map']/div[@class='map-container']/table[@class='map-plane']" +
+            "/tbody/tr/td/div[contains(@class,'seat-available') and not(contains(@class,'open-popup-link'))]")
     private List<WebElement> availableSeats;
 
 
@@ -43,14 +44,18 @@ public class TravelExtrasPage extends Page {
         return new SummaryPage(driver);
     }
 
-    public boolean isOneSeatSelected() {
+    public boolean isTwoSeatsForOnePersonCanBeSelected() {
         (new WebDriverWait(this.driver, WAIT_5_SEC)).until(AdditionalConditions.
                 jQueryCompleted());
-//        wait.waitForElementIsClickable(availableSeats.get(0)).click();
-//        wait.waitForElementIsClickable(availableSeats.get(1)).click();
-        clickOnElementWithJS(availableSeats.get(0));
-        clickOnElementWithJS(availableSeats.get(1));
-        return availableSeats.get(0).isSelected();
+        if (availableSeats.size() > 1) {
+            availableSeats.get(0).click();
+            availableSeats.get(1).click();
+//        clickOnElementWithJS(availableSeats.get(0));
+//        clickOnElementWithJS(availableSeats.get(1));
+            return availableSeats.get(0).isSelected();
+        }
+        logger.info("Flight have less then two available seats. Change date of departure");
+        return false;
     }
 
     private double parseTotalPrice() {
