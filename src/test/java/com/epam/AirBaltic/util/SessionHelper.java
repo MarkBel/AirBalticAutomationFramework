@@ -6,11 +6,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
 import org.apache.commons.io.FileUtils;
@@ -38,12 +41,12 @@ public class SessionHelper {
                 capabilities = DesiredCapabilities.firefox();
                 capabilities.setCapability("marionette", true);
                 capabilities.setBrowserName("firefox");
-                FirefoxOptions options = new FirefoxOptions();
-//                options.addPreference("log", "{\"level\": \"error\"}");
-                options.setLogLevel(Level.SEVERE);
-//                options.AddAdditionalCapability(CapabilityType.LOGGING_PREFS, "INFO");
-                capabilities.setCapability("moz:firefoxOptions", options);
-                System.out.println(capabilities.toString());
+                LoggingPreferences logPrefs = new LoggingPreferences();
+                logPrefs.enable("driver", Level.SEVERE);
+                logPrefs.enable("server", Level.SEVERE);
+                logPrefs.enable("browser", Level.SEVERE);
+                capabilities.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+//               System.out.println(capabilities.toString());
                 break;
             default:
                 System.out.println("Browser is not supported");

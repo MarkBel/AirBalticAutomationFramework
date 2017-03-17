@@ -38,7 +38,7 @@ public class PreparationSteps {
     @BeforeMethod
     public void initWebDriver() throws InterruptedException {
         driver = DriverSingleton.getDriver(capabilities);
-        System.out.println("Switch-over to PreparationSteps ofter running webdriver");
+        System.out.println("Switch-over to PreparationSteps after running webdriver");
         driver.navigate().to(START_PAGE_URL);
         System.out.println("Passed to start URL ");
         startPage = new StartPage(driver);

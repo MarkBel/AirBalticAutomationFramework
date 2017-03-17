@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.driver;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -27,7 +28,7 @@ public class DriverSingleton {
                     break;
             }
         }
-        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//        webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         System.out.println("Webdriver started");
         return webDriver;
     }
@@ -36,4 +37,13 @@ public class DriverSingleton {
         webDriver.quit();
         webDriver = null;
     }
+
+    private static void maximizeFirefoxWnd() {
+        ((JavascriptExecutor) webDriver).executeScript("if(window.screen)" +
+                "{window.moveTo(0, 0);" +
+                "window.resizeTo(window.screen.availWidth, window.screen.availHeight)" +
+                ";};");
+    }
+
+
 }

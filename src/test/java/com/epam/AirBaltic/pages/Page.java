@@ -54,7 +54,10 @@ public abstract class Page {
     }
 
     public boolean isElementPresent(By by) {
-        return driver.findElements(by).size() > 0;
+//        this.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        boolean result =  driver.findElements(by).size() > 0;
+//        this.driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        return result;
     }
 
     public void getScreenShot() {

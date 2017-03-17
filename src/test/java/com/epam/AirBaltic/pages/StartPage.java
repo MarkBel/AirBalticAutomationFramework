@@ -1,14 +1,10 @@
 package com.epam.AirBaltic.pages;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -51,15 +47,13 @@ public class StartPage extends Page {
     @FindBy(xpath = "//div[@class='footer-menu col-md-7 col-lg-7']/a[3]")
     public WebElement linkCareer;
 
-    private static final By buttonClose = By.xpath("//div[@class='insider-opt-in-notification-button insider-opt-in-disallow-button']");
-
     private static final By LINK_LOGIN_FORM = By.id("myairbaltic-href");
     private static final By LINK_DD_USERMENU = By.cssSelector("a#dropdownMenu3.dropdown-toggle");
     private static final By POPUP_NOTHANKS_BUTTON = By.cssSelector("div.insider-opt-in-notification-button.insider-opt-in-disallow-button");
 
     public StartPage(WebDriver driver) {
         super(driver);
-        closePopUpWindow();
+        closeUnwantedPopUpWindow();
     }
 
 
@@ -127,29 +121,13 @@ public class StartPage extends Page {
         logger.info("Opened page with title " + this.getTitle());
     }
 
-    public void closePopUpWindow()
-    {
-        if(isElementPresent(buttonClose,driver))
+    public void closeUnwantedPopUpWindow() {
+        if(isElementPresent(POPUP_NOTHANKS_BUTTON))
         {
-            WebElement element = driver.findElement(buttonClose);
+            WebElement element = driver.findElement(POPUP_NOTHANKS_BUTTON);
             element.click();
         }
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
-    public static boolean isElementPresent(By by,WebDriver driver)
-    {
-        boolean present;
-        try
-        {
-            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-            driver.findElement(by);
-            present = true;
-        }catch (NoSuchElementException e)
-        {
-            present = false;
-        }
-        return present;
-    }
 
 }
