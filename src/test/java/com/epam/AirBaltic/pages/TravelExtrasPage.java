@@ -45,7 +45,7 @@ public class TravelExtrasPage extends Page {
     }
 
     public boolean isTwoSeatsForOnePersonCanBeSelected() {
-        (new WebDriverWait(this.driver, WAIT_5_SEC)).until(AdditionalConditions.
+        (new WebDriverWait(this.driver, WAIT_15_SEC)).until(AdditionalConditions.
                 jQueryCompleted());
         if (availableSeats.size() > 1) {
             availableSeats.get(0).click();

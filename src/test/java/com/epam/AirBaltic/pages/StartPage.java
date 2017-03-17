@@ -126,6 +126,8 @@ public class StartPage extends Page {
         {
             WebElement element = driver.findElement(POPUP_NOTHANKS_BUTTON);
             element.click();
+            (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
+                    elementToBeClickable(linkFlights));
         }
     }
 
