@@ -96,19 +96,19 @@ public class StartPage extends Page {
 
     }
 
-    public void clickFlightsLink() {
+    private void clickFlightsLink() {
         linkFlights.click();
         logger.info("Opened page with title " + this.getTitle());
     }
 
-    public void clickYouthOfferLink() {
+    private void clickYouthOfferLink() {
         linkYouthOffer.click();
         logger.info("Opened page with title " + this.getTitle());
     }
 
     public YouthOfferPage gotoYouthOfferPageByLink() {
         this.clickFlightsLink();
-        (new WebDriverWait(this.driver, WAIT_3_SEC)).until(ExpectedConditions.
+        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
                 visibilityOf(linkYouthOffer));
         this.clickYouthOfferLink();
         return new YouthOfferPage(this.driver);
@@ -121,7 +121,7 @@ public class StartPage extends Page {
         logger.info("Opened page with title " + this.getTitle());
     }
 
-    public void closeUnwantedPopUpWindow() {
+    private void closeUnwantedPopUpWindow() {
         if(isElementPresent(POPUP_NOTHANKS_BUTTON))
         {
             WebElement element = driver.findElement(POPUP_NOTHANKS_BUTTON);

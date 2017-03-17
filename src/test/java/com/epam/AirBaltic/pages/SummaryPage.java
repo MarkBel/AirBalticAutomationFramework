@@ -35,18 +35,15 @@ public class SummaryPage extends Page {
     }
 
     public SummaryPage choosePaymentMethod() {
-        additionalButton.click();
-        wait.waitForElementIsClickable(paymentMethodLocator);
-        paymentMethodLocator.click();
-        wait.waitForElementIsClickable(selectCreditCard);
-        selectCreditCard.click();
+        wait.waitForElementIsClickable(additionalButton).click();
+        wait.waitForElementIsClickable(paymentMethodLocator).click();
+        wait.waitForElementIsClickable(selectCreditCard).click();
         return new SummaryPage(driver);
 
     }
 
     public boolean termsAndConditionsNotAccepted() {
-        wait.waitForElementIsClickable(submitButton);
-        submitButton.click();
+        wait.waitForElementIsClickable(submitButton).click();
         wait.waitForVisibilityOfElement(termsAndConditionsError);
         return termsAndConditionsError.getText().contains(ERROR_TERMS_AND_CONDITIONS_EXCEPTION);
     }

@@ -20,9 +20,11 @@ public class DriverSingleton {
                     break;
                 case "firefox":
                     webDriver = new FirefoxDriver(cap);
+                    webDriver.manage().window().maximize();
                     break;
                 default:
                     webDriver = new FirefoxDriver(cap);
+                    webDriver.manage().window().maximize();
                     break;
             }
         }

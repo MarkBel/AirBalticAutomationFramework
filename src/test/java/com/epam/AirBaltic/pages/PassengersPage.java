@@ -23,9 +23,8 @@ public class PassengersPage extends Page {
 
 
     public TravelExtrasPage goToTravelExtrasPage() {
-        inputFirstName.click();
-        wait.waitForElementIsClickable(continueButton);
-        continueButton.click();
+        wait.waitForElementIsClickable(inputFirstName).click();
+        wait.waitForElementIsClickable(continueButton).click();
         return new TravelExtrasPage(driver);
     }
 

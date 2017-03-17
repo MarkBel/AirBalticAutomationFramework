@@ -76,8 +76,7 @@ public class FlightsAndTicketTypesPage extends Page {
     }
 
     public PassengersPage goToPassengersPage() {
-        wait.waitForVisibilityOfElement(continueButton);
-        continueButton.click();
+        wait.waitForVisibilityOfElement(continueButton).click();
         return new PassengersPage(driver);
     }
 }

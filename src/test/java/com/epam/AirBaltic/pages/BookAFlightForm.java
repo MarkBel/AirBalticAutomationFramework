@@ -121,8 +121,7 @@ public class BookAFlightForm extends Page {
 //    }
 
     private BookAFlightForm clickFindFlightsFaresButton() {
-        wait.waitForElement(buttonFindFlightsFares);
-        buttonFindFlightsFares.click();
+        wait.waitForElement(buttonFindFlightsFares).click();
         (new WebDriverWait(this.driver, WAIT_10_SEC)).until(AdditionalConditions.jQueryCompleted());
         return this;
     }
