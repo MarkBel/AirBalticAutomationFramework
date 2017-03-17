@@ -1,7 +1,5 @@
 package com.epam.AirBaltic.tests;
 
-import com.epam.AirBaltic.pages.*;
-import com.epam.AirBaltic.util.PropertyLoader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,7 +18,7 @@ public class PriceTest extends PreparationSteps {
                 .login(USER_NAME, USER_PASSWORD)
                 .getLoginStatement()
                 .goToBookAFlightForm()
-                .fillBookAndFlightForm(originAirport, destinationAirport, departureDateDelta, returnDateDelta)
+                .fillBookAndFlightForm(ORIGIN_AIRPORT, DESTINATION_AIRPORT, DEPARTURE_DATE_DELTA, RETURN_DATE_DELTA)
                 .goToFlightsAndTicketTypesPage()
                 .acceptFare()
                 .goToTravelExtrasPage()
@@ -31,7 +29,7 @@ public class PriceTest extends PreparationSteps {
     public void childTicketIs25PercentLessThanAdult() {
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
-                .fillBookAndFlightForm(originAirport, destinationAirport, departureDateDelta, returnDateDelta)
+                .fillBookAndFlightForm(ORIGIN_AIRPORT, DESTINATION_AIRPORT, DEPARTURE_DATE_DELTA, RETURN_DATE_DELTA)
                 .addChild()
                 .goToFlightsAndTicketTypesPage()
                 .isFareConditionObserved(saleForChildTicket, deltaForChildTicket), "The condition about child fare towards adult fare is't conformed!");

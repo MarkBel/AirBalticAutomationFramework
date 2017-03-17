@@ -16,14 +16,14 @@ public class BookAFlightFormTest extends PreparationSteps {
     public void returnDateIsLessThanDepartureTest() {
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
-                .checkReturnDate(originAirport,destinationAirport,returnUnvalidDateDelta,ERROR_MESSAGE),"Return date has an invalid meaning!");
+                .checkReturnDate(ORIGIN_AIRPORT, DESTINATION_AIRPORT, RETURN_UNVALID_DATE_DELTA,ERROR_MESSAGE),"Return date has an invalid meaning!");
     }
 
     @Test
     public void oneCanSeeReturnDateTest() {
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
-                .checkOneWayTripAction(originAirport,destinationAirport,RETURN_DATE_ATTRIBUTE), "Visability of Return date is visible!");
+                .checkOneWayTripAction(ORIGIN_AIRPORT, DESTINATION_AIRPORT,RETURN_DATE_ATTRIBUTE), "Visability of Return date is visible!");
     }
 
     @Test
@@ -31,7 +31,7 @@ public class BookAFlightFormTest extends PreparationSteps {
     {
         Assert.assertTrue(startPage
                 .goToBookAFlightForm()
-                .checkNumberInfantsTickets(originAirport,destinationAirport,ERROR_INPUT_EXCEPTION,returnDateDelta),"Number of infants can't be higher than number of adults!");
+                .checkNumberInfantsTickets(ORIGIN_AIRPORT, DESTINATION_AIRPORT,ERROR_INPUT_EXCEPTION, RETURN_DATE_DELTA),"Number of infants can't be higher than number of adults!");
     }
 
 }

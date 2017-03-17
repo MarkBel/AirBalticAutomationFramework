@@ -21,11 +21,11 @@ public class PreparationSteps {
     protected static final String NEW_SURNAME = PropertyLoader.getProperty("editProfilePage.newSurname");
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
     protected static final String USER_PASSWORD = PropertyLoader.getProperty("user.password");
-    protected static final String originAirport = "Riga (RIX) - Latvia";
-    protected static final String destinationAirport = "Berlin (Tegel) (TXL) - Germany";
-    protected static final int departureDateDelta = 2;
-    protected static final int returnDateDelta = 5;
-    protected static final int returnUnvalidDateDelta = -5;
+    protected static final String ORIGIN_AIRPORT = "Riga (RIX) - Latvia";
+    protected static final String DESTINATION_AIRPORT = "Berlin (Tegel) (TXL) - Germany";
+    protected static final int DEPARTURE_DATE_DELTA = 2;
+    protected static final int RETURN_DATE_DELTA = 5;
+    protected static final int RETURN_UNVALID_DATE_DELTA = -5;
 
     @BeforeSuite
     public void initTestSuite() throws IOException {
