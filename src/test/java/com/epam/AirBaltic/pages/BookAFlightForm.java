@@ -2,12 +2,14 @@ package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.util.AdditionalConditions;
 import com.epam.AirBaltic.util.DateGenerator;
-import org.openqa.selenium.By;
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 /**
  * Created by Kseniya_Kunda on 3/1/2017.
@@ -50,8 +52,8 @@ public class BookAFlightForm extends Page {
     @FindBy(xpath = "//a[@class=\"dropdown-toggle needsclick\" and text()='0 infants']")
     private WebElement listInfants;
 
-    @FindBy(xpath = "//div[@id='mCSB_3_container']/li[3]/a")
-    private WebElement numberOfInfants;
+    @FindBy(xpath = "//div[@id='mCSB_3_container']/li/a")
+    private List<WebElement> listNumberOfInfants;
 
     @FindBy(xpath = "//button[@class='btn btn-default light-elem-btn button-green findflights-btn']")
     private WebElement btnBookandFlighAction;
@@ -121,8 +123,9 @@ public class BookAFlightForm extends Page {
 //    }
 
     private BookAFlightForm clickFindFlightsFaresButton() {
-        wait.waitForElement(buttonFindFlightsFares).click();
-        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(AdditionalConditions.jQueryCompleted());
+        wait.waitForElementIsClickable(buttonFindFlightsFares).click();
+//       (new WebDriverWait(this.driver, WAIT_10_SEC)).until(AdditionalConditions.jQueryCompleted());
+//        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.invisibilityOf(buttonFindFlightsFares));
         return this;
     }
 
@@ -151,16 +154,18 @@ public class BookAFlightForm extends Page {
         pressFindFlightsButton();
         setDepartureDate(TOMORROW_DAY);
         setReturnDate(returnInvalidDateDelta);
-        clickFindFlightsFaresButton();
+        inputReturnDate.submit();
+//        clickFindFlightsFaresButton();
         return getErrorMessage().equals(ERROR_MESSAGE);
     }
 
-    public boolean checkOneWayTripAction(String originAirport, String destinationAirport, String RETURN_DATE_ATTRIBUTE) {
+    public boolean checkOneWayTripReturnDateVisibility(String originAirport, String destinationAirport, String RETURN_DATE_ATTRIBUTE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();
-        radioBtnOneWayTrip.click();
-        return RETURN_DATE_ATTRIBUTE.equals(fieldReturnDateVisibality.getAttribute("style"));
+        wait.waitForElementIsClickable(radioBtnOneWayTrip).click();
+        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(AdditionalConditions.jQueryCompleted());
+        return fieldReturnDateVisibality.isDisplayed();
     }
 
     public boolean checkNumberInfantsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION, int returnDateDelta) {
@@ -169,10 +174,13 @@ public class BookAFlightForm extends Page {
         pressFindFlightsButton();
         setDepartureDate(TOMORROW_DAY);
         setReturnDate(returnDateDelta);
-        addTwoInfants();
+        addInfants(2);
         clickFindFlightsFaresButton();
-        String outputText = getErrorMessage();
-        logger.info("In fact error message is: " + outputText);
+        (new WebDriverWait(this.driver, WAIT_10_SEC)).ignoring(ElementNotFoundException.class).
+                                            until(ExpectedConditions.visibilityOf(infantsNumberErrorText));
+//        wait.waitForElement(buttonFindFlightsFares);
+//        String outputText = getErrorMessage();
+//        logger.info("In fact error message is: " + outputText);
         return getErrorMessage().contains(ERROR_INPUT_EXCEPTION);
     }
 
@@ -188,9 +196,9 @@ public class BookAFlightForm extends Page {
         return errorMsg;
     }
 
-    private void addTwoInfants() {
-        listInfants.click();
-        numberOfInfants.click();
+    private void addInfants(int number) {
+        wait.waitForElementIsClickable(listInfants).click();
+        wait.waitForElementIsClickable(listNumberOfInfants.get(number + 1)).click();
     }
 
 }

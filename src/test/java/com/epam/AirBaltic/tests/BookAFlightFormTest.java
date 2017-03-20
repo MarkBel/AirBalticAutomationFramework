@@ -21,9 +21,9 @@ public class BookAFlightFormTest extends PreparationSteps {
 
     @Test
     public void oneCanSeeReturnDateTest() {
-        Assert.assertTrue(startPage
+        Assert.assertFalse(startPage
                 .goToBookAFlightForm()
-                .checkOneWayTripAction(ORIGIN_AIRPORT, DESTINATION_AIRPORT,RETURN_DATE_ATTRIBUTE), "Visability of Return date is visible!");
+                .checkOneWayTripReturnDateVisibility(ORIGIN_AIRPORT, DESTINATION_AIRPORT,RETURN_DATE_ATTRIBUTE), "Visability of Return date is visible!");
     }
 
     @Test
