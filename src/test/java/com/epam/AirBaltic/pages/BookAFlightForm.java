@@ -148,7 +148,7 @@ public class BookAFlightForm extends Page {
         return this;
     }
 
-    public boolean checkReturnDate(String originAirport, String destinationAirport, int returnInvalidDateDelta, String ERROR_MESSAGE) {
+    public boolean isReturnDateIncorrect(String originAirport, String destinationAirport, int returnInvalidDateDelta, String ERROR_MESSAGE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();
@@ -159,7 +159,7 @@ public class BookAFlightForm extends Page {
         return getErrorMessage().equals(ERROR_MESSAGE);
     }
 
-    public boolean checkOneWayTripReturnDateVisibility(String originAirport, String destinationAirport, String RETURN_DATE_ATTRIBUTE) {
+    public boolean isOneWayTripReturnDateDisplayed(String originAirport, String destinationAirport, String RETURN_DATE_ATTRIBUTE) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();
@@ -168,7 +168,7 @@ public class BookAFlightForm extends Page {
         return fieldReturnDateVisibality.isDisplayed();
     }
 
-    public boolean checkNumberInfantsTickets(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION, int returnDateDelta) {
+    public boolean isNumberInfantsTicketsIncorrect(String originAirport, String destinationAirport, String ERROR_INPUT_EXCEPTION, int returnDateDelta) {
         choseCountryFrom(originAirport);
         choseCountryTo(destinationAirport);
         pressFindFlightsButton();

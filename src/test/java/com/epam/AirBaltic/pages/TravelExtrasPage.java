@@ -16,7 +16,8 @@ import java.util.List;
 public class TravelExtrasPage extends Page {
 
     private static final String EURO_SPLITTERS = "[€ ]";
-    private By TOTAL_PRICE_CONTAINER = By.xpath("//div[@class='fare-bottom']//span[2]");
+    @FindBy(xpath = "//*[@id=\"your-selection\"]/div[3]/div/div[2]/div/div/span[2]")
+    private WebElement totalPrice;
 
     @FindBy(xpath = "//*[contains(text(), 'Seat me anywhere')]")
     private WebElement seatMeAnyWhereButton;
@@ -55,11 +56,12 @@ public class TravelExtrasPage extends Page {
     }
 
     private double parseTotalPrice() {
-        String totalPriceString = driver.findElement(TOTAL_PRICE_CONTAINER).getText().replaceAll(EURO_SPLITTERS, "");
+        wait.waitForVisibilityOfElement(totalPrice);
+        String totalPriceString = totalPrice.getText().replaceAll(EURO_SPLITTERS, "");
         return Double.parseDouble(totalPriceString);
     }
 
-    public boolean checkSummaryPrice() {
+    public boolean isSummaryPriceCountedCorrect() {
         parseTotalPrice();
         double departmentPrice = FlightsAndTicketTypesPage.getDeparturePrice();
         double returnPrice = FlightsAndTicketTypesPage.getReturnPrice();
