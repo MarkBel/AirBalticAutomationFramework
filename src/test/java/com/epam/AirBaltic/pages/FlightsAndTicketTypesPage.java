@@ -141,6 +141,7 @@ public class FlightsAndTicketTypesPage extends Page {
 
     public PassengersPage acceptFare() {
         if (isPageEnvironmentCorrect()) {
+            wait.waitForElementIsClickable(fireLink);
             findPrices();
             goToPassengersPage();
             return new PassengersPage(driver);
