@@ -31,7 +31,7 @@ public class SnowyPeaksPage extends Page {
     }
 
     public void clickSortOffersByPriceLink() {
-        linkSortOffersByPrice.click();
+        wait.waitForElementIsClickable(linkSortOffersByPrice).click();
     }
 
     public void scrollToPriceTable () {
@@ -43,6 +43,7 @@ public class SnowyPeaksPage extends Page {
     }
 
     public void sortOffersByPrice() {
+
         if (!isOffersSortedByPriceDsc()){
             clickSortOffersByPriceLink();
         }

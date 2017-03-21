@@ -109,8 +109,8 @@ public class StartPage extends Page {
 
     public YouthOfferPage gotoYouthOfferPageByLink() {
         this.clickFlightsLink();
-        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
-                visibilityOf(linkYouthOffer));
+        wait.waitForElementIsClickable(linkYouthOffer);
+        //(new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.visibilityOf(linkYouthOffer));
         this.clickYouthOfferLink();
         return new YouthOfferPage(this.driver);
     }
