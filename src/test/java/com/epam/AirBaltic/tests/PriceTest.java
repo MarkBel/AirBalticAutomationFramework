@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.tests;
 
+import org.openqa.selenium.ElementNotVisibleException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

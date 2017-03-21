@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.AdditionalConditions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +15,9 @@ public class FlightsAndTicketTypesPage extends Page {
 
     @FindBy(css = "div>.btn-continue-booking")
     private WebElement continueButton;
+
+    @FindBy(css = ".expandable>a")
+    private WebElement fireLink;
 
     private final String LOW_FARE_PAGE_TITLE = "Low Fare Calendar | airBaltic";
     private final String FLIGHTS_AND_TICKETS_PAGE_TITLE = "Available flights | airBaltic";
@@ -38,6 +42,11 @@ public class FlightsAndTicketTypesPage extends Page {
     private static final By RET_DATES_LIST = By.xpath("//div[@class='availability-block availability-step-2']" +
                                                             "/div[@class='dates-table return']/table/tbody/tr/td");
 
+
+    public FlightsAndTicketTypesPage(WebDriver driver) {
+        super(driver);
+        (new WebDriverWait(this.driver, WAIT_5_SEC)).until(ExpectedConditions.titleIs(FLIGHTS_AND_TICKETS_PAGE_TITLE));
+    }
 
     private boolean isSelectedDepDateAvailable() {
         return !isElementPresent(DEP_DATE_NOT_AVAIL_ERROR);
@@ -92,10 +101,6 @@ public class FlightsAndTicketTypesPage extends Page {
         return returnPrice;
     }
 
-    public FlightsAndTicketTypesPage(WebDriver driver) {
-        super(driver);
-    }
-
     private boolean isPageEnvironmentCorrect() {
         if (driver.getTitle().equals(LOW_FARE_PAGE_TITLE)) {
             LowFareCalendarPage lowFarePage = new LowFareCalendarPage(driver);
@@ -147,6 +152,13 @@ public class FlightsAndTicketTypesPage extends Page {
 
     public Boolean isFareConditionObserved(double saleForChildTicket, int deltaForChildTicket) {
         if (isPageEnvironmentCorrect()) {
+            logger.info(this.getTitle());
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+            wait.waitForElementIsClickable(fireLink);
             List<WebElement> listOfTotalPrices = driver.findElements(FIRE);
             for (WebElement element : listOfTotalPrices) {
                 element.sendKeys(Keys.ENTER);
