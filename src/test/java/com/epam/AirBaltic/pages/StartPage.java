@@ -108,8 +108,8 @@ public class StartPage extends Page {
     }
 
     public YouthOfferPage gotoYouthOfferPageByLink() {
+        closeUnwantedPopUpWindow();
         this.clickFlightsLink();
-        wait.waitForElementIsClickable(linkYouthOffer);
         //(new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.visibilityOf(linkYouthOffer));
         this.clickYouthOfferLink();
         return new YouthOfferPage(this.driver);
