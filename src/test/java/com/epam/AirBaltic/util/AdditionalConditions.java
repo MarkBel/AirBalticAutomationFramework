@@ -12,8 +12,4 @@ public class AdditionalConditions {
         return driver -> (Boolean) ((JavascriptExecutor) driver).executeScript(JAVA_SCRIPT_EXEC);
     }
 
-
-    public static ExpectedCondition<Boolean> jQueryCompleted_2() {
-        return driver -> (Boolean)((JavascriptExecutor) driver).executeScript(JAVA_SCRIPT_EXEC) ;
-    }
 }
