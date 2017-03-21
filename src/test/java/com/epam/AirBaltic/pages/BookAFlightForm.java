@@ -124,8 +124,7 @@ public class BookAFlightForm extends Page {
 
     private BookAFlightForm clickFindFlightsFaresButton() {
         wait.waitForElementIsClickable(buttonFindFlightsFares).click();
-//       (new WebDriverWait(this.driver, WAIT_10_SEC)).until(AdditionalConditions.jQueryCompleted());
-//        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.invisibilityOf(buttonFindFlightsFares));
+       (new WebDriverWait(this.driver, WAIT_10_SEC)).until(AdditionalConditions.jQueryCompleted());
         return this;
     }
 
@@ -144,7 +143,7 @@ public class BookAFlightForm extends Page {
     }
 
     public BookAFlightForm addChild() {
-        buttonAddChild.click();
+        wait.waitForElement(buttonAddChild).click();
         return this;
     }
 
@@ -155,7 +154,6 @@ public class BookAFlightForm extends Page {
         setDepartureDate(TOMORROW_DAY);
         setReturnDate(returnInvalidDateDelta);
         inputReturnDate.submit();
-//        clickFindFlightsFaresButton();
         return getErrorMessage().equals(ERROR_MESSAGE);
     }
 
@@ -178,9 +176,6 @@ public class BookAFlightForm extends Page {
         clickFindFlightsFaresButton();
         (new WebDriverWait(this.driver, WAIT_10_SEC)).ignoring(ElementNotFoundException.class).
                                             until(ExpectedConditions.visibilityOf(infantsNumberErrorText));
-//        wait.waitForElement(buttonFindFlightsFares);
-//        String outputText = getErrorMessage();
-//        logger.info("In fact error message is: " + outputText);
         return getErrorMessage().contains(ERROR_INPUT_EXCEPTION);
     }
 
