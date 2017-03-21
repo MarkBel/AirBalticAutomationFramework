@@ -21,6 +21,9 @@ public class SnowyPeaksPage extends Page {
     @FindBy(xpath = "//input[@name='flt_origin_text']")
     private WebElement fMenuOrigins;
 
+    @FindBy(xpath = "//div[@class='container']/span")
+    private WebElement cookieContainerPopUpClose;
+
 
     public SnowyPeaksPage(WebDriver webDriver) {
         super(webDriver);
@@ -31,6 +34,7 @@ public class SnowyPeaksPage extends Page {
     }
 
     public void clickSortOffersByPriceLink() {
+        clickOnElementWithJS(cookieContainerPopUpClose);
         wait.waitForElementIsClickable(linkSortOffersByPrice).click();
     }
 
