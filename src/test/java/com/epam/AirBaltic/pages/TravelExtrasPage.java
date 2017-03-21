@@ -1,11 +1,11 @@
 package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.util.AdditionalConditions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -21,6 +21,9 @@ public class TravelExtrasPage extends Page {
 
     @FindBy(xpath = "//*[contains(text(), 'Seat me anywhere')]")
     private WebElement seatMeAnyWhereButton;
+
+    @FindBy(xpath = "//dakaal")
+    private WebElement incorrectFindby;
 
     @FindBy(css = "div>#btn-continue-booking")
     private WebElement continueButton;
@@ -56,7 +59,8 @@ public class TravelExtrasPage extends Page {
     }
 
     private double parseTotalPrice() {
-        wait.waitForVisibilityOfElement(totalPrice);
+        //new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(totalPrice));
+        wait.waitForElementIsClickable(totalPrice);
         String totalPriceString = totalPrice.getText().replaceAll(EURO_SPLITTERS, "");
         return Double.parseDouble(totalPriceString);
     }
