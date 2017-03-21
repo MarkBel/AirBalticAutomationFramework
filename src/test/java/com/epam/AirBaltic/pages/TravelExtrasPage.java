@@ -1,11 +1,11 @@
 package com.epam.AirBaltic.pages;
 
 import com.epam.AirBaltic.util.AdditionalConditions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -16,10 +16,14 @@ import java.util.List;
 public class TravelExtrasPage extends Page {
 
     private static final String EURO_SPLITTERS = "[€ ]";
-    private By TOTAL_PRICE_CONTAINER = By.xpath("//div[@class='fare-bottom']//span[2]");
+    @FindBy(xpath = "//*[@id=\"your-selection\"]/div[3]/div/div[2]/div/div/span[2]")
+    private WebElement totalPrice;
 
     @FindBy(xpath = "//*[contains(text(), 'Seat me anywhere')]")
     private WebElement seatMeAnyWhereButton;
+
+    @FindBy(xpath = "//dakaal")
+    private WebElement incorrectFindby;
 
     @FindBy(css = "div>#btn-continue-booking")
     private WebElement continueButton;
@@ -55,11 +59,13 @@ public class TravelExtrasPage extends Page {
     }
 
     private double parseTotalPrice() {
-        String totalPriceString = driver.findElement(TOTAL_PRICE_CONTAINER).getText().replaceAll(EURO_SPLITTERS, "");
+        //new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(totalPrice));
+        wait.waitForElementIsClickable(totalPrice);
+        String totalPriceString = totalPrice.getText().replaceAll(EURO_SPLITTERS, "");
         return Double.parseDouble(totalPriceString);
     }
 
-    public boolean checkSummaryPrice() {
+    public boolean isSummaryPriceCountedCorrect() {
         parseTotalPrice();
         double departmentPrice = FlightsAndTicketTypesPage.getDeparturePrice();
         double returnPrice = FlightsAndTicketTypesPage.getReturnPrice();

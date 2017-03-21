@@ -28,7 +28,6 @@ public class DriverSingleton {
                     break;
             }
         }
-//        webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         System.out.println("Webdriver started");
         return webDriver;
     }

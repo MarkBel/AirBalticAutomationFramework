@@ -34,7 +34,7 @@ public class FlightsAndTicketTypesPage extends Page {
         super(driver);
     }
 
-    private void checkCorrectPage() {
+    private void isCurrentPageNotLowFares() {
         currentTitle = driver.getTitle();
         if (currentTitle.equals(lowFareTitle)) {
             LowFareCalendarPage lowFarePage = new LowFareCalendarPage(driver);
@@ -57,14 +57,14 @@ public class FlightsAndTicketTypesPage extends Page {
     }
 
     public PassengersPage acceptFare() {
-        checkCorrectPage();
+        isCurrentPageNotLowFares();
         findPrices();
         goToPassengersPage();
         return new PassengersPage(driver);
     }
 
     public Boolean isFareConditionObserved(double saleForChildTicket, int deltaForChildTicket) {
-        checkCorrectPage();
+        isCurrentPageNotLowFares();
         List<WebElement> listOfTotalPrices = driver.findElements(FIRE);
         for (WebElement element : listOfTotalPrices) {
             element.sendKeys(Keys.ENTER);

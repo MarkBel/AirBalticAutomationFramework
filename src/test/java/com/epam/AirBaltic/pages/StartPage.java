@@ -1,5 +1,6 @@
 package com.epam.AirBaltic.pages;
 
+import com.epam.AirBaltic.util.AdditionalConditions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -108,8 +109,8 @@ public class StartPage extends Page {
 
     public YouthOfferPage gotoYouthOfferPageByLink() {
         this.clickFlightsLink();
-        (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
-                visibilityOf(linkYouthOffer));
+        wait.waitForElementIsClickable(linkYouthOffer);
+        //(new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.visibilityOf(linkYouthOffer));
         this.clickYouthOfferLink();
         return new YouthOfferPage(this.driver);
     }
@@ -122,6 +123,8 @@ public class StartPage extends Page {
     }
 
     private void closeUnwantedPopUpWindow() {
+        (new WebDriverWait(this.driver, WAIT_15_SEC)).until(AdditionalConditions.
+                jQueryCompleted());
         if(isElementPresent(POPUP_NOTHANKS_BUTTON))
         {
             WebElement element = driver.findElement(POPUP_NOTHANKS_BUTTON);

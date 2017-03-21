@@ -22,7 +22,7 @@ public class PriceTest extends PreparationSteps {
                 .goToFlightsAndTicketTypesPage()
                 .acceptFare()
                 .goToTravelExtrasPage()
-                .checkSummaryPrice(), "Total price doesn't coincides with sum of departure and return prices.");
+                .isSummaryPriceCountedCorrect(), "Total price doesn't coincides with sum of departure and return prices.");
     }
 
     @Test
