@@ -54,6 +54,7 @@ public class StartPage extends Page {
 
     public StartPage(WebDriver driver) {
         super(driver);
+        wait.waitForElementIsClickable(inptDestTo);
         closeUnwantedPopUpWindow();
     }
 
@@ -98,17 +99,16 @@ public class StartPage extends Page {
     }
 
     private void clickFlightsLink() {
-        linkFlights.click();
+        wait.waitForElementIsClickable(linkFlights).click();
         logger.info("Opened page with title " + this.getTitle());
     }
 
     private void clickYouthOfferLink() {
-        linkYouthOffer.click();
+        wait.waitForElementIsClickable(linkYouthOffer).click();
         logger.info("Opened page with title " + this.getTitle());
     }
 
     public YouthOfferPage gotoYouthOfferPageByLink() {
-        closeUnwantedPopUpWindow();
         this.clickFlightsLink();
         //(new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.visibilityOf(linkYouthOffer));
         this.clickYouthOfferLink();
@@ -125,12 +125,13 @@ public class StartPage extends Page {
     private void closeUnwantedPopUpWindow() {
         (new WebDriverWait(this.driver, WAIT_15_SEC)).until(AdditionalConditions.
                 jQueryCompleted());
-        if(isElementPresent(POPUP_NOTHANKS_BUTTON))
-        {
+        if(isElementPresent(POPUP_NOTHANKS_BUTTON)) {
             WebElement element = driver.findElement(POPUP_NOTHANKS_BUTTON);
-            element.click();
-            (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
-                    elementToBeClickable(linkFlights));
+            if (element.isDisplayed()) {
+                wait.waitForElementIsClickable(element).click();
+                (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
+                        elementToBeClickable(linkFlights));
+            }
         }
     }
 
