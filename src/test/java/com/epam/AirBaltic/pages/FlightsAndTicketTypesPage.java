@@ -45,7 +45,7 @@ public class FlightsAndTicketTypesPage extends Page {
 
     public FlightsAndTicketTypesPage(WebDriver driver) {
         super(driver);
-        (new WebDriverWait(this.driver, WAIT_5_SEC)).until(ExpectedConditions.titleIs(FLIGHTS_AND_TICKETS_PAGE_TITLE));
+        (new WebDriverWait(this.driver, WAIT_15_SEC)).until(ExpectedConditions.titleIs(FLIGHTS_AND_TICKETS_PAGE_TITLE));
     }
 
     private boolean isSelectedDepDateAvailable() {
