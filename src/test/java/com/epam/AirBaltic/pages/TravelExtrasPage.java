@@ -69,6 +69,7 @@ public class TravelExtrasPage extends Page {
         parseTotalPrice();
         double departmentPrice = FlightsAndTicketTypesPage.getDeparturePrice();
         double returnPrice = FlightsAndTicketTypesPage.getReturnPrice();
+        System.out.println(parseTotalPrice());
         boolean result = (parseTotalPrice() == departmentPrice + returnPrice);
         return result;
     }
