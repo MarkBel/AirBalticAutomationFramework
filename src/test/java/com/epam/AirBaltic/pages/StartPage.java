@@ -88,13 +88,13 @@ public class StartPage extends Page {
         return new EditProfilePage(driver);
     }
 
-    public SnowyPeaksPage clickSunnyDestinationLink() {
+    public SunnyDestinationPage clickSunnyDestinationLink() {
         clickOnElementWithJS(linkFlySunnyDestination);
 //        linkFlySnowyPeaks.click();
         (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
                 titleContains("Sunny"));
         logger.info("Opened page with title " + this.getTitle());
-        return new SnowyPeaksPage(this.driver);
+        return new SunnyDestinationPage(this.driver);
 
     }
 

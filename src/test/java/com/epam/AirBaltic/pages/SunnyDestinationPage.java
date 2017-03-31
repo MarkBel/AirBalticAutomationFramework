@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class SnowyPeaksPage extends Page {
+public class SunnyDestinationPage extends Page {
 
     private static final By OFFER_LINE_LOCATOR = By.xpath("//div[@class='flight-line']");
     private static final By PRICE_LOCATOR = By.xpath("//div[@class='price-eur']");
@@ -25,7 +25,7 @@ public class SnowyPeaksPage extends Page {
     private WebElement cookieContainerPopUpClose;
 
 
-    public SnowyPeaksPage(WebDriver webDriver) {
+    public SunnyDestinationPage(WebDriver webDriver) {
         super(webDriver);
     }
 

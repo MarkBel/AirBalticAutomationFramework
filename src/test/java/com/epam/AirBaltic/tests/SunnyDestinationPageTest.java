@@ -1,24 +1,24 @@
 package com.epam.AirBaltic.tests;
 
-import com.epam.AirBaltic.pages.SnowyPeaksPage;
+import com.epam.AirBaltic.pages.SunnyDestinationPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SunnyDestinationPageTest extends PreparationSteps {
 
-    protected SnowyPeaksPage snowyPeaksPage = null;
+    protected SunnyDestinationPage sunnyDestinationPage = null;
 
     @BeforeMethod
     public void jumpToSunnyDestinationPage() {
-        snowyPeaksPage = this.startPage.clickSunnyDestinationLink();
+        sunnyDestinationPage = this.startPage.clickSunnyDestinationLink();
     }
 
     @Test
     public void sortOffersByPriceTest() {
-        snowyPeaksPage.sortOffersByPrice();
+        sunnyDestinationPage.sortOffersByPrice();
 //        snowyPeaksPage.scrollToPriceTable();
 //        snowyPeaksPage.getScreenShot();
-        Assert.assertTrue(snowyPeaksPage.isOffersSortedCorrectly());
+        Assert.assertTrue(sunnyDestinationPage.isOffersSortedCorrectly());
     }
 }
