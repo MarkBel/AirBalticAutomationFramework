@@ -36,7 +36,7 @@ public class StartPage extends Page {
     private WebElement buttonEditMyProfile;
 
     @FindBy(xpath = "//li[2]/a[@id='ancillary-2-en']/span[@class='product-description']/div/strong")
-    public WebElement linkFlySnowyPeaks;  //testcase #6
+    public WebElement linkFlySunnyDestination;  //testcase #6
 
     @FindBy(css = "div.menu-item.drop-flights")
     public WebElement linkFlights;  //testcase #4
@@ -88,11 +88,11 @@ public class StartPage extends Page {
         return new EditProfilePage(driver);
     }
 
-    public SnowyPeaksPage clickFlySnowyPeaksLink() {
-        clickOnElementWithJS(linkFlySnowyPeaks);
+    public SnowyPeaksPage clickSunnyDestinationLink() {
+        clickOnElementWithJS(linkFlySunnyDestination);
 //        linkFlySnowyPeaks.click();
         (new WebDriverWait(this.driver, WAIT_10_SEC)).until(ExpectedConditions.
-                titleContains("Winter"));
+                titleContains("Sunny"));
         logger.info("Opened page with title " + this.getTitle());
         return new SnowyPeaksPage(this.driver);
 
