@@ -15,8 +15,8 @@ public class PreparationSteps {
 
     protected static final String START_PAGE_URL = PropertyLoader.getProperty("start.url");
     protected static DesiredCapabilities capabilities;
-    protected StartPage startPage;
-    protected WebDriver driver;
+    protected  static StartPage startPage;
+    protected  static WebDriver driver;
 
     protected static final String NEW_SURNAME = PropertyLoader.getProperty("editProfilePage.newSurname");
     protected static final String USER_NAME = PropertyLoader.getProperty("user.name");
@@ -28,7 +28,7 @@ public class PreparationSteps {
     protected static final int RETURN_UNVALID_DATE_DELTA = -5;
 
     @BeforeSuite
-    public void initTestSuite() throws IOException {
+    public static void initTestSuite() throws IOException {
         String browserName = SessionHelper.selectBrowser();
         if ((capabilities = SessionHelper.getBrowserCaps(browserName.toLowerCase())) == null) {
             throw new NoSuchSessionException("Required parameters can't be set");
@@ -36,7 +36,7 @@ public class PreparationSteps {
     }
 
     @BeforeMethod
-    public void initWebDriver() throws InterruptedException {
+    public  static void initWebDriver() throws InterruptedException {
         driver = DriverSingleton.getDriver(capabilities);
         System.out.println("Switch-over to PreparationSteps after running webdriver");
         driver.navigate().to(START_PAGE_URL);
@@ -47,7 +47,7 @@ public class PreparationSteps {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public static void tearDown() {
         DriverSingleton.closeDriver();
     }
 }
